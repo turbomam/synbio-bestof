@@ -1,0 +1,60 @@
+message Address
+ {
+  optional street String = 1
+  optional city String = 2
+  optional postalCode String = 3
+ }
+message FamilialRelationship
+ {
+  optional startedAtTime Date = 1
+  optional endedAtTime Date = 2
+  optional relatedTo String = 3
+  type FamilialRelationshipType = 4
+  relatedTo Person = 5
+ }
+// A generic grouping for any identifiable entity
+message NamedThing
+ {
+  id String = 1
+  optional name String = 2
+  optional description String = 3
+  optional image String = 4
+ }
+// An organization such as a company or university
+message Organization
+ {
+  id String = 1
+  optional name String = 2
+  optional description String = 3
+  optional image String = 4
+  optional missionStatement String = 5
+  optional foundingDate String = 6
+  repeated aliases String = 7
+ }
+// A person (alive, dead, undead, or fictional).
+message Person
+ {
+  id String = 1
+  optional name String = 2
+  optional description String = 3
+  optional image String = 4
+  optional primaryEmail String = 5
+  optional birthDate String = 6
+  optional ageInYears Integer = 7
+  optional currentAddress Address = 8
+  repeated hasFamilialRelationships FamilialRelationship = 9
+  repeated aliases String = 10
+ }
+// Top level data container
+message Registry
+ {
+  repeated persons Person = 1
+  repeated organizations Organization = 2
+ }
+message Relationship
+ {
+  optional startedAtTime Date = 1
+  optional endedAtTime Date = 2
+  optional relatedTo String = 3
+  optional type String = 4
+ }
