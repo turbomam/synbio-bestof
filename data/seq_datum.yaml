@@ -1,0 +1,7 @@
+seq_id: abc123
+part_id: sbucr_part:a1b2c3
+file: /data/subdir/file.format
+seq_name: myseq
+seq_type: insertion
+date_added: "2022-05-17"
+sequence: acgtacgtacgt

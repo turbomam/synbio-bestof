@@ -1,7 +1,12 @@
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
 credentials_file=local/felix-sheets-4d1f37aa312b.json
 
-PHONY:.cogs squeaky-clean
+all: clean target/seq_datum.json
+
+clean:
+	rm -rf target/*
+
+PHONY:.cogs squeaky-clean all
 .cogs:
 	poetry run cogs connect -k $(schemasheet_key) -c $(credentials_file)
 
@@ -16,6 +21,12 @@ squeaky-clean:
 
 target/main.yaml: .cogs/tracked/main.tsv
 	poetry run sheets2linkml $< > $@
+
+target/main_generated.yaml: target/main.yaml
+	poetry run gen-yaml $< 1> $@ 2>> target/make.log
+
+target/seq_datum.json: data/seq_datum.yaml target/main_generated.yaml
+	poetry run linkml-convert --output $@ --target-class Ntseq --schema target/main.yaml $<
 
 #MAKEFLAGS += --warn-undefined-variables
 #SHELL := bash
