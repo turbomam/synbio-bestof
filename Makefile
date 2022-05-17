@@ -1,12 +1,21 @@
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
-credentials_file=XXX
+credentials_file=local/felix-sheets-4d1f37aa312b.json
 
 PHONY:.cogs squeaky-clean
 .cogs:
 	poetry run cogs connect -k $(schemasheet_key) -c $(credentials_file)
 
+# requires fetch step for satisfying dependencies?
+.cogs/tracked/%: .cogs
+	poetry run cogs add $(subst .tsv,,$(subst .cogs/tracked/,,$@))
+	poetry run cogs fetch
+	sleep 10
+
 squeaky-clean:
 	rm -rf .cogs
+
+target/main.yaml: .cogs/tracked/main.tsv
+	poetry run sheets2linkml $< > $@
 
 #MAKEFLAGS += --warn-undefined-variables
 #SHELL := bash
