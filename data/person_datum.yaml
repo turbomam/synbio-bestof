@@ -1,0 +1,11 @@
+person_id: prefix:rhs
+person_name:
+first_name: Gregor
+last_name: Mendel
+#last_login
+#is_superuser
+#username
+email: gregor@stthom.org
+#is_staff
+#is_active
+#date_joined

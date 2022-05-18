@@ -1,7 +1,7 @@
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
 credentials_file=local/felix-sheets-4d1f37aa312b.json
 
-all: clean target/seq_datum.json target/class.tsv
+all: clean target/seq_datum.json target/person_datum.json target/class.tsv
 
 clean:
 	rm -rf target/*
@@ -19,14 +19,19 @@ PHONY:.cogs squeaky-clean all
 squeaky-clean: clean
 	rm -rf .cogs
 
-target/main.yaml: .cogs/tracked/main.tsv
-	poetry run sheets2linkml $< > $@
+# .cogs/tracked/main.tsv
+target/main.yaml: .cogs/tracked/schema.tsv .cogs/tracked/prefixes.tsv .cogs/tracked/enums.tsv .cogs/tracked/slots.tsv .cogs/tracked/classes.tsv
+	poetry run cogs fetch
+	poetry run sheets2linkml $^ > $@
 
 target/main_generated.yaml: target/main.yaml
 	poetry run gen-yaml $< 1> $@ 2>> target/make.log
 
 target/seq_datum.json: data/seq_datum.yaml target/main_generated.yaml
 	poetry run linkml-convert --output $@ --target-class Ntseq --schema target/main.yaml $<
+
+target/person_datum.json: data/person_datum.yaml target/main_generated.yaml
+	poetry run linkml-convert --output $@ --target-class Person --schema target/main.yaml $<
 
 target/class.tsv: target/main_generated.yaml
 	poetry run linkml2sheets -s target/main.yaml l2s_templates/*tsv -d target
