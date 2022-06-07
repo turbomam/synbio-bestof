@@ -3,7 +3,7 @@
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
 credentials_file=local/felix-sheets-4d1f37aa312b.json
 
-synbio-all: synbio-clean target/seq_datum.json target/person_datum.json target/SeqCollection.yaml \
+synbio-all: clean all synbio-clean target/seq_datum.json target/person_datum.json target/SeqCollection.yaml \
 local/felix_dump.db target/main.sql target/synbio-bestof.db
 
 synbio-clean:
@@ -66,7 +66,7 @@ target/SeqCollection.yaml: data/SeqCollection.tsv target/main_generated.yaml
 
 # todo parameterize the output database
 local/felix_dump.db: synbio-clean
-	poetry run sh utils/pgsql2sqlite.sh mam 1111 parts,parts_sequences,modifications
+	- poetry run sh utils/pgsql2sqlite.sh mam 1111 parts,parts_sequences,modifications
 
 # IF00284_adh2_202036bp_chrXIII-chrII_transposition is 202036 nt long
 # the next longest sequences are ~ 49k long
