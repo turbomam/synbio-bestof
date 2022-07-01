@@ -1,0 +1,4 @@
+seq_id	part_id	file	seq_name	seq_type	sequence
+1	1	/data/1.fasta	seq1	insertion	acgtacgtacgt
+2	2	/data/2.fasta	seq2	insertion	acgtacgtacgt
+3	3	/data/3.fasta	seq3	insertion	acgtacgtacgt

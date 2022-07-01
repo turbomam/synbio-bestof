@@ -16,5 +16,5 @@ do
     echo "=========================================="
     
     #db-to-sqlite postgresql://$1@localhost:$2/felix $DIR_NAME/$i.db --table $i --progress
-    db-to-sqlite postgresql://$1@localhost:$2/felix local/$DB_BASE_NAME.db --table $i --progress
+    db-to-sqlite postgresql://$1@localhost:$2/felix target/$DB_BASE_NAME.db --table $i --progress
 done
