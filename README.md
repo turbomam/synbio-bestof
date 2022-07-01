@@ -6,7 +6,9 @@ Usage notes:
 - requires [Python Poetry](https://python-poetry.org/docs/#installation)
 - requires an ssh tunnel and or database credentials: `ssh -L 1111:<dbhost>:5432 -o PreferredAuthentications=password -o PubkeyAuthentication=no <user>@<sshhost>.lbl.gov`
 - ask a colleague for `felix-sheets-4d1f37aa312b.json` and place it in `local`
+- Linux user? You may have to install system dependencies for `psycopg2`.
 - `make install`
+  - Linux user? You may see two warnings like `./utils/get-value.sh: 4: Bad substitution` AFAICT, the make processes still work.
 - `make all`
 - `make synbio-all`
 
