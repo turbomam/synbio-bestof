@@ -2,7 +2,13 @@
 
 This repo pulls together useful parts from various synthetic biology modeling repositories, especially with respect to the IARPA FELIX project. Will problaby be renamed soon.
 
-Usage notes coming soon
+Usage notes:
+- requires [Python Poetry](https://python-poetry.org/docs/#installation)
+- requires an ssh tunnel and or database credentials: `ssh -L 1111:<dbhost>:5432 -o PreferredAuthentications=password -o PubkeyAuthentication=no <user>@<sshhost>.lbl.gov`
+- ask a colleague for `felix-sheets-4d1f37aa312b.json` and place it in `local`
+- `make install`
+- `make all`
+- `make synbio-all`
 
 ## Various FELIX data sources, schema generation, and data validation/conversion 
 
