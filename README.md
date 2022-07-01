@@ -8,7 +8,8 @@ Usage notes:
 - ask a colleague for `felix-sheets-4d1f37aa312b.json` and place it in `local`
 - Linux user? You may have to install system dependencies for `psycopg2`.
 - `make install`
-  - Linux user? You may see some warnings like `./utils/get-value.sh: 4: Bad substitution` AFAICT, the make processes still work.
+  - Linux user? You may see some warnings like `./utils/get-value.sh: 4: Bad substitution` and `utils/pgsql2sqlite.sh: 5: [[: not found
+`. AFAICT, the make processes still work.
 - `make all`
 - `make synbio-all`
 
