@@ -14,6 +14,7 @@ SRC = src
 DEST = project
 PYMODEL = $(SRC)/$(SCHEMA_NAME)/datamodel
 DOCDIR = docs
+DOC_TEMP_DIR = src/doc-templates
 
 # basename of a YAML file in model/
 .PHONY: all clean
@@ -79,8 +80,7 @@ $(DOCDIR):
 	mkdir -p $@
 
 gendoc: $(DOCDIR)
-	cp $(SRC)/docs/*md $(DOCDIR) ; \
-	$(RUN) gen-doc -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
+	$(RUN) gen-doc --directory $(DOCDIR) --template-directory $(DOC_TEMP_DIR) $(SOURCE_SCHEMA_PATH)
 
 testdoc: gendoc serve
 
@@ -93,7 +93,7 @@ git-init-add: git-init git-add git-commit git-status
 git-init:
 	git init
 git-add:
-	git add .gitignore .github Makefile LICENSE *.md examples utils about.yaml mkdocs.yml poetry.lock project.Makefile pyproject.toml src/linkml/*yaml src/*/datamodel/*py src/data
+	git add .gitignore .github Makefile LICENSE *.md examples utils about.yaml mkdocs.yml poetry.lock project.Makefile pyproject.toml src/schema/*yaml src/*/datamodel/*py src/data
 	git add $(patsubst %, project/%, $(PROJECT_FOLDERS))
 git-commit:
 	git commit -m 'Initial commit' -a

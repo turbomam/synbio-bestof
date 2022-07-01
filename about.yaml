@@ -1,3 +1,3 @@
 name: synbio-bestof
-description: my awesome datamodel is for awesome things
-source_schema_path: src/linkml/synbio_bestof.yaml
+description: LinkML schema for Synthetic Biology Ontology
+source_schema_path: src/schema/synbio_bestof.yaml
