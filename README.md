@@ -1,6 +1,6 @@
 # synbio-bestof
 
-This repo pulls together useful parts from various synthetic biology modeling repositories, especially with respect to the IARPA FELIX project. Will problaby be renamed soon.
+This repo pulls together useful parts from various synthetic biology modeling repositories, especially with respect to the IARPA FELIX project. Will probably be renamed soon.
 
 Usage notes:
 - requires [Python Poetry](https://python-poetry.org/docs/#installation)
@@ -12,6 +12,11 @@ Usage notes:
 `. AFAICT, the make processes still work.
 - `make all`
 - `make synbio-all`
+- optionally `make serve` to view the schema documentation
+- optionally `make deploy` to push the documentation to GitHub Pages
+  - this requires that you enable GitHub Pages and select the root of branch `gh-pages` as the source. 
+  - this step will indicate the URL to browse for viewing your documentation
+
 
 ## Various FELIX data sources, schema generation, and data validation/conversion 
 
