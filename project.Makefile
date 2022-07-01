@@ -3,8 +3,9 @@
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
 credentials_file=local/felix-sheets-4d1f37aa312b.json
 
-synbio-all: synbio-clean target/seq_datum.json target/person_datum.json target/SeqCollection.yaml \
-target/felix_dump.db target/synbio.sql target/synbio-bestof.db target/felix_modifcation_parts.tsv
+synbio-all: synbio-clean target/seq_datum.json target/person_datum.json target/SeqCollection.yaml target/felix_dump.db target/synbio.sql
+
+#  target/synbio-bestof.db target/felix_modifcation_parts.tsv
 
 synbio-clean:
 	rm -rf target/*
@@ -25,28 +26,33 @@ PHONY:.cogs squeaky-clean synbio-clean all
 squeaky-clean: synbio-clean
 	rm -rf .cogs
 
-# .cogs/tracked/synbio.tsv
-# .cogs/tracked/enums.tsv
-
+# generate a LinkML schema from Google Sheets
 src/schema/synbio-bestof.yaml: .cogs/tracked/schema.tsv .cogs/tracked/prefixes.tsv .cogs/tracked/slots.tsv .cogs/tracked/classes.tsv .cogs/tracked/enums.tsv
 	poetry run cogs fetch
 	poetry run sheets2linkml $^ > $@
 
+# "validate" the schema, which was just built from Google sheets, with gen-linkml
 src/schema/synbio-bestof-validated.yaml: src/schema/synbio-bestof.yaml
 	# are there any validations that this misses?
 	poetry run gen-yaml $< 1> $@ 2>> logs/synbio-bestof-validation.log
 
+# other linkml sql-related gen- commands
 # gen-sqla           gen-sqlddl         gen-sqlddl-legacy  gen-sqltables
 
-target/main.sql: src/schema/synbio-bestof.yaml
+# convert the schema to a sql script that creates an empty database
+# not actually required for subsequent dumping-toSQLite steps
+target/synbio.sql: src/schema/synbio-bestof.yaml
 	poetry run gen-sqlddl $< 1> $@ 2>> target/make.log
 
+# illustrates converting one mock sequence from yaml to json with the schema's guidance
 target/seq_datum.json: data/seq_datum.yaml src/schema/synbio-bestof-validated.yaml
 	poetry run linkml-convert --output $@ --target-class Ntseq --schema src/schema/synbio-bestof.yaml $<
 
+# illustrates converting one mock person from yaml to json with the schema's guidance
 target/person_datum.json: data/person_datum.yaml src/schema/synbio-bestof-validated.yaml
 	poetry run linkml-convert --output $@ --target-class Person --schema src/schema/synbio-bestof.yaml $<
 
+# illustrates converting a collection of mock sequence data from TSV to a YAML, with the schema's guidance
 target/SeqCollection.yaml: data/SeqCollection.tsv src/schema/synbio-bestof-validated.yaml
 	poetry run linkml-convert \
 		--output $@ \
@@ -68,6 +74,9 @@ target/SeqCollection.yaml: data/SeqCollection.tsv src/schema/synbio-bestof-valid
 #		--db $@ $<
 #	sqlite3 $@ "select * from Ntseq" ""
 
+# extracts some FELIX data from the Celniker Postgres and saves locally as a SQLite database
+# requires ssh tunneling and or database credentials
+# like ssh -L 1111:dbhost:5432 -o PreferredAuthentications=password -o PubkeyAuthentication=no user@sshhost.lbl.gov
 # todo parameterize the output database
 # removing synbio-clean prereq
 # make sure that it is triggered before this rue is run
@@ -84,17 +93,22 @@ target/felix_parts_seq_for_schema.tsv: target/felix_dump.db
 		"" > $@
 
 target/synbio-bestof.db: target/felix_parts_seq_for_schema.tsv src/schema/synbio-bestof-validated.yaml
-	poetry run linkml-sqldb dump \
-		--schema src/schema/synbio-bestof.yaml \
-		--target-class SeqCollection \
-		--index-slot sequences \
-		--schema target/synbio.yaml target/felix_parts_seq_for_schema.tsv
-	poetry run linkml-convert \
-		--output target/merged_modification_data.yaml \
-		--target-class ModCollection \
-		--index-slot modifications \
-		--schema target/synbio.yaml target/merged_modification_data.tsv
-	cat target/felix_parts_seq_for_schema.yaml target/merged_modification_data.yaml > target/omnicollection.yaml
+#	# moves data from the TSV file into the SQLite database
+#	# subsequent linkml- operation on the same SQLite database would overwrite
+#	# the data in the database with the data in the TSV file
+#	# todo: generate a single YAML file that contains data about all relevant classes
+#	#   and then just dump that
+#	poetry run linkml-sqldb dump \
+#		--schema src/schema/synbio-bestof.yaml \
+#		--target-class SeqCollection \
+#		--index-slot sequences \
+#		--db $@ target/felix_parts_seq_for_schema.tsv
+#	poetry run linkml-convert \
+#		--output target/merged_modification_data.yaml \
+#		--target-class ModCollection \
+#		--index-slot modifications \
+#		--schema target/synbio.yaml target/merged_modification_data.tsv
+#	cat target/felix_parts_seq_for_schema.yaml target/merged_modification_data.yaml > target/omnicollection.yaml
 #	poetry run linkml-sqldb dump \
 #		--schema target/synbio.yaml \
 #		--target-class SeqCollection \

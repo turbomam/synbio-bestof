@@ -1,5 +1,5 @@
-# Auto generated from main.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-06-27T13:31:44
+# Auto generated from synbio_bestof.yaml by pythongen.py version: 0.9.0
+# Generation date: 2022-07-01T13:05:43
 # Schema: synbio
 #
 # id: http://example.com/synbio
@@ -297,8 +297,7 @@ class SeqCollection(YAMLRoot):
     class_name: ClassVar[str] = "SeqCollection"
     class_model_uri: ClassVar[URIRef] = SYNBIO.SeqCollection
 
-    sequences: Optional[
-        Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]] = empty_dict()
+    sequences: Optional[Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         self._normalize_inlined_as_list(slot_name="sequences", slot_type=Ntseq, key_name="seq_id", keyed=True)
@@ -499,12 +498,10 @@ class ModCollection(YAMLRoot):
     class_name: ClassVar[str] = "ModCollection"
     class_model_uri: ClassVar[URIRef] = SYNBIO.ModCollection
 
-    modifications: Optional[Union[Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[
-        Union[dict, Modification]]]] = empty_dict()
+    modifications: Optional[Union[Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[Union[dict, Modification]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        self._normalize_inlined_as_list(slot_name="modifications", slot_type=Modification, key_name="modification_id",
-                                        keyed=True)
+        self._normalize_inlined_as_list(slot_name="modifications", slot_type=Modification, key_name="modification_id", keyed=True)
 
         super().__post_init__(**kwargs)
 
@@ -518,28 +515,26 @@ class OmniCollection(YAMLRoot):
     class_name: ClassVar[str] = "OmniCollection"
     class_model_uri: ClassVar[URIRef] = SYNBIO.OmniCollection
 
-    sequences: Optional[
-        Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]] = empty_dict()
-    modifications: Optional[Union[Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[
-        Union[dict, Modification]]]] = empty_dict()
+    sequences: Optional[Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]] = empty_dict()
+    modifications: Optional[Union[Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[Union[dict, Modification]]]] = empty_dict()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         self._normalize_inlined_as_list(slot_name="sequences", slot_type=Ntseq, key_name="seq_id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="modifications", slot_type=Modification, key_name="modification_id",
-                                        keyed=True)
+        self._normalize_inlined_as_list(slot_name="modifications", slot_type=Modification, key_name="modification_id", keyed=True)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
 class SeqTypeEnum(EnumDefinitionImpl):
+
     insertion = PermissibleValue(text="insertion",
-                                 meaning=SO["0000667"])
+                                         meaning=SO["0000667"])
     sequence = PermissibleValue(text="sequence",
-                                meaning=SO["0000001"])
+                                       meaning=SO["0000001"])
     deletion = PermissibleValue(text="deletion",
-                                meaning=SO["0000159"])
+                                       meaning=SO["0000159"])
     flank2 = PermissibleValue(text="flank2")
     flank1 = PermissibleValue(text="flank1")
 
@@ -547,8 +542,8 @@ class SeqTypeEnum(EnumDefinitionImpl):
         name="SeqTypeEnum",
     )
 
-
 class ModCatEnum(EnumDefinitionImpl):
+
     biosynthetic = PermissibleValue(text="biosynthetic")
     compound = PermissibleValue(text="compound")
     promoter = PermissibleValue(text="promoter")
@@ -562,34 +557,34 @@ class ModCatEnum(EnumDefinitionImpl):
     @classmethod
     def _addvals(cls):
         setattr(cls, "origin/structural",
-                PermissibleValue(text="origin/structural"))
+                PermissibleValue(text="origin/structural") )
         setattr(cls, "toxin/virulence",
-                PermissibleValue(text="toxin/virulence"))
+                PermissibleValue(text="toxin/virulence") )
         setattr(cls, "control element",
-                PermissibleValue(text="control element"))
+                PermissibleValue(text="control element") )
         setattr(cls, "antibiotic resistance",
-                PermissibleValue(text="antibiotic resistance"))
+                PermissibleValue(text="antibiotic resistance") )
         setattr(cls, "fluorescent/epitope",
-                PermissibleValue(text="fluorescent/epitope"))
-
+                PermissibleValue(text="fluorescent/epitope") )
 
 class ModTypeEnum(EnumDefinitionImpl):
+
     Plasmid = PermissibleValue(text="Plasmid",
-                               meaning=SO["0000155"])
+                                     meaning=SO["0000155"])
     deletion = PermissibleValue(text="deletion",
-                                meaning=SO["0000159"])
+                                       meaning=SO["0000159"])
     insertion = PermissibleValue(text="insertion",
-                                 meaning=SO["0000667"])
+                                         meaning=SO["0000667"])
     frameshift = PermissibleValue(text="frameshift",
-                                  meaning=SO["0000865"])
+                                           meaning=SO["0000865"])
     CDSpartial = PermissibleValue(text="CDSpartial",
-                                  meaning=SO["0001384"])
+                                           meaning=SO["0001384"])
     subtitutions = PermissibleValue(text="subtitutions",
-                                    meaning=SO["1000002"])
+                                               meaning=SO["1000002"])
     transition = PermissibleValue(text="transition",
-                                  meaning=SO["1000009"])
+                                           meaning=SO["1000009"])
     inversion = PermissibleValue(text="inversion",
-                                 meaning=SO["1000036"])
+                                         meaning=SO["1000036"])
     reassortment = PermissibleValue(text="reassortment")
 
     _defn = EnumDefinition(
@@ -600,39 +595,39 @@ class ModTypeEnum(EnumDefinitionImpl):
     def _addvals(cls):
         setattr(cls, "amber.stop.codon",
                 PermissibleValue(text="amber.stop.codon",
-                                 meaning=SO["0002333"]))
+                                 meaning=SO["0002333"]) )
         setattr(cls, "ochre.stop.codon",
                 PermissibleValue(text="ochre.stop.codon",
-                                 meaning=SO["0002334"]))
+                                 meaning=SO["0002334"]) )
         setattr(cls, "substitution.transition",
                 PermissibleValue(text="substitution.transition",
-                                 meaning=SO["1000009"]))
+                                 meaning=SO["1000009"]) )
         setattr(cls, "substitution.transversion",
                 PermissibleValue(text="substitution.transversion",
-                                 meaning=SO["1000017"]))
+                                 meaning=SO["1000017"]) )
         setattr(cls, "plasmid.element",
-                PermissibleValue(text="plasmid.element"))
+                PermissibleValue(text="plasmid.element") )
         setattr(cls, "compound.insertion",
-                PermissibleValue(text="compound.insertion"))
+                PermissibleValue(text="compound.insertion") )
         setattr(cls, "compound.deletion",
-                PermissibleValue(text="compound.deletion"))
+                PermissibleValue(text="compound.deletion") )
         setattr(cls, "insertion.site",
-                PermissibleValue(text="insertion.site"))
+                PermissibleValue(text="insertion.site") )
         setattr(cls, "fluorescent/epitope",
-                PermissibleValue(text="fluorescent/epitope"))
+                PermissibleValue(text="fluorescent/epitope") )
         setattr(cls, "transition,plasmid.element",
-                PermissibleValue(text="transition,plasmid.element"))
+                PermissibleValue(text="transition,plasmid.element") )
         setattr(cls, "in-frame.deletion",
-                PermissibleValue(text="in-frame.deletion"))
+                PermissibleValue(text="in-frame.deletion") )
         setattr(cls, "plasmid element",
-                PermissibleValue(text="plasmid element"))
+                PermissibleValue(text="plasmid element") )
         setattr(cls, "chrXIII-chrII",
-                PermissibleValue(text="chrXIII-chrII"))
+                PermissibleValue(text="chrXIII-chrII") )
         setattr(cls, "transition.plasmid.element",
-                PermissibleValue(text="transition.plasmid.element"))
-
+                PermissibleValue(text="transition.plasmid.element") )
 
 class ModDescriptorEnum(EnumDefinitionImpl):
+
     CDSpartial = PermissibleValue(text="CDSpartial")
     CDS = PermissibleValue(text="CDS")
     terminator = PermissibleValue(text="terminator")
@@ -649,257 +644,234 @@ class ModDescriptorEnum(EnumDefinitionImpl):
     @classmethod
     def _addvals(cls):
         setattr(cls, "CDSpartial-5prime",
-                PermissibleValue(text="CDSpartial-5prime"))
+                PermissibleValue(text="CDSpartial-5prime") )
         setattr(cls, "CDSpartial-3prime",
-                PermissibleValue(text="CDSpartial-3prime"))
+                PermissibleValue(text="CDSpartial-3prime") )
         setattr(cls, "1bpG707A",
-                PermissibleValue(text="1bpG707A"))
+                PermissibleValue(text="1bpG707A") )
         setattr(cls, "ribosomal.binding.site",
-                PermissibleValue(text="ribosomal.binding.site"))
-
+                PermissibleValue(text="ribosomal.binding.site") )
 
 # Slots
 class slots:
     pass
 
-
 slots.aa_change = Slot(uri=SYNBIO.aa_change, name="aa_change", curie=SYNBIO.curie('aa_change'),
-                       model_uri=SYNBIO.aa_change, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.aa_change, domain=None, range=Optional[str])
 
 slots.alias = Slot(uri=SYNBIO.alias, name="alias", curie=SYNBIO.curie('alias'),
                    model_uri=SYNBIO.alias, domain=None, range=Optional[str])
 
-slots.bio_safety_level = Slot(uri=SYNBIO.bio_safety_level, name="bio_safety_level",
-                              curie=SYNBIO.curie('bio_safety_level'),
-                              model_uri=SYNBIO.bio_safety_level, domain=None, range=str)
+slots.bio_safety_level = Slot(uri=SYNBIO.bio_safety_level, name="bio_safety_level", curie=SYNBIO.curie('bio_safety_level'),
+                   model_uri=SYNBIO.bio_safety_level, domain=None, range=str)
 
 slots.category = Slot(uri=SYNBIO.category, name="category", curie=SYNBIO.curie('category'),
-                      model_uri=SYNBIO.category, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.category, domain=None, range=Optional[str])
 
 slots.creator = Slot(uri=SYNBIO.creator, name="creator", curie=SYNBIO.curie('creator'),
-                     model_uri=SYNBIO.creator, domain=None, range=Optional[Union[str, PersonPersonId]])
+                   model_uri=SYNBIO.creator, domain=None, range=Optional[Union[str, PersonPersonId]])
 
 slots.creator_id = Slot(uri=SYNBIO.creator_id, name="creator_id", curie=SYNBIO.curie('creator_id'),
-                        model_uri=SYNBIO.creator_id, domain=None, range=str)
+                   model_uri=SYNBIO.creator_id, domain=None, range=str)
 
 slots.date_added = Slot(uri=SYNBIO.date_added, name="date_added", curie=SYNBIO.curie('date_added'),
-                        model_uri=SYNBIO.date_added, domain=None, range=str)
+                   model_uri=SYNBIO.date_added, domain=None, range=str)
 
 slots.date_joined = Slot(uri=SYNBIO.date_joined, name="date_joined", curie=SYNBIO.curie('date_joined'),
-                         model_uri=SYNBIO.date_joined, domain=None, range=Optional[Union[str, XSDDateTime]])
+                   model_uri=SYNBIO.date_joined, domain=None, range=Optional[Union[str, XSDDateTime]])
 
 slots.descriptor = Slot(uri=SYNBIO.descriptor, name="descriptor", curie=SYNBIO.curie('descriptor'),
-                        model_uri=SYNBIO.descriptor, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.descriptor, domain=None, range=Optional[str])
 
 slots.details = Slot(uri=SYNBIO.details, name="details", curie=SYNBIO.curie('details'),
-                     model_uri=SYNBIO.details, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.details, domain=None, range=Optional[str])
 
 slots.element = Slot(uri=SYNBIO.element, name="element", curie=SYNBIO.curie('element'),
-                     model_uri=SYNBIO.element, domain=None, range=str)
+                   model_uri=SYNBIO.element, domain=None, range=str)
 
 slots.element_id = Slot(uri=SYNBIO.element_id, name="element_id", curie=SYNBIO.curie('element_id'),
-                        model_uri=SYNBIO.element_id, domain=None, range=str)
+                   model_uri=SYNBIO.element_id, domain=None, range=str)
 
-slots.element_id_number = Slot(uri=SYNBIO.element_id_number, name="element_id_number",
-                               curie=SYNBIO.curie('element_id_number'),
-                               model_uri=SYNBIO.element_id_number, domain=None, range=str)
+slots.element_id_number = Slot(uri=SYNBIO.element_id_number, name="element_id_number", curie=SYNBIO.curie('element_id_number'),
+                   model_uri=SYNBIO.element_id_number, domain=None, range=str)
 
 slots.element_name = Slot(uri=SYNBIO.element_name, name="element_name", curie=SYNBIO.curie('element_name'),
-                          model_uri=SYNBIO.element_name, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.element_name, domain=None, range=Optional[str])
 
 slots.element_species = Slot(uri=SYNBIO.element_species, name="element_species", curie=SYNBIO.curie('element_species'),
-                             model_uri=SYNBIO.element_species, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.element_species, domain=None, range=Optional[str])
 
 slots.email = Slot(uri=SYNBIO.email, name="email", curie=SYNBIO.curie('email'),
                    model_uri=SYNBIO.email, domain=None, range=Optional[str])
 
 slots.file = Slot(uri=SYNBIO.file, name="file", curie=SYNBIO.curie('file'),
-                  model_uri=SYNBIO.file, domain=None, range=str)
+                   model_uri=SYNBIO.file, domain=None, range=str)
 
 slots.first_name = Slot(uri=SYNBIO.first_name, name="first_name", curie=SYNBIO.curie('first_name'),
-                        model_uri=SYNBIO.first_name, domain=None, range=str)
+                   model_uri=SYNBIO.first_name, domain=None, range=str)
 
 slots.funding_source = Slot(uri=SYNBIO.funding_source, name="funding_source", curie=SYNBIO.curie('funding_source'),
-                            model_uri=SYNBIO.funding_source, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.funding_source, domain=None, range=Optional[str])
 
-slots.genotype_phenotype = Slot(uri=SYNBIO.genotype_phenotype, name="genotype_phenotype",
-                                curie=SYNBIO.curie('genotype_phenotype'),
-                                model_uri=SYNBIO.genotype_phenotype, domain=None, range=Optional[str])
+slots.genotype_phenotype = Slot(uri=SYNBIO.genotype_phenotype, name="genotype_phenotype", curie=SYNBIO.curie('genotype_phenotype'),
+                   model_uri=SYNBIO.genotype_phenotype, domain=None, range=Optional[str])
 
 slots.host_species_id = Slot(uri=SYNBIO.host_species_id, name="host_species_id", curie=SYNBIO.curie('host_species_id'),
-                             model_uri=SYNBIO.host_species_id, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.host_species_id, domain=None, range=Optional[str])
 
 slots.id = Slot(uri=SYNBIO.id, name="id", curie=SYNBIO.curie('id'),
-                model_uri=SYNBIO.id, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.id, domain=None, range=Optional[str])
 
-slots.intellectual_property = Slot(uri=SYNBIO.intellectual_property, name="intellectual_property",
-                                   curie=SYNBIO.curie('intellectual_property'),
-                                   model_uri=SYNBIO.intellectual_property, domain=None, range=Optional[str])
+slots.intellectual_property = Slot(uri=SYNBIO.intellectual_property, name="intellectual_property", curie=SYNBIO.curie('intellectual_property'),
+                   model_uri=SYNBIO.intellectual_property, domain=None, range=Optional[str])
 
 slots.is_active = Slot(uri=SYNBIO.is_active, name="is_active", curie=SYNBIO.curie('is_active'),
-                       model_uri=SYNBIO.is_active, domain=None, range=Optional[Union[bool, Bool]])
+                   model_uri=SYNBIO.is_active, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.is_staff = Slot(uri=SYNBIO.is_staff, name="is_staff", curie=SYNBIO.curie('is_staff'),
-                      model_uri=SYNBIO.is_staff, domain=None, range=Optional[Union[bool, Bool]])
+                   model_uri=SYNBIO.is_staff, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.is_superuser = Slot(uri=SYNBIO.is_superuser, name="is_superuser", curie=SYNBIO.curie('is_superuser'),
-                          model_uri=SYNBIO.is_superuser, domain=None, range=Optional[Union[bool, Bool]])
+                   model_uri=SYNBIO.is_superuser, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.keywords = Slot(uri=SYNBIO.keywords, name="keywords", curie=SYNBIO.curie('keywords'),
-                      model_uri=SYNBIO.keywords, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.keywords, domain=None, range=Optional[str])
 
 slots.last_login = Slot(uri=SYNBIO.last_login, name="last_login", curie=SYNBIO.curie('last_login'),
-                        model_uri=SYNBIO.last_login, domain=None, range=Optional[Union[str, XSDDateTime]])
+                   model_uri=SYNBIO.last_login, domain=None, range=Optional[Union[str, XSDDateTime]])
 
 slots.last_name = Slot(uri=SYNBIO.last_name, name="last_name", curie=SYNBIO.curie('last_name'),
-                       model_uri=SYNBIO.last_name, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.last_name, domain=None, range=Optional[str])
 
-slots.middle_init_or_name = Slot(uri=SYNBIO.middle_init_or_name, name="middle_init_or_name",
-                                 curie=SYNBIO.curie('middle_init_or_name'),
-                                 model_uri=SYNBIO.middle_init_or_name, domain=None, range=Optional[str])
+slots.middle_init_or_name = Slot(uri=SYNBIO.middle_init_or_name, name="middle_init_or_name", curie=SYNBIO.curie('middle_init_or_name'),
+                   model_uri=SYNBIO.middle_init_or_name, domain=None, range=Optional[str])
 
 slots.mod_alias = Slot(uri=SYNBIO.mod_alias, name="mod_alias", curie=SYNBIO.curie('mod_alias'),
-                       model_uri=SYNBIO.mod_alias, domain=None, range=str)
+                   model_uri=SYNBIO.mod_alias, domain=None, range=str)
 
 slots.modification_id = Slot(uri=SYNBIO.modification_id, name="modification_id", curie=SYNBIO.curie('modification_id'),
-                             model_uri=SYNBIO.modification_id, domain=None, range=URIRef)
+                   model_uri=SYNBIO.modification_id, domain=None, range=URIRef)
 
-slots.modification_type = Slot(uri=SYNBIO.modification_type, name="modification_type",
-                               curie=SYNBIO.curie('modification_type'),
-                               model_uri=SYNBIO.modification_type, domain=None, range=Optional[str])
+slots.modification_type = Slot(uri=SYNBIO.modification_type, name="modification_type", curie=SYNBIO.curie('modification_type'),
+                   model_uri=SYNBIO.modification_type, domain=None, range=Optional[str])
 
 slots.modifications = Slot(uri=SYNBIO.modifications, name="modifications", curie=SYNBIO.curie('modifications'),
-                           model_uri=SYNBIO.modifications, domain=None, range=Optional[Union[
-        Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[Union[dict, Modification]]]])
+                   model_uri=SYNBIO.modifications, domain=None, range=Optional[Union[Dict[Union[str, ModificationModificationId], Union[dict, Modification]], List[Union[dict, Modification]]]])
 
 slots.name = Slot(uri=SYNBIO.name, name="name", curie=SYNBIO.curie('name'),
-                  model_uri=SYNBIO.name, domain=None, range=str)
+                   model_uri=SYNBIO.name, domain=None, range=str)
 
 slots.NCBI_id = Slot(uri=SYNBIO.NCBI_id, name="NCBI_id", curie=SYNBIO.curie('NCBI_id'),
-                     model_uri=SYNBIO.NCBI_id, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.NCBI_id, domain=None, range=Optional[str])
 
 slots.notes = Slot(uri=SYNBIO.notes, name="notes", curie=SYNBIO.curie('notes'),
                    model_uri=SYNBIO.notes, domain=None, range=Optional[str])
 
 slots.organism_id = Slot(uri=SYNBIO.organism_id, name="organism_id", curie=SYNBIO.curie('organism_id'),
-                         model_uri=SYNBIO.organism_id, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.organism_id, domain=None, range=Optional[str])
 
 slots.part_id = Slot(uri=SYNBIO.part_id, name="part_id", curie=SYNBIO.curie('part_id'),
-                     model_uri=SYNBIO.part_id, domain=None, range=str)
+                   model_uri=SYNBIO.part_id, domain=None, range=str)
 
 slots.part_name = Slot(uri=SYNBIO.part_name, name="part_name", curie=SYNBIO.curie('part_name'),
-                       model_uri=SYNBIO.part_name, domain=None, range=str)
+                   model_uri=SYNBIO.part_name, domain=None, range=str)
 
 slots.part_type = Slot(uri=SYNBIO.part_type, name="part_type", curie=SYNBIO.curie('part_type'),
-                       model_uri=SYNBIO.part_type, domain=None, range=str)
+                   model_uri=SYNBIO.part_type, domain=None, range=str)
 
 slots.parts_ptr_id = Slot(uri=SYNBIO.parts_ptr_id, name="parts_ptr_id", curie=SYNBIO.curie('parts_ptr_id'),
-                          model_uri=SYNBIO.parts_ptr_id, domain=None, range=str)
+                   model_uri=SYNBIO.parts_ptr_id, domain=None, range=str)
 
 slots.person_id = Slot(uri=SYNBIO.person_id, name="person_id", curie=SYNBIO.curie('person_id'),
-                       model_uri=SYNBIO.person_id, domain=None, range=URIRef)
+                   model_uri=SYNBIO.person_id, domain=None, range=URIRef)
 
 slots.person_name = Slot(uri=SYNBIO.person_name, name="person_name", curie=SYNBIO.curie('person_name'),
-                         model_uri=SYNBIO.person_name, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.person_name, domain=None, range=Optional[str])
 
 slots.position = Slot(uri=SYNBIO.position, name="position", curie=SYNBIO.curie('position'),
-                      model_uri=SYNBIO.position, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.position, domain=None, range=Optional[str])
 
-slots.principal_investigator = Slot(uri=SYNBIO.principal_investigator, name="principal_investigator",
-                                    curie=SYNBIO.curie('principal_investigator'),
-                                    model_uri=SYNBIO.principal_investigator, domain=None, range=str)
+slots.principal_investigator = Slot(uri=SYNBIO.principal_investigator, name="principal_investigator", curie=SYNBIO.curie('principal_investigator'),
+                   model_uri=SYNBIO.principal_investigator, domain=None, range=str)
 
 slots.references = Slot(uri=SYNBIO.references, name="references", curie=SYNBIO.curie('references'),
-                        model_uri=SYNBIO.references, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.references, domain=None, range=Optional[str])
 
-slots.SC_curated_enzyme_name = Slot(uri=SYNBIO.SC_curated_enzyme_name, name="SC_curated_enzyme_name",
-                                    curie=SYNBIO.curie('SC_curated_enzyme_name'),
-                                    model_uri=SYNBIO.SC_curated_enzyme_name, domain=None, range=Optional[str])
+slots.SC_curated_enzyme_name = Slot(uri=SYNBIO.SC_curated_enzyme_name, name="SC_curated_enzyme_name", curie=SYNBIO.curie('SC_curated_enzyme_name'),
+                   model_uri=SYNBIO.SC_curated_enzyme_name, domain=None, range=Optional[str])
 
-slots.SC_curated_gene_name = Slot(uri=SYNBIO.SC_curated_gene_name, name="SC_curated_gene_name",
-                                  curie=SYNBIO.curie('SC_curated_gene_name'),
-                                  model_uri=SYNBIO.SC_curated_gene_name, domain=None, range=Optional[str])
+slots.SC_curated_gene_name = Slot(uri=SYNBIO.SC_curated_gene_name, name="SC_curated_gene_name", curie=SYNBIO.curie('SC_curated_gene_name'),
+                   model_uri=SYNBIO.SC_curated_gene_name, domain=None, range=Optional[str])
 
-slots.SC_curated_protein_name = Slot(uri=SYNBIO.SC_curated_protein_name, name="SC_curated_protein_name",
-                                     curie=SYNBIO.curie('SC_curated_protein_name'),
-                                     model_uri=SYNBIO.SC_curated_protein_name, domain=None, range=Optional[str])
+slots.SC_curated_protein_name = Slot(uri=SYNBIO.SC_curated_protein_name, name="SC_curated_protein_name", curie=SYNBIO.curie('SC_curated_protein_name'),
+                   model_uri=SYNBIO.SC_curated_protein_name, domain=None, range=Optional[str])
 
-slots.SC_curated_uniprot_id = Slot(uri=SYNBIO.SC_curated_uniprot_id, name="SC_curated_uniprot_id",
-                                   curie=SYNBIO.curie('SC_curated_uniprot_id'),
-                                   model_uri=SYNBIO.SC_curated_uniprot_id, domain=None, range=Optional[str])
+slots.SC_curated_uniprot_id = Slot(uri=SYNBIO.SC_curated_uniprot_id, name="SC_curated_uniprot_id", curie=SYNBIO.curie('SC_curated_uniprot_id'),
+                   model_uri=SYNBIO.SC_curated_uniprot_id, domain=None, range=Optional[str])
 
 slots.seq_id = Slot(uri=SYNBIO.seq_id, name="seq_id", curie=SYNBIO.curie('seq_id'),
-                    model_uri=SYNBIO.seq_id, domain=None, range=URIRef)
+                   model_uri=SYNBIO.seq_id, domain=None, range=URIRef)
 
 slots.seq_name = Slot(uri=SYNBIO.seq_name, name="seq_name", curie=SYNBIO.curie('seq_name'),
-                      model_uri=SYNBIO.seq_name, domain=None, range=str)
+                   model_uri=SYNBIO.seq_name, domain=None, range=str)
 
 slots.seq_type = Slot(uri=SYNBIO.seq_type, name="seq_type", curie=SYNBIO.curie('seq_type'),
-                      model_uri=SYNBIO.seq_type, domain=None, range=str)
+                   model_uri=SYNBIO.seq_type, domain=None, range=str)
 
 slots.seq2ids_alias = Slot(uri=SYNBIO.seq2ids_alias, name="seq2ids_alias", curie=SYNBIO.curie('seq2ids_alias'),
-                           model_uri=SYNBIO.seq2ids_alias, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.seq2ids_alias, domain=None, range=Optional[str])
 
 slots.seq2ids_all_go = Slot(uri=SYNBIO.seq2ids_all_go, name="seq2ids_all_go", curie=SYNBIO.curie('seq2ids_all_go'),
-                            model_uri=SYNBIO.seq2ids_all_go, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.seq2ids_all_go, domain=None, range=Optional[str])
 
-slots.seq2ids_bitscore = Slot(uri=SYNBIO.seq2ids_bitscore, name="seq2ids_bitscore",
-                              curie=SYNBIO.curie('seq2ids_bitscore'),
-                              model_uri=SYNBIO.seq2ids_bitscore, domain=None, range=Optional[str])
+slots.seq2ids_bitscore = Slot(uri=SYNBIO.seq2ids_bitscore, name="seq2ids_bitscore", curie=SYNBIO.curie('seq2ids_bitscore'),
+                   model_uri=SYNBIO.seq2ids_bitscore, domain=None, range=Optional[str])
 
-slots.seq2ids_blast_db = Slot(uri=SYNBIO.seq2ids_blast_db, name="seq2ids_blast_db",
-                              curie=SYNBIO.curie('seq2ids_blast_db'),
-                              model_uri=SYNBIO.seq2ids_blast_db, domain=None, range=Optional[str])
+slots.seq2ids_blast_db = Slot(uri=SYNBIO.seq2ids_blast_db, name="seq2ids_blast_db", curie=SYNBIO.curie('seq2ids_blast_db'),
+                   model_uri=SYNBIO.seq2ids_blast_db, domain=None, range=Optional[str])
 
-slots.seq2ids_gene_name_1ry = Slot(uri=SYNBIO.seq2ids_gene_name_1ry, name="seq2ids_gene_name_1ry",
-                                   curie=SYNBIO.curie('seq2ids_gene_name_1ry'),
-                                   model_uri=SYNBIO.seq2ids_gene_name_1ry, domain=None, range=Optional[str])
+slots.seq2ids_gene_name_1ry = Slot(uri=SYNBIO.seq2ids_gene_name_1ry, name="seq2ids_gene_name_1ry", curie=SYNBIO.curie('seq2ids_gene_name_1ry'),
+                   model_uri=SYNBIO.seq2ids_gene_name_1ry, domain=None, range=Optional[str])
 
-slots.seq2ids_gene_names = Slot(uri=SYNBIO.seq2ids_gene_names, name="seq2ids_gene_names",
-                                curie=SYNBIO.curie('seq2ids_gene_names'),
-                                model_uri=SYNBIO.seq2ids_gene_names, domain=None, range=Optional[str])
+slots.seq2ids_gene_names = Slot(uri=SYNBIO.seq2ids_gene_names, name="seq2ids_gene_names", curie=SYNBIO.curie('seq2ids_gene_names'),
+                   model_uri=SYNBIO.seq2ids_gene_names, domain=None, range=Optional[str])
 
-slots.seq2ids_organism = Slot(uri=SYNBIO.seq2ids_organism, name="seq2ids_organism",
-                              curie=SYNBIO.curie('seq2ids_organism'),
-                              model_uri=SYNBIO.seq2ids_organism, domain=None, range=Optional[str])
+slots.seq2ids_organism = Slot(uri=SYNBIO.seq2ids_organism, name="seq2ids_organism", curie=SYNBIO.curie('seq2ids_organism'),
+                   model_uri=SYNBIO.seq2ids_organism, domain=None, range=Optional[str])
 
-slots.seq2ids_prot_function = Slot(uri=SYNBIO.seq2ids_prot_function, name="seq2ids_prot_function",
-                                   curie=SYNBIO.curie('seq2ids_prot_function'),
-                                   model_uri=SYNBIO.seq2ids_prot_function, domain=None, range=Optional[str])
+slots.seq2ids_prot_function = Slot(uri=SYNBIO.seq2ids_prot_function, name="seq2ids_prot_function", curie=SYNBIO.curie('seq2ids_prot_function'),
+                   model_uri=SYNBIO.seq2ids_prot_function, domain=None, range=Optional[str])
 
-slots.seq2ids_prot_names = Slot(uri=SYNBIO.seq2ids_prot_names, name="seq2ids_prot_names",
-                                curie=SYNBIO.curie('seq2ids_prot_names'),
-                                model_uri=SYNBIO.seq2ids_prot_names, domain=None, range=Optional[str])
+slots.seq2ids_prot_names = Slot(uri=SYNBIO.seq2ids_prot_names, name="seq2ids_prot_names", curie=SYNBIO.curie('seq2ids_prot_names'),
+                   model_uri=SYNBIO.seq2ids_prot_names, domain=None, range=Optional[str])
 
 slots.seq2ids_sacc = Slot(uri=SYNBIO.seq2ids_sacc, name="seq2ids_sacc", curie=SYNBIO.curie('seq2ids_sacc'),
-                          model_uri=SYNBIO.seq2ids_sacc, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.seq2ids_sacc, domain=None, range=Optional[str])
 
 slots.sequence = Slot(uri=SYNBIO.sequence, name="sequence", curie=SYNBIO.curie('sequence'),
-                      model_uri=SYNBIO.sequence, domain=None, range=str,
-                      pattern=re.compile(r'^[ACGTacgt]+$'))
+                   model_uri=SYNBIO.sequence, domain=None, range=str,
+                   pattern=re.compile(r'^[ACGTacgt]+$'))
 
 slots.sequences = Slot(uri=SYNBIO.sequences, name="sequences", curie=SYNBIO.curie('sequences'),
-                       model_uri=SYNBIO.sequences, domain=None, range=Optional[
-        Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]])
+                   model_uri=SYNBIO.sequences, domain=None, range=Optional[Union[Dict[Union[str, NtseqSeqId], Union[dict, Ntseq]], List[Union[dict, Ntseq]]]])
 
 slots.size = Slot(uri=SYNBIO.size, name="size", curie=SYNBIO.curie('size'),
-                  model_uri=SYNBIO.size, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.size, domain=None, range=Optional[str])
 
 slots.status = Slot(uri=SYNBIO.status, name="status", curie=SYNBIO.curie('status'),
-                    model_uri=SYNBIO.status, domain=None, range=str)
+                   model_uri=SYNBIO.status, domain=None, range=str)
 
-slots.subcategory_size = Slot(uri=SYNBIO.subcategory_size, name="subcategory_size",
-                              curie=SYNBIO.curie('subcategory_size'),
-                              model_uri=SYNBIO.subcategory_size, domain=None, range=Optional[str])
+slots.subcategory_size = Slot(uri=SYNBIO.subcategory_size, name="subcategory_size", curie=SYNBIO.curie('subcategory_size'),
+                   model_uri=SYNBIO.subcategory_size, domain=None, range=Optional[str])
 
 slots.summary = Slot(uri=SYNBIO.summary, name="summary", curie=SYNBIO.curie('summary'),
-                     model_uri=SYNBIO.summary, domain=None, range=str)
+                   model_uri=SYNBIO.summary, domain=None, range=str)
 
 slots.taxon_id = Slot(uri=SYNBIO.taxon_id, name="taxon_id", curie=SYNBIO.curie('taxon_id'),
-                      model_uri=SYNBIO.taxon_id, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.taxon_id, domain=None, range=Optional[str])
 
 slots.type = Slot(uri=SYNBIO.type, name="type", curie=SYNBIO.curie('type'),
-                  model_uri=SYNBIO.type, domain=None, range=str)
+                   model_uri=SYNBIO.type, domain=None, range=str)
 
 slots.username = Slot(uri=SYNBIO.username, name="username", curie=SYNBIO.curie('username'),
-                      model_uri=SYNBIO.username, domain=None, range=Optional[str])
+                   model_uri=SYNBIO.username, domain=None, range=Optional[str])

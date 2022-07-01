@@ -1,0 +1,1380 @@
+name: synbio
+description: A schema for synthetic biology and it's detectability
+comments:
+- linkml:types import gets repeated
+id: http://example.com/synbio
+imports:
+- linkml:types
+- linkml:types
+license: https://creativecommons.org/publicdomain/zero/1.0/
+prefixes:
+  SO:
+    prefix_prefix: SO
+    prefix_reference: http://purl.obolibrary.org/obo/SO_
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  synbio:
+    prefix_prefix: synbio
+    prefix_reference: http://example.com/synbio/
+  synbio_part:
+    prefix_prefix: synbio_part
+    prefix_reference: http://example.com/synbio/part/
+  synbio_mod:
+    prefix_prefix: synbio_mod
+    prefix_reference: http://example.com/synbio/modification/
+  synbio_person:
+    prefix_prefix: synbio_person
+    prefix_reference: http://example.com/synbio/person/
+default_curi_maps:
+- semweb_context
+default_prefix: synbio
+default_range: string
+types:
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: XSDTime
+    uri: xsd:dateTime
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    description: a complete URI
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    comments:
+    - Used for inheritence and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+enums:
+  seq_type_enum:
+    name: seq_type_enum
+    definition_uri: http://example.com/synbio/SeqTypeEnum
+    comments:
+    - SO:0000001 = "region", a seqeunce feature with extent > 0
+    from_schema: http://example.com/synbio
+    permissible_values:
+      insertion:
+        text: insertion
+        meaning: SO:0000667
+        annotations:
+          count:
+            tag: count
+            value: '192'
+      sequence:
+        text: sequence
+        meaning: SO:0000001
+        annotations:
+          count:
+            tag: count
+            value: '96'
+      deletion:
+        text: deletion
+        meaning: SO:0000159
+        annotations:
+          count:
+            tag: count
+            value: '83'
+      flank2:
+        text: flank2
+        annotations:
+          count:
+            tag: count
+            value: '77'
+      flank1:
+        text: flank1
+        annotations:
+          count:
+            tag: count
+            value: '76'
+  mod_cat_enum:
+    name: mod_cat_enum
+    definition_uri: http://example.com/synbio/ModCatEnum
+    comments:
+    - 166 blank, 4 NA
+    from_schema: http://example.com/synbio
+    permissible_values:
+      origin/structural:
+        text: origin/structural
+        annotations:
+          count:
+            tag: count
+            value: '31'
+      biosynthetic:
+        text: biosynthetic
+        annotations:
+          count:
+            tag: count
+            value: '29'
+      toxin/virulence:
+        text: toxin/virulence
+        annotations:
+          count:
+            tag: count
+            value: '28'
+      compound:
+        text: compound
+        annotations:
+          count:
+            tag: count
+            value: '24'
+      promoter:
+        text: promoter
+        annotations:
+          count:
+            tag: count
+            value: '24'
+      control element:
+        text: control element
+        annotations:
+          count:
+            tag: count
+            value: '23'
+      terminator:
+        text: terminator
+        annotations:
+          count:
+            tag: count
+            value: '18'
+      antibiotic resistance:
+        text: antibiotic resistance
+        annotations:
+          count:
+            tag: count
+            value: '18'
+      fluorescent/epitope:
+        text: fluorescent/epitope
+        annotations:
+          count:
+            tag: count
+            value: '13'
+      GOI:
+        text: GOI
+        annotations:
+          count:
+            tag: count
+            value: '10'
+  mod_type_enum:
+    name: mod_type_enum
+    definition_uri: http://example.com/synbio/ModTypeEnum
+    comments:
+    - 1 blank, 3 NA
+    from_schema: http://example.com/synbio
+    permissible_values:
+      Plasmid:
+        text: Plasmid
+        meaning: SO:0000155
+        annotations:
+          count:
+            tag: count
+            value: '8'
+      deletion:
+        text: deletion
+        meaning: SO:0000159
+        annotations:
+          count:
+            tag: count
+            value: '73'
+      insertion:
+        text: insertion
+        meaning: SO:0000667
+        annotations:
+          count:
+            tag: count
+            value: '149'
+      frameshift:
+        text: frameshift
+        meaning: SO:0000865
+        annotations:
+          count:
+            tag: count
+            value: '9'
+      CDSpartial:
+        text: CDSpartial
+        meaning: SO:0001384
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      amber.stop.codon:
+        text: amber.stop.codon
+        meaning: SO:0002333
+        annotations:
+          count:
+            tag: count
+            value: '3'
+      ochre.stop.codon:
+        text: ochre.stop.codon
+        meaning: SO:0002334
+        annotations:
+          count:
+            tag: count
+            value: '4'
+      subtitutions:
+        text: subtitutions
+        meaning: SO:1000002
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      substitution.transition:
+        text: substitution.transition
+        meaning: SO:1000009
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      transition:
+        text: transition
+        meaning: SO:1000009
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      substitution.transversion:
+        text: substitution.transversion
+        meaning: SO:1000017
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      inversion:
+        text: inversion
+        meaning: SO:1000036
+        annotations:
+          count:
+            tag: count
+            value: '3'
+      plasmid.element:
+        text: plasmid.element
+        annotations:
+          count:
+            tag: count
+            value: '83'
+      compound.insertion:
+        text: compound.insertion
+        annotations:
+          count:
+            tag: count
+            value: '24'
+      compound.deletion:
+        text: compound.deletion
+        annotations:
+          count:
+            tag: count
+            value: '9'
+      insertion.site:
+        text: insertion.site
+        annotations:
+          count:
+            tag: count
+            value: '6'
+      reassortment:
+        text: reassortment
+        annotations:
+          count:
+            tag: count
+            value: '2'
+      fluorescent/epitope:
+        text: fluorescent/epitope
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      transition,plasmid.element:
+        text: transition,plasmid.element
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      in-frame.deletion:
+        text: in-frame.deletion
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      plasmid element:
+        text: plasmid element
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      chrXIII-chrII:
+        text: chrXIII-chrII
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      transition.plasmid.element:
+        text: transition.plasmid.element
+        annotations:
+          count:
+            tag: count
+            value: '1'
+  mod_descriptor_enum:
+    name: mod_descriptor_enum
+    definition_uri: http://example.com/synbio/ModDescriptorEnum
+    comments:
+    - 310 blank
+    from_schema: http://example.com/synbio
+    permissible_values:
+      CDSpartial:
+        text: CDSpartial
+        annotations:
+          count:
+            tag: count
+            value: '33'
+      CDS:
+        text: CDS
+        annotations:
+          count:
+            tag: count
+            value: '11'
+      terminator:
+        text: terminator
+        annotations:
+          count:
+            tag: count
+            value: '7'
+      scar:
+        text: scar
+        annotations:
+          count:
+            tag: count
+            value: '6'
+      promoter:
+        text: promoter
+        annotations:
+          count:
+            tag: count
+            value: '6'
+      CDSpartial-5prime:
+        text: CDSpartial-5prime
+        annotations:
+          count:
+            tag: count
+            value: '4'
+      CDSpartial-3prime:
+        text: CDSpartial-3prime
+        annotations:
+          count:
+            tag: count
+            value: '4'
+      1bpG707A:
+        text: 1bpG707A
+        annotations:
+          count:
+            tag: count
+            value: '2'
+      ribosomal.binding.site:
+        text: ribosomal.binding.site
+        annotations:
+          count:
+            tag: count
+            value: '2'
+      gene:
+        text: gene
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      fragment:
+        text: fragment
+        annotations:
+          count:
+            tag: count
+            value: '1'
+      epitope:
+        text: epitope
+        annotations:
+          count:
+            tag: count
+            value: '1'
+slots:
+  aa_change:
+    name: aa_change
+    definition_uri: http://example.com/synbio/aa_change
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:aa_change
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  alias:
+    name: alias
+    definition_uri: http://example.com/synbio/alias
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:alias
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  bio_safety_level:
+    name: bio_safety_level
+    definition_uri: http://example.com/synbio/bio_safety_level
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:bio_safety_level
+    owner: Modification
+    domain_of:
+    - Part
+    - Modification
+    range: string
+    required: true
+  category:
+    name: category
+    definition_uri: http://example.com/synbio/category
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:category
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  creator:
+    name: creator
+    definition_uri: http://example.com/synbio/creator
+    comments:
+    - was creator_id
+    - pain to enter this way?
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:creator
+    owner: Part
+    domain_of:
+    - Part
+    range: Person
+  creator_id:
+    name: creator_id
+    definition_uri: http://example.com/synbio/creator_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:creator_id
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  date_added:
+    name: date_added
+    definition_uri: http://example.com/synbio/date_added
+    notes:
+    - linkml-sqldb dump seems to be picky about dates
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:date_added
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+  date_joined:
+    name: date_joined
+    definition_uri: http://example.com/synbio/date_joined
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:date_joined
+    owner: Person
+    domain_of:
+    - Person
+    range: datetime
+  descriptor:
+    name: descriptor
+    definition_uri: http://example.com/synbio/descriptor
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:descriptor
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  details:
+    name: details
+    definition_uri: http://example.com/synbio/details
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:details
+    owner: Organism
+    domain_of:
+    - Organism
+    range: string
+  element:
+    name: element
+    definition_uri: http://example.com/synbio/element
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:element
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  element_id:
+    name: element_id
+    definition_uri: http://example.com/synbio/element_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:element_id
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  element_id_number:
+    name: element_id_number
+    definition_uri: http://example.com/synbio/element_id_number
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:element_id_number
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  element_name:
+    name: element_name
+    definition_uri: http://example.com/synbio/element_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:element_name
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  element_species:
+    name: element_species
+    definition_uri: http://example.com/synbio/element_species
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:element_species
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  email:
+    name: email
+    definition_uri: http://example.com/synbio/email
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:email
+    owner: Modification
+    domain_of:
+    - Person
+    - Modification
+    range: string
+  file:
+    name: file
+    definition_uri: http://example.com/synbio/file
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:file
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+  first_name:
+    name: first_name
+    definition_uri: http://example.com/synbio/first_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:first_name
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+  funding_source:
+    name: funding_source
+    definition_uri: http://example.com/synbio/funding_source
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:funding_source
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  genotype_phenotype:
+    name: genotype_phenotype
+    definition_uri: http://example.com/synbio/genotype_phenotype
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:genotype_phenotype
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  host_species_id:
+    name: host_species_id
+    definition_uri: http://example.com/synbio/host_species_id
+    comments:
+    - change back to Organism
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:host_species_id
+    range: string
+  id:
+    name: id
+    definition_uri: http://example.com/synbio/id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:id
+    range: string
+  intellectual_property:
+    name: intellectual_property
+    definition_uri: http://example.com/synbio/intellectual_property
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:intellectual_property
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  is_active:
+    name: is_active
+    definition_uri: http://example.com/synbio/is_active
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:is_active
+    owner: Person
+    domain_of:
+    - Person
+    range: boolean
+  is_staff:
+    name: is_staff
+    definition_uri: http://example.com/synbio/is_staff
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:is_staff
+    owner: Person
+    domain_of:
+    - Person
+    range: boolean
+  is_superuser:
+    name: is_superuser
+    definition_uri: http://example.com/synbio/is_superuser
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:is_superuser
+    owner: Person
+    domain_of:
+    - Person
+    range: boolean
+  keywords:
+    name: keywords
+    definition_uri: http://example.com/synbio/keywords
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:keywords
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  last_login:
+    name: last_login
+    definition_uri: http://example.com/synbio/last_login
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:last_login
+    owner: Person
+    domain_of:
+    - Person
+    range: datetime
+  last_name:
+    name: last_name
+    definition_uri: http://example.com/synbio/last_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:last_name
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+  middle_init_or_name:
+    name: middle_init_or_name
+    definition_uri: http://example.com/synbio/middle_init_or_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:middle_init_or_name
+    range: string
+  mod_alias:
+    name: mod_alias
+    definition_uri: http://example.com/synbio/mod_alias
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:mod_alias
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  modification_id:
+    name: modification_id
+    id_prefixes:
+    - synbio_mod
+    definition_uri: http://example.com/synbio/modification_id
+    comments:
+    - might not need this
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:modification_id
+    identifier: true
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  modification_type:
+    name: modification_type
+    definition_uri: http://example.com/synbio/modification_type
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:modification_type
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  modifications:
+    name: modifications
+    definition_uri: http://example.com/synbio/modifications
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:modifications
+    multivalued: true
+    owner: OmniCollection
+    domain_of:
+    - ModCollection
+    - OmniCollection
+    range: Modification
+    inlined: true
+    inlined_as_list: true
+  name:
+    name: name
+    definition_uri: http://example.com/synbio/name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:name
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  NCBI_id:
+    name: NCBI_id
+    definition_uri: http://example.com/synbio/NCBI_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:NCBI_id
+    owner: Organism
+    domain_of:
+    - Organism
+    range: string
+  notes:
+    name: notes
+    definition_uri: http://example.com/synbio/notes
+    comments:
+    - replace carriage returns etc with pipes? and other normalization?
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:notes
+    owner: Modification
+    domain_of:
+    - Part
+    - Modification
+    range: string
+  organism_id:
+    name: organism_id
+    definition_uri: http://example.com/synbio/organism_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:organism_id
+    owner: Organism
+    domain_of:
+    - Organism
+    range: string
+  part_id:
+    name: part_id
+    id_prefixes:
+    - synbio_part
+    definition_uri: http://example.com/synbio/part_id
+    comments:
+    - why can't this be a Modification identifier? "test.Modification() argument after
+      ** must be a mapping, not extended_str"
+    - part_id can't be an identifier if its mixed in with classes that have their
+      own id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:part_id
+    owner: Ntseq
+    domain_of:
+    - Part
+    - Ntseq
+    range: string
+    required: true
+  part_name:
+    name: part_name
+    definition_uri: http://example.com/synbio/part_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:part_name
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+    required: true
+  part_type:
+    name: part_type
+    definition_uri: http://example.com/synbio/part_type
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:part_type
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+    required: true
+  parts_ptr_id:
+    name: parts_ptr_id
+    definition_uri: http://example.com/synbio/parts_ptr_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:parts_ptr_id
+    range: string
+    required: true
+  person_id:
+    name: person_id
+    id_prefixes:
+    - synbio_person
+    definition_uri: http://example.com/synbio/person_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:person_id
+    identifier: true
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+    required: true
+  person_name:
+    name: person_name
+    definition_uri: http://example.com/synbio/person_name
+    comments:
+    - use string serialization?
+    from_schema: http://example.com/synbio
+    string_serialization: '{first_name} {middle_init_or_name} (last_name}'
+    slot_uri: synbio:person_name
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+  position:
+    name: position
+    definition_uri: http://example.com/synbio/position
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:position
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  principal_investigator:
+    name: principal_investigator
+    definition_uri: http://example.com/synbio/principal_investigator
+    comments:
+    - principal_investigator_email implemented as Person_email
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:principal_investigator
+    owner: Modification
+    domain_of:
+    - Part
+    - Modification
+    range: string
+    required: true
+  references:
+    name: references
+    definition_uri: http://example.com/synbio/references
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:references
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+  SC_curated_enzyme_name:
+    name: SC_curated_enzyme_name
+    definition_uri: http://example.com/synbio/SC_curated_enzyme_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:SC_curated_enzyme_name
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  SC_curated_gene_name:
+    name: SC_curated_gene_name
+    definition_uri: http://example.com/synbio/SC_curated_gene_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:SC_curated_gene_name
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  SC_curated_protein_name:
+    name: SC_curated_protein_name
+    definition_uri: http://example.com/synbio/SC_curated_protein_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:SC_curated_protein_name
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  SC_curated_uniprot_id:
+    name: SC_curated_uniprot_id
+    definition_uri: http://example.com/synbio/SC_curated_uniprot_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:SC_curated_uniprot_id
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq_id:
+    name: seq_id
+    definition_uri: http://example.com/synbio/seq_id
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq_id
+    identifier: true
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+  seq_name:
+    name: seq_name
+    definition_uri: http://example.com/synbio/seq_name
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq_name
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+  seq_type:
+    name: seq_type
+    definition_uri: http://example.com/synbio/seq_type
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq_type
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+  seq2ids_alias:
+    name: seq2ids_alias
+    definition_uri: http://example.com/synbio/seq2ids_alias
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_alias
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_all_go:
+    name: seq2ids_all_go
+    definition_uri: http://example.com/synbio/seq2ids_all_go
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_all_go
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_bitscore:
+    name: seq2ids_bitscore
+    definition_uri: http://example.com/synbio/seq2ids_bitscore
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_bitscore
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_blast_db:
+    name: seq2ids_blast_db
+    definition_uri: http://example.com/synbio/seq2ids_blast_db
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_blast_db
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_gene_name_1ry:
+    name: seq2ids_gene_name_1ry
+    definition_uri: http://example.com/synbio/seq2ids_gene_name_1ry
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_gene_name_1ry
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_gene_names:
+    name: seq2ids_gene_names
+    definition_uri: http://example.com/synbio/seq2ids_gene_names
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_gene_names
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_organism:
+    name: seq2ids_organism
+    definition_uri: http://example.com/synbio/seq2ids_organism
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_organism
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_prot_function:
+    name: seq2ids_prot_function
+    definition_uri: http://example.com/synbio/seq2ids_prot_function
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_prot_function
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_prot_names:
+    name: seq2ids_prot_names
+    definition_uri: http://example.com/synbio/seq2ids_prot_names
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_prot_names
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  seq2ids_sacc:
+    name: seq2ids_sacc
+    definition_uri: http://example.com/synbio/seq2ids_sacc
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:seq2ids_sacc
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  sequence:
+    name: sequence
+    definition_uri: http://example.com/synbio/sequence
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:sequence
+    owner: Ntseq
+    domain_of:
+    - Ntseq
+    range: string
+    required: true
+    pattern: ^[ACGTacgt]+$
+  sequences:
+    name: sequences
+    definition_uri: http://example.com/synbio/sequences
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:sequences
+    multivalued: true
+    owner: OmniCollection
+    domain_of:
+    - SeqCollection
+    - OmniCollection
+    range: Ntseq
+    inlined: true
+    inlined_as_list: true
+  size:
+    name: size
+    definition_uri: http://example.com/synbio/size
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:size
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  status:
+    name: status
+    definition_uri: http://example.com/synbio/status
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:status
+    owner: Modification
+    domain_of:
+    - Part
+    - Modification
+    range: string
+    required: true
+  subcategory_size:
+    name: subcategory_size
+    definition_uri: http://example.com/synbio/subcategory_size
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:subcategory_size
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  summary:
+    name: summary
+    definition_uri: http://example.com/synbio/summary
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:summary
+    owner: Part
+    domain_of:
+    - Part
+    range: string
+    required: true
+  taxon_id:
+    name: taxon_id
+    definition_uri: http://example.com/synbio/taxon_id
+    comments:
+    - change back to Organism
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:taxon_id
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+  type:
+    name: type
+    definition_uri: http://example.com/synbio/type
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:type
+    owner: Modification
+    domain_of:
+    - Modification
+    range: string
+    required: true
+  username:
+    name: username
+    definition_uri: http://example.com/synbio/username
+    from_schema: http://example.com/synbio
+    slot_uri: synbio:username
+    owner: Person
+    domain_of:
+    - Person
+    range: string
+classes:
+  Organism:
+    name: Organism
+    definition_uri: http://example.com/synbio/Organism
+    title: Organism
+    from_schema: http://example.com/synbio
+    slots:
+    - organism_id
+    - NCBI_id
+    - details
+    class_uri: synbio:Organism
+  Part:
+    name: Part
+    definition_uri: http://example.com/synbio/Part
+    title: Part
+    notes:
+    - removed host_species_id
+    from_schema: http://example.com/synbio
+    mixin: true
+    slots:
+    - alias
+    - bio_safety_level
+    - creator
+    - funding_source
+    - genotype_phenotype
+    - intellectual_property
+    - keywords
+    - notes
+    - part_id
+    - part_name
+    - part_type
+    - principal_investigator
+    - references
+    - status
+    - summary
+    class_uri: synbio:Part
+  Person:
+    name: Person
+    definition_uri: http://example.com/synbio/Person
+    title: Person
+    from_schema: http://example.com/synbio
+    slots:
+    - person_id
+    - person_name
+    - first_name
+    - last_name
+    - last_login
+    - is_superuser
+    - username
+    - email
+    - is_staff
+    - is_active
+    - date_joined
+    class_uri: synbio:Person
+  Ntseq:
+    name: Ntseq
+    definition_uri: http://example.com/synbio/Ntseq
+    title: Nucleotide sequence
+    from_schema: http://example.com/synbio
+    slots:
+    - seq_id
+    - part_id
+    - file
+    - seq_name
+    - seq_type
+    - date_added
+    - sequence
+    class_uri: synbio:Ntseq
+  SeqCollection:
+    name: SeqCollection
+    definition_uri: http://example.com/synbio/SeqCollection
+    title: Sequence Collection
+    from_schema: http://example.com/synbio
+    slots:
+    - sequences
+    class_uri: synbio:SeqCollection
+  Modification:
+    name: Modification
+    definition_uri: http://example.com/synbio/Modification
+    title: Modification
+    notes:
+    - linkml sql dumper did not like the fact that Modification used the Part mixin.
+      Just manually added all of the slots for now. Or maybe it had something to do
+      with Modification.host_species_id
+    comments:
+    - return Part as a mixin
+    from_schema: http://example.com/synbio
+    slots:
+    - aa_change
+    - bio_safety_level
+    - category
+    - creator_id
+    - descriptor
+    - element
+    - element_id
+    - element_id_number
+    - element_name
+    - element_species
+    - email
+    - mod_alias
+    - modification_id
+    - modification_type
+    - name
+    - notes
+    - position
+    - principal_investigator
+    - SC_curated_enzyme_name
+    - SC_curated_gene_name
+    - SC_curated_protein_name
+    - SC_curated_uniprot_id
+    - seq2ids_alias
+    - seq2ids_all_go
+    - seq2ids_bitscore
+    - seq2ids_blast_db
+    - seq2ids_gene_name_1ry
+    - seq2ids_gene_names
+    - seq2ids_organism
+    - seq2ids_prot_function
+    - seq2ids_prot_names
+    - seq2ids_sacc
+    - size
+    - status
+    - subcategory_size
+    - taxon_id
+    - type
+    class_uri: synbio:Modification
+  ModCollection:
+    name: ModCollection
+    definition_uri: http://example.com/synbio/ModCollection
+    title: Modification Collection
+    from_schema: http://example.com/synbio
+    slots:
+    - modifications
+    class_uri: synbio:ModCollection
+  OmniCollection:
+    name: OmniCollection
+    definition_uri: http://example.com/synbio/OmniCollection
+    from_schema: http://example.com/synbio
+    slots:
+    - sequences
+    - modifications
+    class_uri: synbio:OmniCollection
+metamodel_version: 1.7.0
+source_file: synbio-bestof.yaml
+source_file_date: '2022-07-01T12:36:28'
+source_file_size: 16734
+generation_date: '2022-07-01T12:36:30'
+
