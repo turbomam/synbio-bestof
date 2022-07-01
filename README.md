@@ -1,5 +1,13 @@
 # synbio-bestof
 
+This repo pulls together useful parts from various synthetic biology modeling repositories. Will problaby be renamed soon.
+
+Usage:
+
+
+
+
+
 ```mermaid
 flowchart TD
     subgraph postgres [<b>Celnicker Lab Postgres DB</b>]
