@@ -1,5 +1,5 @@
 # Auto generated from synbio_bestof.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-07-01T13:05:43
+# Generation date: 2022-07-01T13:42:12
 # Schema: synbio
 #
 # id: http://example.com/synbio
