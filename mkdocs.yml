@@ -12,6 +12,8 @@ theme:
 #    primary: cyan
 #  features:
 #    - content.tabs.link
+  features:
+    - content.tabs.link
 
 plugins:
   - search
