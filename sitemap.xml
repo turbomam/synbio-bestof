@@ -2,442 +2,902 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Address/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/ArabadopsisSeeds/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/BioSafetyLevelEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/BiologicalSamples/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Boolean/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/CategoryEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Database/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Date/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Datetime/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Decimal/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/DescriptorEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Double/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/FamilialRelationship/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/FamilialRelationshipType/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Float/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/FundingSourceEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/HasAliases/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Integer/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/IntellectualPropertyEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/ModCatEnum/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/ModCollection/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/ModDescriptorEnum/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/ModTypeEnum/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/Modification/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/ModificationTypeEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/NCBI_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/NamedThing/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Ncname/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Nodeidentifier/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/Ntseq/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Objectidentifier/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/OmniCollection/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/Organism/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Organization/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/Part/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/PartsComments/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/PartsSequence/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/Person/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/PersonStatus/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Registry/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Relationship/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SC_curated_enzyme_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SC_curated_gene_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SC_curated_protein_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SC_curated_uniprot_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SeqCollection/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/SeqTypeEnum/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/StatusEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Strain/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/String/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/SubcategorySizeEnum/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Time/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Uri/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/Uriorcurie/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/aa_change/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/abbreviation/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/about/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/age_in_years/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/alias/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/aliases/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/associated_part/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/bio_safety_level/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/birth_date/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/category/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/city/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/comment/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/creator/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/creator_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/current_address/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/date_added/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/date_joined/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/description/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/descriptor/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/details/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/el_name_long/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/el_name_short/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/element/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/element_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/element_id_number/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/element_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/element_organism/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/element_species/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/email/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/employed_at/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/ended_at_time/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/exactMatch/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/examples/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/file/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/first_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/founding_date/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/funding_source/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/generation_date/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/genotype_phenotype/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/has_familial_relationships/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/host_organism/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/host_species_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/image/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/intellectual_property/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/is_active/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/is_current/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/is_staff/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/is_superuser/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/keywords/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/last_login/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/last_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/license/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/metamodel_version/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/middle_init_or_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/mission_statement/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/mod_alias/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/modification_genes/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/modification_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/modification_set/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/modification_taxon/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/modification_type/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/modifications/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/modifications_genes/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/my_datamodel/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/notes/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/nt_sequence/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/organism_basis/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/organism_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/organism_set/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/organizations/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/parent_parts/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/part_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/part_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/part_type/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/parts_ptr_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/permissible_values/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/person_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/person_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/person_set/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/persons/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/position/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/postal_code/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/primary_email/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/principal_investigator/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/references/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/related_to/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_alias/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_all_go/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_bitscore/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_blast_db/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_gene_name_1ry/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_gene_names/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_organism/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_prot_function/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_prot_names/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq2ids_sacc/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq_name/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/seq_type/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/sequence/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/sequence_set/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/sequences/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/size/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/size_bp/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/source_file/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/source_file_date/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/source_file_size/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/special_name/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/species_name/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/species_ncbi_taxon_number/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/started_at_time/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/status/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/strain_set/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/strain_value/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/street/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/sub_parts/</loc>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/subcategory_size/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/summary/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/synbio/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/taxon_id/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/type/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/types/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/username/</loc>
-         <lastmod>2022-07-01</lastmod>
+         <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
