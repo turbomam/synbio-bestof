@@ -1,0 +1,93 @@
+name: auth_user_schema
+description: auth_user_schema
+id: https://w3id.org/auth_user_schema
+imports:
+- linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  auth_user_schema: https://w3id.org/auth_user_schema
+default_prefix: auth_user_schema
+enums:
+  is_staff_enum:
+    from_schema: https://w3id.org/auth_user_schema
+    permissible_values:
+      t:
+        description: t
+  is_superuser_enum:
+    from_schema: https://w3id.org/auth_user_schema
+    permissible_values:
+      'True':
+        description: 'True'
+        exact_mappings:
+        - SBO:0000416
+        - NCIT:C68850
+      'False':
+        description: 'False'
+        exact_mappings:
+        - NCIT:C68851
+        - SBO:0000417
+slots:
+  date_joined:
+    examples:
+    - value: '2021-03-22 15:08:27+00'
+    from_schema: https://w3id.org/auth_user_schema
+    range: datetime
+  email:
+    examples:
+    - value: mam@lbl.gov
+    from_schema: https://w3id.org/auth_user_schema
+    exact_mappings:
+    - IAO:0000429
+    range: string
+  first_name:
+    examples:
+    - value: Mark
+    from_schema: https://w3id.org/auth_user_schema
+    exact_mappings:
+    - IAO:0020016
+    - NCIT:C40974
+    - SCDO:1000858
+    range: string
+  id:
+    examples:
+    - value: '26'
+    from_schema: https://w3id.org/auth_user_schema
+    range: integer
+  is_staff:
+    examples:
+    - value: t
+    from_schema: https://w3id.org/auth_user_schema
+    range: is_staff_enum
+  is_superuser:
+    examples:
+    - value: 'True'
+    from_schema: https://w3id.org/auth_user_schema
+    range: is_superuser_enum
+  last_name:
+    examples:
+    - value: Miller
+    from_schema: https://w3id.org/auth_user_schema
+    exact_mappings:
+    - SCDO:1000861
+    - NCIT:C40975
+    - IAO:0020017
+    range: string
+  username:
+    examples:
+    - value: mark.miller
+    from_schema: https://w3id.org/auth_user_schema
+    exact_mappings:
+    - GSSO:007226
+    range: string
+classes:
+  auth_user_schema:
+    from_schema: https://w3id.org/auth_user_schema
+    slots:
+    - date_joined
+    - email
+    - first_name
+    - id
+    - is_staff
+    - is_superuser
+    - last_name
+    - username

@@ -1,109 +1,100 @@
-type ModCollection
+type ArabadopsisSeeds
   {
-    modifications: [Modification]
+  }
+
+type BiologicalSamples
+  {
+  }
+
+type Database
+  {
+    strainSet: [Strain]
+    modificationSet: [Modification]
+    organismSet: [Organism]
+    personSet: [Person]
+    sequenceSet: [PartsSequence]
   }
 
 type Modification
   {
     aaChange: String
-    bioSafetyLevel: String!
-    category: String
-    creatorId: String!
-    descriptor: String
-    element: String!
-    elementId: String!
-    elementIdNumber: String!
-    elementName: String
-    elementSpecies: String
-    email: String
-    modAlias: String!
-    modificationId: String!
-    modificationType: String
-    name: String!
+    bioSafetyLevel: BioSafetyLevelEnum!
+    category: CategoryEnum
+    creator: Person!
+    descriptor: DescriptorEnum
+    elNameLong: String!
+    elNameShort: String
+    elementOrganism: String!
+    modificationType: ModificationTypeEnum
+    modificationsGenes: String
     notes: String
     position: String
-    principalInvestigator: String!
-    sCCuratedEnzymeName: String
-    sCCuratedGeneName: String
-    sCCuratedProteinName: String
-    sCCuratedUniprotId: String
-    seq2idsAlias: String
-    seq2idsAllGo: String
-    seq2idsBitscore: String
-    seq2idsBlastDb: String
-    seq2idsGeneName1ry: String
-    seq2idsGeneNames: String
-    seq2idsOrganism: String
-    seq2idsProtFunction: String
-    seq2idsProtNames: String
-    seq2idsSacc: String
-    size: String
-    status: String!
+    principalInvestigator: Person!
+    sizeBp: Integer
+    status: StatusEnum!
     subcategorySize: String
-    taxonId: String
-    type: String!
+    id: String!
   }
 
-type Ntseq
+type NamedThing
   {
-    seqId: String!
-    partId: String!
-    file: String!
-    seqName: String!
-    seqType: String!
-    dateAdded: String!
-    sequence: String!
-  }
-
-type OmniCollection
-  {
-    sequences: [Ntseq]
-    modifications: [Modification]
+    id: String!
   }
 
 type Organism
   {
-    organismId: String
-    nCBIId: String
-    details: String
+    abbreviation: String
+    strainValue: String
+    comment: String
+    speciesName: String
+    id: String!
+    specialName: String
+    speciesNcbiTaxonNumber: String
   }
 
-interface Part
+type PartsComments
   {
-    alias: String
-    bioSafetyLevel: String!
-    creator: Person
-    fundingSource: String
-    genotypePhenotype: String
-    intellectualProperty: String
-    keywords: String
-    notes: String
-    partId: String!
-    partName: String!
-    partType: String!
-    principalInvestigator: String!
-    references: String
-    status: String!
-    summary: String!
+  }
+
+type PartsSequence
+  {
+    id: String!
+    associatedPart: Modification
+    seqName: String
+    seqType: SeqTypeEnum
+    dateAdded: String
+    ntSequence: String
   }
 
 type Person
   {
-    personId: String!
-    personName: String
-    firstName: String!
-    lastName: String
-    lastLogin: Datetime
-    isSuperuser: Boolean
-    username: String
+    id: String!
+    dateJoined: Datetime!
     email: String
-    isStaff: Boolean
-    isActive: Boolean
-    dateJoined: Datetime
+    firstName: String
+    isStaff: Boolean!
+    isSuperuser: Boolean!
+    lastName: String
+    username: String!
   }
 
-type SeqCollection
+type Strain
   {
-    sequences: [Ntseq]
+    id: String!
+    bioSafetyLevel: BioSafetyLevelEnum
+    creator: Person
+    fundingSource: FundingSourceEnum
+    genotypePhenotype: String
+    hostOrganism: Organism
+    intellectualProperty: String
+    keywords: String
+    name: String
+    notes: String
+    principalInvestigator: Person
+    references: String
+    status: StatusEnum
+    summary: String
+    subParts: [String]
+    parentParts: [String]
   }
 

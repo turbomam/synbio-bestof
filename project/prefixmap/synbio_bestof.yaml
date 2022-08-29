@@ -1,8 +1,6 @@
 {
-   "SO": "http://purl.obolibrary.org/obo/SO_",
+   "dcterms": "http://purl.org/dc/terms/",
    "linkml": "https://w3id.org/linkml/",
-   "synbio": "http://example.com/synbio/",
-   "synbio_mod": "http://example.com/synbio/modification/",
-   "synbio_part": "http://example.com/synbio/part/",
-   "synbio_person": "http://example.com/synbio/person/"
+   "skos": "http://www.w3.org/2004/02/skos/core#",
+   "synbio": "https://w3id.org/None/"
 }

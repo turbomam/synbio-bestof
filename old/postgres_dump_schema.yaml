@@ -1,0 +1,242 @@
+name: test-schema
+id: http://example.org/test-schema
+default_prefix: http://example.org/test-schema/
+classes:
+  Person:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      is_superuser:
+        range: integer
+      username:
+        range: string
+      first_name:
+        range: string
+      last_name:
+        range: string
+      email:
+        range: string
+      is_staff:
+        range: integer
+      date_joined:
+        range: string
+  biological_samples:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      bs_id:
+        range: integer
+      biosample_type_id:
+        range: integer
+      documents:
+        range: string
+      part_id:
+        range: string
+  external_urls:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      external_url:
+        range: string
+      part_id:
+        range: integer
+  genomes:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      species_id:
+        range: integer
+      version:
+        range: string
+      fasta_fname:
+        range: string
+      fasta_url:
+        range: string
+      twobit_file:
+        range: string
+      release:
+        range: string
+      aliases:
+        range: string
+  Modification:
+    attributes:
+      parts_ptr_id:
+        range: integer
+      element_id_number:
+        range: integer
+      element_id:
+        range: string
+      element:
+        range: string
+      element_name:
+        range: string
+      descriptor:
+        range: string
+      size:
+        range: string
+      position:
+        range: string
+      aa_change:
+        range: string
+      modification_type:
+        range: string
+      category:
+        range: string
+      subcategory_size:
+        range: string
+      element_species:
+        range: string
+      taxon_id:
+        range: string
+      modifications_genes_id:
+        range: string
+  performer_aliquots:
+    attributes:
+      master_sample_name:
+        range: string
+      phase_batch_code:
+        range: string
+      batch:
+        range: integer
+      performer_name:
+        range: string
+      vial:
+        range: integer
+      mastersampleid:
+        range: integer
+  parts:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      type:
+        range: string
+      alias:
+        range: string
+      principal_investigator:
+        range: string
+      principal_investigator_email:
+        range: string
+      funding_source:
+        range: string
+      status:
+        range: string
+      bio_safety_level:
+        range: string
+      genotype_phenotype:
+        range: string
+      keywords:
+        range: string
+      summary:
+        range: string
+      references:
+        range: string
+      intellectual_property:
+        range: string
+      notes:
+        range: string
+      creator_id:
+        range: Person
+      host_species_id:
+        range: integer
+  species:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      species:
+        range: string
+      strain:
+        range: string
+      comment:
+        range: string
+      default_genome_id:
+        range: genomes
+      assembly_dir_path:
+        range: string
+  parts_parameters:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      value:
+        range: string
+      part_id:
+        range: parts
+  parts_sequences:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      part_id:
+        range: parts
+      file:
+        range: string
+      seq_name:
+        range: string
+      type:
+        range: string
+      date_added:
+        range: string
+      sequence:
+        range: string
+  plasmids:
+    attributes:
+      parts_ptr_id:
+        identifier: true
+        range: parts
+      backbone:
+        range: string
+      circular:
+        range: integer
+      origin_of_replication:
+        range: string
+      promoters:
+        range: string
+      replicates_in:
+        range: string
+  proteins:
+    attributes:
+      parts_ptr_id:
+        identifier: true
+        range: parts
+      organism:
+        range: string
+      full_name:
+        range: string
+      gene_name:
+        range: string
+      uploaded_from:
+        range: string
+  selection_markers:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      selection_marker:
+        range: string
+      part_id:
+        range: parts
+  sub_parts:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      parent_part_id:
+        range: parts
+      sub_part_id:
+        range: parts
+  sub_parts_attributes:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      sub_part_id:
+        range: sub_parts
+      value:
+        range: string
+prefixes: {}

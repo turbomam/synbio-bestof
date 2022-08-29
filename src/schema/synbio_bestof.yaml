@@ -6,8 +6,17 @@ imports:
 prefixes:
   linkml: https://w3id.org/linkml/
   synbio: https://w3id.org/None/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
 default_prefix: synbio
 enums:
+  SeqTypeEnum:
+    permissible_values:
+      deletion:
+      sequence:
+      insertion:
+      flank1:
+      flank2:
   IntellectualPropertyEnum:
     permissible_values:
       Limited License Agreement required from Scarab Genomics:
@@ -96,6 +105,16 @@ enums:
       terminator:
       VP16:
 slots:
+  associated_part:
+    range: Modification
+  seq_name:
+    range: string
+  seq_type:
+    range: SeqTypeEnum
+  date_added:
+  nt_sequence:
+    range: string
+
   sub_parts:
     multivalued: true
   parent_parts:
@@ -104,6 +123,10 @@ slots:
     range: Organism
   strain_set:
     range: Strain
+    multivalued: true
+    inlined_as_list: true
+  sequence_set:
+    range: PartsSequence
     multivalued: true
     inlined_as_list: true
   name:
@@ -254,6 +277,19 @@ slots:
   source_file_size:
     slot_uri: linkml:source_file_size
 classes:
+  PartsSequence:
+    slots:
+      - id
+      - associated_part
+      - seq_name
+      - seq_type
+      - date_added
+      - nt_sequence
+    slot_usage:
+      id:
+        pattern: '^sequence:\d+$'
+      associated_part:
+        pattern: '^IF:\d+$'
   PartsComments:
     aliases:
       - parts_comments
@@ -302,6 +338,8 @@ classes:
         range: Organism
       person_set:
         range: Person
+      sequence_set:
+        range: PartsSequence
     class_uri: synbio:Database
 
   Modification:

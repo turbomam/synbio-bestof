@@ -262,29 +262,34 @@ target/dumps/postgres_dump_schema.yaml: target/postgres_dump.db
 # all ids are prefixed
 # no negative ids
 
-target/dumps/synbio.yaml:
-	$(RUN) schemauto import-owl \
-		--output $@ target/dumps/synbio.ofn
-	sed -E -i.bak 's/multivalued: true//' target/dumps/synbio.yaml
-	sed -E -i.bak 's/nmsfe/synbio/' target/dumps/synbio.yaml
-	sed -E -i.bak 's/xsd:boolean/boolean/' target/dumps/synbio.yaml
-	sed -E -i.bak 's/xsd:date/date/' target/dumps/synbio.yaml
-	sed -E -i.bak 's/xsd:string/string/' target/dumps/synbio.yaml
-	rm -rf $@.bak
-	yq --inplace '.classes.Organism.slot_usage.id.pattern = "^organism:"' $@
-	yq --inplace '.classes.Person.slot_usage.id.pattern = "^person:"' $@
-	yq --inplace '.default_range = "string"' $@
-	yq --inplace '.slots.organism_set.inlined_as_list = true' $@
-	yq --inplace '.slots.organism_set.multivalued = true' $@
-	yq --inplace '.slots.person_set.inlined_as_list = true' $@
-	yq --inplace '.slots.person_set.multivalued = true' $@
-#	yq --inplace '.prefixes.dcterms = "http://purl.org/dc/terms/"' $@
-#	yq --inplace '.prefixes.skos = "http://www.w3.org/2004/02/skos/core#"' $@
+#src/schema/synbio_bestof.yaml:
+#	$(RUN) schemauto import-owl \
+#		--output $@ target/synbio.ofn
+#	sed -E -i.bak 's/multivalued: true//' src/schema/synbio_bestof.yaml
+#	sed -E -i.bak 's/nmsfe/synbio/' src/schema/synbio_bestof.yaml
+#	sed -E -i.bak 's/xsd:boolean/boolean/' src/schema/synbio_bestof.yaml
+#	sed -E -i.bak 's/xsd:date/date/' src/schema/synbio_bestof.yaml
+#	sed -E -i.bak 's/xsd:string/string/' src/schema/synbio_bestof.yaml
+#	rm -rf $@.bak
+#	yq --inplace '.classes.Organism.slot_usage.id.pattern = "^organism:"' $@
+#	yq --inplace '.classes.Person.slot_usage.id.pattern = "^person:"' $@
+#	yq --inplace '.default_range = "string"' $@
+#	yq --inplace '.slots.organism_set.inlined_as_list = true' $@
+#	yq --inplace '.slots.organism_set.multivalued = true' $@
+#	yq --inplace '.slots.person_set.inlined_as_list = true' $@
+#	yq --inplace '.slots.person_set.multivalued = true' $@
+##	yq --inplace '.prefixes.dcterms = "http://purl.org/dc/terms/"' $@
+##	yq --inplace '.prefixes.skos = "http://www.w3.org/2004/02/skos/core#"' $@
+
+# ---
+
+current_clean:
+	rm -rf target/*.json  target/*.tsv  target/*_data.yaml target/*.bak
+
 
 # ---
 
 create_person_view:
-	rm -rf target/dumps/person_data.json target/dumps/person_freestanding_select.tsv
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -292,7 +297,7 @@ create_person_view:
 		-d felix \
 		-f sql/person_freestanding_crete_view.sql
 
-target/dumps/person_freestanding_select.tsv:
+target/person_freestanding_select.tsv:
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -305,22 +310,20 @@ target/dumps/person_freestanding_select.tsv:
 		-f sql/person_freestanding_select.sql \
 		-o $@
 
-target/dumps/person_data.yaml: target/dumps/person_freestanding_select.tsv target/dumps/synbio.yaml
+target/person_data.yaml: target/person_freestanding_select.tsv src/schema/synbio_bestof.yaml
 	$(RUN) linkml-convert \
 		--output $@ --schema $(word 2,$^) \
 		--target-class Database \
 		--index-slot person_set $<
 
-target/dumps/synbio.schema.json: target/dumps/synbio.yaml
-	$(RUN) gen-json-schema $< > $@
+# ---
 
-#person_data_jsonschema_validator: target/dumps/synbio.schema.json target/dumps/person_data.json
-#	jsonschema -i $(word 2,$^) $<
+target/synbio.schema.json: src/schema/synbio_bestof.yaml
+	$(RUN) gen-json-schema $< > $@
 
 # ---
 
 create_modifications_view:
-	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -328,7 +331,7 @@ create_modifications_view:
 		-d felix \
 		-f sql/modifications_freestanding_create_view.sql
 
-target/dumps/modifications_freestanding_select.tsv: create_modifications_view
+target/modifications_freestanding_select.tsv: create_modifications_view
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -341,51 +344,16 @@ target/dumps/modifications_freestanding_select.tsv: create_modifications_view
 		-f sql/modifications_freestanding_select.sql \
 		-o $@
 
-target/dumps/modification_data.yaml: target/dumps/modifications_freestanding_select.tsv
+target/modification_data.yaml: target/modifications_freestanding_select.tsv
 	$(RUN) linkml-convert \
-		--output $@ --schema target/dumps/synbio.yaml \
+		--output $@ --schema src/schema/synbio_bestof.yaml \
 		--target-class Database \
-		--index-slot modification_set target/dumps/modifications_freestanding_select.tsv
+		--index-slot modification_set target/modifications_freestanding_select.tsv
 
 
 # ---
-
-create_strain_view:
-	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
-	psql \
-		-h localhost \
-		-p 1111 \
-		-U mam \
-		-d felix \
-		-f sql/strain_freestanding_create_view.sql
-
-
-target/dumps/strain_freestanding_select.tsv: create_strain_view
-	psql \
-		-h localhost \
-		-p 1111 \
-		-U mam \
-		-d felix \
-		--no-align \
-		--field-separator '	' \
-		--no-align \
-		--pset footer \
-		-f sql/strain_freestanding_select.sql \
-		-o $@
-
-
-target/dumps/strain_data.yaml: target/dumps/strain_freestanding_select.tsv
-	$(RUN) linkml-convert \
-		--output $@ --schema target/dumps/synbio.yaml \
-		--target-class Database \
-		--index-slot strain_set target/dumps/strain_freestanding_select.tsv
-	sed -E -i.bak 's/\|/\n  - /g' $@
-
-# ---
-
 
 create_organism_view:
-	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -394,7 +362,7 @@ create_organism_view:
 		-f sql/organism_freestanding_create_view.sql
 
 
-target/dumps/organism_freestanding_select.tsv: create_organism_view
+target/organism_freestanding_select.tsv: create_organism_view
 	psql \
 		-h localhost \
 		-p 1111 \
@@ -408,31 +376,98 @@ target/dumps/organism_freestanding_select.tsv: create_organism_view
 		-o $@
 
 
-target/dumps/organism_data.yaml: target/dumps/organism_freestanding_select.tsv
+target/organism_data.yaml: target/organism_freestanding_select.tsv
 	$(RUN) linkml-convert \
-		--output $@ --schema target/dumps/synbio.yaml \
+		--output $@ --schema src/schema/synbio_bestof.yaml \
 		--target-class Database \
-		--index-slot organism_set target/dumps/organism_freestanding_select.tsv
+		--index-slot organism_set target/organism_freestanding_select.tsv
+	sed -E -i.bak 's/\|/\n  - /g' $@
+
+# ---
+
+
+create_strain_view:
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/strain_freestanding_create_view.sql
+
+
+target/strain_freestanding_select.tsv: create_strain_view
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/strain_freestanding_select.sql \
+		-o $@
+
+
+target/strain_data.yaml: target/strain_freestanding_select.tsv
+	$(RUN) linkml-convert \
+		--output $@ --schema src/schema/synbio_bestof.yaml \
+		--target-class Database \
+		--index-slot strain_set target/strain_freestanding_select.tsv
+	sed -E -i.bak 's/\|/\n  - /g' $@
+
+# ---
+
+
+create_sequences_view:
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/sequences_freestanding_create_view.sql
+
+
+target/sequences_freestanding_select.tsv: create_sequences_view
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/sequences_freestanding_select.sql \
+		-o $@
+
+
+target/sequence_data.yaml: target/sequences_freestanding_select.tsv
+	$(RUN) linkml-convert \
+		--output $@ --schema src/schema/synbio_bestof.yaml \
+		--target-class Database \
+		--index-slot sequence_set target/sequences_freestanding_select.tsv
 
 
 
 # ---
 
-target/dumps/combo.yaml: \
-target/dumps/modification_data.yaml \
-target/dumps/organism_data.yaml \
-target/dumps/person_data.yaml \
-target/dumps/strain_data.yaml
+target/combo_data.yaml: \
+target/modification_data.yaml \
+target/organism_data.yaml \
+target/person_data.yaml \
+target/sequence_data.yaml \
+target/strain_data.yaml
 	cat $^ > $@
 
-target/dumps/combo.json: target/dumps/combo.yaml
+target/combo_data.json: target/combo_data.yaml
 	$(RUN) linkml-convert \
-		--output $@ --target-class Database --schema target/dumps/synbio.yaml $<
+		--output $@ --target-class Database --schema src/schema/synbio_bestof.yaml $<
 
-combo_validator: target/dumps/synbio.schema.json target/dumps/combo.json
+combo_validator: target/synbio.schema.json target/combo_data.json
 	jsonschema -i $(word 2,$^) $<
 
-#target/dumps/combo.db: target/dumps/combo.json target/dumps/synbio.yaml
+#target/combo.db: target/combo.json src/schema/synbio_bestof.yaml
 #	$(RUN) linkml-sqldb dump \
 #		-s $(word 2,$^) \
 #		-D $@ \
@@ -441,7 +476,7 @@ combo_validator: target/dumps/synbio.schema.json target/dumps/combo.json
 
 # ---
 
-#target/dumps/organism_data.json: data/organism_via_species_subset.tsv target/dumps/synbio.yaml
+#target/organism_data.json: data/organism_via_species_subset.tsv src/schema/synbio_bestof.yaml
 #	$(RUN) linkml-convert \
 #		--output $@ --schema $(word 2,$^) \
 #		--target-class Database \
@@ -450,7 +485,7 @@ combo_validator: target/dumps/synbio.schema.json target/dumps/combo.json
 # ---
 
 ## looses too much
-#target/dumps/synbio.ttl:
+#target/synbio.ttl:
 #	$(RUN) gen-owl \
 #		--metadata-profile linkml \
 #		--no-type-objects \
@@ -458,8 +493,8 @@ combo_validator: target/dumps/synbio.schema.json target/dumps/combo.json
 #		--no-add-ols-annotations \
 #		--format ttl \
 #		--no-metadata \
-#		--output $@ target/dumps/synbio.yaml
+#		--output $@ src/schema/synbio_bestof.yaml
 #
-#target/dumps/synbio.ofn:
-#	robot convert --input target/dumps/synbio.ttl --output $@
+#target/synbio.ofn:
+#	robot convert --input target/synbio.ttl --output $@
 

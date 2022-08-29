@@ -1,0 +1,88 @@
+name: test-schema
+id: http://example.org/test-schema
+default_prefix: http://example.org/test-schema/
+classes:
+  parts:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      type:
+        range: string
+      alias:
+        range: string
+      principal_investigator:
+        range: string
+      principal_investigator_email:
+        range: string
+      funding_source:
+        range: string
+      status:
+        range: string
+      bio_safety_level:
+        range: string
+      genotype_phenotype:
+        range: string
+      keywords:
+        range: string
+      summary:
+        range: string
+      references:
+        range: string
+      intellectual_property:
+        range: string
+      notes:
+        range: string
+      creator_id:
+        range: integer
+      host_species_id:
+        range: integer
+  modifications:
+    attributes:
+      parts_ptr_id:
+        range: parts
+      element_id_number:
+        range: integer
+      element_id:
+        range: string
+      element:
+        range: string
+      element_name:
+        range: string
+      descriptor:
+        range: string
+      size:
+        range: string
+      position:
+        range: string
+      aa_change:
+        range: string
+      modification_type:
+        range: string
+      category:
+        range: string
+      subcategory_size:
+        range: string
+      element_species:
+        range: string
+      taxon_id:
+        range: string
+  parts_sequences:
+    attributes:
+      id:
+        identifier: true
+        range: integer
+      part_id:
+        range: parts
+      file:
+        range: string
+      seq_name:
+        range: string
+      type:
+        range: string
+      date_added:
+        range: string
+      sequence:
+        range: string
+prefixes: {}
+

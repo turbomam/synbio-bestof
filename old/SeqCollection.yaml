@@ -1,0 +1,22 @@
+sequences:
+- seq_id: '1'
+  part_id: '1'
+  file: /data/1.fasta
+  seq_name: seq1
+  seq_type: insertion
+  date_added: '2022-05-18'
+  sequence: acgtacgtacgt
+- seq_id: '2'
+  part_id: '2'
+  file: /data/2.fasta
+  seq_name: seq2
+  seq_type: insertion
+  date_added: '2022-05-18'
+  sequence: acgtacgtacgt
+- seq_id: '3'
+  part_id: '3'
+  file: /data/3.fasta
+  seq_name: seq3
+  seq_type: insertion
+  date_added: '2022-05-18'
+  sequence: acgtacgtacgt

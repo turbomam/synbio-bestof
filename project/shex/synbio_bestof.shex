@@ -1,4 +1,4 @@
-BASE <http://example.com/synbio/>
+BASE <https://w3id.org/None/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
@@ -34,123 +34,117 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<ModCollection> CLOSED {
-    (  $<ModCollection_tes> <modifications> @<Modification> * ;
-       rdf:type [ <ModCollection> ] ?
+<ArabadopsisSeeds> CLOSED {
+    (  $<ArabadopsisSeeds_tes> rdf:type . * ;
+       rdf:type [ <ArabadopsisSeeds> ] ?
+    )
+}
+
+<BiologicalSamples> CLOSED {
+    (  $<BiologicalSamples_tes> rdf:type . * ;
+       rdf:type [ <BiologicalSamples> ] ?
+    )
+}
+
+<Database> CLOSED {
+    (  $<Database_tes> (  <strain_set> @<Strain> * ;
+          <modification_set> @<Modification> * ;
+          <organism_set> @<Organism> * ;
+          <person_set> @<Person> * ;
+          <sequence_set> @<PartsSequence> *
+       ) ;
+       rdf:type [ <Database> ] ?
     )
 }
 
 <Modification> CLOSED {
     (  $<Modification_tes> (  <aa_change> @linkml:String ? ;
-          <bio_safety_level> @linkml:String ;
-          <category> @linkml:String ? ;
-          <creator_id> @linkml:String ;
-          <descriptor> @linkml:String ? ;
-          <element> @linkml:String ;
-          <element_id> @linkml:String ;
-          <element_id_number> @linkml:String ;
-          <element_name> @linkml:String ? ;
-          <element_species> @linkml:String ? ;
-          <email> @linkml:String ? ;
-          <mod_alias> @linkml:String ;
-          <modification_type> @linkml:String ? ;
-          <name> @linkml:String ;
+          <bio_safety_level> @<BioSafetyLevelEnum> ;
+          <category> @<CategoryEnum> ? ;
+          <creator> @<Person> ;
+          <descriptor> @<DescriptorEnum> ? ;
+          <el_name_long> @linkml:String ;
+          <el_name_short> @linkml:String ? ;
+          <element_organism> @linkml:String ;
+          <modification_type> @<ModificationTypeEnum> ? ;
+          <modifications_genes> @linkml:String ? ;
           <notes> @linkml:String ? ;
           <position> @linkml:String ? ;
-          <principal_investigator> @linkml:String ;
-          <SC_curated_enzyme_name> @linkml:String ? ;
-          <SC_curated_gene_name> @linkml:String ? ;
-          <SC_curated_protein_name> @linkml:String ? ;
-          <SC_curated_uniprot_id> @linkml:String ? ;
-          <seq2ids_alias> @linkml:String ? ;
-          <seq2ids_all_go> @linkml:String ? ;
-          <seq2ids_bitscore> @linkml:String ? ;
-          <seq2ids_blast_db> @linkml:String ? ;
-          <seq2ids_gene_name_1ry> @linkml:String ? ;
-          <seq2ids_gene_names> @linkml:String ? ;
-          <seq2ids_organism> @linkml:String ? ;
-          <seq2ids_prot_function> @linkml:String ? ;
-          <seq2ids_prot_names> @linkml:String ? ;
-          <seq2ids_sacc> @linkml:String ? ;
-          <size> @linkml:String ? ;
-          <status> @linkml:String ;
-          <subcategory_size> @linkml:String ? ;
-          <taxon_id> @linkml:String ? ;
-          <type> @linkml:String
+          <principal_investigator> @<Person> ;
+          <size_bp> @linkml:Integer ? ;
+          <status> @<StatusEnum> ;
+          <subcategory_size> @linkml:String ?
        ) ;
        rdf:type [ <Modification> ]
     )
 }
 
-<Ntseq> CLOSED {
-    (  $<Ntseq_tes> (  <part_id> @linkml:String ;
-          <file> @linkml:String ;
-          <seq_name> @linkml:String ;
-          <seq_type> @linkml:String ;
-          <date_added> @linkml:String ;
-          <sequence> @linkml:String
-       ) ;
-       rdf:type [ <Ntseq> ]
-    )
-}
-
-<OmniCollection> CLOSED {
-    (  $<OmniCollection_tes> (  <sequences> @<Ntseq> * ;
-          <modifications> @<Modification> *
-       ) ;
-       rdf:type [ <OmniCollection> ] ?
+<NamedThing> CLOSED {
+    (  $<NamedThing_tes> rdf:type . * ;
+       rdf:type [ <NamedThing> ]
     )
 }
 
 <Organism> CLOSED {
-    (  $<Organism_tes> (  <organism_id> @linkml:String ? ;
-          <NCBI_id> @linkml:String ? ;
-          <details> @linkml:String ?
+    (  $<Organism_tes> (  <abbreviation> @linkml:String ? ;
+          <strain> @linkml:String ? ;
+          <comment> @linkml:String ? ;
+          <species_name> @linkml:String ? ;
+          <special_name> @linkml:String ? ;
+          <species_ncbi_taxon_number> @linkml:String ?
        ) ;
-       rdf:type [ <Organism> ] ?
+       rdf:type [ <Organism> ]
     )
 }
 
-<Part> {
-    (  $<Part_tes> (  <alias> @linkml:String ? ;
-          <bio_safety_level> @linkml:String ;
-          <creator> @<Person> ? ;
-          <funding_source> @linkml:String ? ;
-          <genotype_phenotype> @linkml:String ? ;
-          <intellectual_property> @linkml:String ? ;
-          <keywords> @linkml:String ? ;
-          <notes> @linkml:String ? ;
-          <part_id> @linkml:String ;
-          <part_name> @linkml:String ;
-          <part_type> @linkml:String ;
-          <principal_investigator> @linkml:String ;
-          <references> @linkml:String ? ;
-          <status> @linkml:String ;
-          <summary> @linkml:String
+<PartsComments> CLOSED {
+    (  $<PartsComments_tes> rdf:type . * ;
+       rdf:type [ <PartsComments> ] ?
+    )
+}
+
+<PartsSequence> CLOSED {
+    (  $<PartsSequence_tes> (  <associated_part> @<Modification> ? ;
+          <seq_name> @linkml:String ? ;
+          <seq_type> @<SeqTypeEnum> ? ;
+          <date_added> @linkml:String ? ;
+          <nt_sequence> @linkml:String ?
        ) ;
-       rdf:type [ <Part> ] ?
+       rdf:type [ <PartsSequence> ]
     )
 }
 
 <Person> CLOSED {
-    (  $<Person_tes> (  <person_name> @linkml:String ? ;
-          <first_name> @linkml:String ;
-          <last_name> @linkml:String ? ;
-          <last_login> @linkml:Datetime ? ;
-          <is_superuser> @linkml:Boolean ? ;
-          <username> @linkml:String ? ;
+    (  $<Person_tes> (  <date_joined> @linkml:Datetime ;
           <email> @linkml:String ? ;
-          <is_staff> @linkml:Boolean ? ;
-          <is_active> @linkml:Boolean ? ;
-          <date_joined> @linkml:Datetime ?
+          <first_name> @linkml:String ? ;
+          <is_staff> @linkml:Boolean ;
+          <is_superuser> @linkml:Boolean ;
+          <last_name> @linkml:String ? ;
+          <username> @linkml:String
        ) ;
        rdf:type [ <Person> ]
     )
 }
 
-<SeqCollection> CLOSED {
-    (  $<SeqCollection_tes> <sequences> @<Ntseq> * ;
-       rdf:type [ <SeqCollection> ] ?
+<Strain> CLOSED {
+    (  $<Strain_tes> (  <bio_safety_level> @<BioSafetyLevelEnum> ? ;
+          <creator> @<Person> ? ;
+          <funding_source> @<FundingSourceEnum> ? ;
+          <genotype_phenotype> @linkml:String ? ;
+          <host_organism> @<Organism> ? ;
+          <intellectual_property> @linkml:String ? ;
+          <keywords> @linkml:String ? ;
+          <name> @linkml:String ? ;
+          <notes> @linkml:String ? ;
+          <principal_investigator> @<Person> ? ;
+          <references> @linkml:String ? ;
+          <status> @<StatusEnum> ? ;
+          <summary> @linkml:String ? ;
+          <sub_parts> @linkml:String * ;
+          <parent_parts> @linkml:String *
+       ) ;
+       rdf:type [ <Strain> ]
     )
 }
 

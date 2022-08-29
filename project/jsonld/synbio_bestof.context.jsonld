@@ -1,41 +1,132 @@
 {
-   "_comments": "Auto generated from synbio_bestof.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-07-01T13:05:35\n    Schema: synbio\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://example.com/synbio\n    description: A schema for synthetic biology and it's detectability\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from synbio_bestof.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T09:24:23\n    Schema: synbio\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio\n    description: synbio\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
-      "SO": {
-         "@id": "http://purl.obolibrary.org/obo/SO_",
-         "@prefix": true
-      },
+      "dcterms": "http://purl.org/dc/terms/",
       "linkml": "https://w3id.org/linkml/",
-      "synbio": "http://example.com/synbio/",
-      "synbio_mod": "http://example.com/synbio/modification/",
-      "synbio_part": "http://example.com/synbio/part/",
-      "synbio_person": "http://example.com/synbio/person/",
-      "@vocab": "http://example.com/synbio/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "synbio": "https://w3id.org/None/",
+      "@vocab": "https://w3id.org/None/",
+      "associated_part": {
+         "@type": "@id"
+      },
+      "bio_safety_level": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "category": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
       "creator": {
          "@type": "@id"
       },
       "date_joined": {
          "@type": "xsd:dateTime"
       },
-      "is_active": {
-         "@type": "xsd:boolean"
+      "descriptor": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
       },
+      "exactMatch": {
+         "@id": "skos:exactMatch"
+      },
+      "examples": {
+         "@id": "linkml:examples"
+      },
+      "funding_source": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "generation_date": {
+         "@id": "linkml:generation_date"
+      },
+      "host_organism": {
+         "@type": "@id"
+      },
+      "id": "@id",
       "is_staff": {
          "@type": "xsd:boolean"
       },
       "is_superuser": {
          "@type": "xsd:boolean"
       },
-      "last_login": {
-         "@type": "xsd:dateTime"
+      "license": {
+         "@id": "dcterms:license"
       },
-      "modification_id": "@id",
-      "modifications": {
+      "metamodel_version": {
+         "@id": "linkml:metamodel_version"
+      },
+      "modification_set": {
          "@type": "@id"
       },
-      "person_id": "@id",
-      "seq_id": "@id",
-      "sequences": {
+      "modification_type": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "organism_set": {
+         "@type": "@id"
+      },
+      "permissible_values": {
+         "@id": "linkml:permissible_values"
+      },
+      "person_set": {
+         "@type": "@id"
+      },
+      "principal_investigator": {
+         "@type": "@id"
+      },
+      "seq_type": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "sequence_set": {
+         "@type": "@id"
+      },
+      "size_bp": {
+         "@type": "xsd:integer"
+      },
+      "source_file": {
+         "@id": "linkml:source_file"
+      },
+      "source_file_date": {
+         "@id": "linkml:source_file_date"
+      },
+      "source_file_size": {
+         "@id": "linkml:source_file_size"
+      },
+      "status": {
+         "@context": {
+            "@vocab": "@null",
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         }
+      },
+      "strain_set": {
          "@type": "@id"
       }
    }

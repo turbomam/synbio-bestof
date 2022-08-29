@@ -1,145 +1,167 @@
 {
    "$defs": {
-      "ModCatEnum": {
+      "ArabadopsisSeeds": {
+         "additionalProperties": false,
+         "description": "empty, so skip",
+         "properties": {},
+         "required": [],
+         "title": "ArabadopsisSeeds",
+         "type": "object"
+      },
+      "BioSafetyLevelEnum": {
          "description": "",
          "enum": [
-            "origin/structural",
-            "biosynthetic",
-            "toxin/virulence",
-            "compound",
-            "promoter",
-            "control element",
-            "terminator",
-            "antibiotic resistance",
-            "fluorescent/epitope",
-            "GOI"
+            "Level 1",
+            "Level 2"
          ],
-         "title": "ModCatEnum",
+         "title": "BioSafetyLevelEnum",
          "type": "string"
       },
-      "ModCollection": {
+      "BiologicalSamples": {
+         "additionalProperties": false,
+         "description": "currently out-of-scope, so skip",
+         "properties": {},
+         "required": [],
+         "title": "BiologicalSamples",
+         "type": "object"
+      },
+      "CategoryEnum": {
+         "description": "",
+         "enum": [
+            "antibiotic resistance",
+            "biosynthetic",
+            "compound",
+            "control element",
+            "fluorescent/epitope",
+            "GOI",
+            "origin/structural",
+            "promoter",
+            "terminator",
+            "toxin/virulence"
+         ],
+         "title": "CategoryEnum",
+         "type": "string"
+      },
+      "Database": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "modifications": {
+            "modification_set": {
                "items": {
                   "$ref": "#/$defs/Modification"
+               },
+               "type": "array"
+            },
+            "organism_set": {
+               "items": {
+                  "$ref": "#/$defs/Organism"
+               },
+               "type": "array"
+            },
+            "person_set": {
+               "items": {
+                  "$ref": "#/$defs/Person"
+               },
+               "type": "array"
+            },
+            "sequence_set": {
+               "items": {
+                  "$ref": "#/$defs/PartsSequence"
+               },
+               "type": "array"
+            },
+            "strain_set": {
+               "items": {
+                  "$ref": "#/$defs/Strain"
                },
                "type": "array"
             }
          },
          "required": [],
-         "title": "ModCollection",
+         "title": "Database",
          "type": "object"
       },
-      "ModDescriptorEnum": {
+      "DescriptorEnum": {
          "description": "",
          "enum": [
-            "CDSpartial",
+            "3pUTR",
+            "5pUTR",
+            "activiation domain",
             "CDS",
-            "terminator",
-            "scar",
-            "promoter",
-            "CDSpartial-5prime",
+            "CDSpartial",
             "CDSpartial-3prime",
-            "1bpG707A",
-            "ribosomal.binding.site",
-            "gene",
+            "CDSpartial-5prime",
+            "eGFP",
+            "enhancer",
+            "epitope",
             "fragment",
-            "epitope"
+            "G",
+            "gene",
+            "insertion site",
+            "multiple cloning site",
+            "opt",
+            "promoter",
+            "ribosomal binding site",
+            "scar",
+            "SUMO",
+            "terminator",
+            "VP16"
          ],
-         "title": "ModDescriptorEnum",
+         "title": "DescriptorEnum",
          "type": "string"
       },
-      "ModTypeEnum": {
+      "FundingSourceEnum": {
          "description": "",
          "enum": [
-            "Plasmid",
-            "deletion",
-            "insertion",
-            "frameshift",
-            "CDSpartial",
-            "amber.stop.codon",
-            "ochre.stop.codon",
-            "subtitutions",
-            "substitution.transition",
-            "transition",
-            "substitution.transversion",
-            "inversion",
-            "plasmid.element",
-            "compound.insertion",
-            "compound.deletion",
-            "insertion.site",
-            "reassortment",
-            "fluorescent/epitope",
-            "transition,plasmid.element",
-            "in-frame.deletion",
-            "plasmid element",
-            "chrXIII-chrII",
-            "transition.plasmid.element"
+            "IARPA-FELIX"
          ],
-         "title": "ModTypeEnum",
+         "title": "FundingSourceEnum",
+         "type": "string"
+      },
+      "IntellectualPropertyEnum": {
+         "description": "",
+         "enum": [
+            "Limited License Agreement required from Scarab Genomics"
+         ],
+         "title": "IntellectualPropertyEnum",
          "type": "string"
       },
       "Modification": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "SC_curated_enzyme_name": {
-               "type": "string"
-            },
-            "SC_curated_gene_name": {
-               "type": "string"
-            },
-            "SC_curated_protein_name": {
-               "type": "string"
-            },
-            "SC_curated_uniprot_id": {
-               "type": "string"
-            },
             "aa_change": {
                "type": "string"
             },
             "bio_safety_level": {
-               "type": "string"
+               "$ref": "#/$defs/BioSafetyLevelEnum"
             },
             "category": {
-               "type": "string"
+               "$ref": "#/$defs/CategoryEnum"
             },
-            "creator_id": {
+            "creator": {
                "type": "string"
             },
             "descriptor": {
+               "$ref": "#/$defs/DescriptorEnum"
+            },
+            "el_name_long": {
                "type": "string"
             },
-            "element": {
+            "el_name_short": {
                "type": "string"
             },
-            "element_id": {
+            "element_organism": {
                "type": "string"
             },
-            "element_id_number": {
-               "type": "string"
-            },
-            "element_name": {
-               "type": "string"
-            },
-            "element_species": {
-               "type": "string"
-            },
-            "email": {
-               "type": "string"
-            },
-            "mod_alias": {
-               "type": "string"
-            },
-            "modification_id": {
+            "id": {
+               "pattern": "^IF:\\d+$",
                "type": "string"
             },
             "modification_type": {
-               "type": "string"
+               "$ref": "#/$defs/ModificationTypeEnum"
             },
-            "name": {
+            "modifications_genes": {
                "type": "string"
             },
             "notes": {
@@ -151,144 +173,141 @@
             "principal_investigator": {
                "type": "string"
             },
-            "seq2ids_alias": {
-               "type": "string"
-            },
-            "seq2ids_all_go": {
-               "type": "string"
-            },
-            "seq2ids_bitscore": {
-               "type": "string"
-            },
-            "seq2ids_blast_db": {
-               "type": "string"
-            },
-            "seq2ids_gene_name_1ry": {
-               "type": "string"
-            },
-            "seq2ids_gene_names": {
-               "type": "string"
-            },
-            "seq2ids_organism": {
-               "type": "string"
-            },
-            "seq2ids_prot_function": {
-               "type": "string"
-            },
-            "seq2ids_prot_names": {
-               "type": "string"
-            },
-            "seq2ids_sacc": {
-               "type": "string"
-            },
-            "size": {
-               "type": "string"
+            "size_bp": {
+               "type": "integer"
             },
             "status": {
-               "type": "string"
+               "$ref": "#/$defs/StatusEnum"
             },
             "subcategory_size": {
-               "type": "string"
-            },
-            "taxon_id": {
-               "type": "string"
-            },
-            "type": {
                "type": "string"
             }
          },
          "required": [
             "bio_safety_level",
-            "creator_id",
-            "element",
-            "element_id",
-            "element_id_number",
-            "mod_alias",
-            "modification_id",
-            "name",
+            "creator",
+            "el_name_long",
+            "element_organism",
             "principal_investigator",
             "status",
-            "type"
+            "id"
          ],
          "title": "Modification",
          "type": "object"
       },
-      "Ntseq": {
+      "ModificationTypeEnum": {
+         "description": "",
+         "enum": [
+            "amber stop codon",
+            "CDSpartial",
+            "chrXIII-chrII",
+            "compound deletion",
+            "compound insertion",
+            "deletion",
+            "fluorescent/epitope",
+            "frameshift",
+            "in-frame deletion",
+            "insertion",
+            "insertion site",
+            "inversion",
+            "ochre stop codon",
+            "plasmid",
+            "plasmid element",
+            "reassortment",
+            "substitution",
+            "substitution transition",
+            "substitution transversion",
+            "subtitutions",
+            "transition",
+            "transition plasmid element"
+         ],
+         "title": "ModificationTypeEnum",
+         "type": "string"
+      },
+      "NamedThing": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "date_added": {
-               "type": "string"
-            },
-            "file": {
-               "type": "string"
-            },
-            "part_id": {
-               "type": "string"
-            },
-            "seq_id": {
-               "type": "string"
-            },
-            "seq_name": {
-               "type": "string"
-            },
-            "seq_type": {
-               "type": "string"
-            },
-            "sequence": {
-               "pattern": "^[ACGTacgt]+$",
+            "id": {
                "type": "string"
             }
          },
          "required": [
-            "seq_id",
-            "part_id",
-            "file",
-            "seq_name",
-            "seq_type",
-            "date_added",
-            "sequence"
+            "id"
          ],
-         "title": "Ntseq",
-         "type": "object"
-      },
-      "OmniCollection": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "modifications": {
-               "items": {
-                  "$ref": "#/$defs/Modification"
-               },
-               "type": "array"
-            },
-            "sequences": {
-               "items": {
-                  "$ref": "#/$defs/Ntseq"
-               },
-               "type": "array"
-            }
-         },
-         "required": [],
-         "title": "OmniCollection",
+         "title": "NamedThing",
          "type": "object"
       },
       "Organism": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "NCBI_id": {
+            "abbreviation": {
                "type": "string"
             },
-            "details": {
+            "comment": {
                "type": "string"
             },
-            "organism_id": {
+            "id": {
+               "pattern": "^organism:-?\\d+$",
+               "type": "string"
+            },
+            "special_name": {
+               "type": "string"
+            },
+            "species_name": {
+               "type": "string"
+            },
+            "species_ncbi_taxon_number": {
+               "type": "string"
+            },
+            "strain_value": {
                "type": "string"
             }
          },
-         "required": [],
+         "required": [
+            "id"
+         ],
          "title": "Organism",
+         "type": "object"
+      },
+      "PartsComments": {
+         "additionalProperties": false,
+         "description": "empty, so skip",
+         "properties": {},
+         "required": [],
+         "title": "PartsComments",
+         "type": "object"
+      },
+      "PartsSequence": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "associated_part": {
+               "pattern": "^IF:\\d+$",
+               "type": "string"
+            },
+            "date_added": {
+               "type": "string"
+            },
+            "id": {
+               "pattern": "^sequence:\\d+$",
+               "type": "string"
+            },
+            "nt_sequence": {
+               "type": "string"
+            },
+            "seq_name": {
+               "type": "string"
+            },
+            "seq_type": {
+               "$ref": "#/$defs/SeqTypeEnum"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "PartsSequence",
          "type": "object"
       },
       "Person": {
@@ -305,8 +324,9 @@
             "first_name": {
                "type": "string"
             },
-            "is_active": {
-               "type": "boolean"
+            "id": {
+               "pattern": "^person:\\d+$",
+               "type": "string"
             },
             "is_staff": {
                "type": "boolean"
@@ -314,17 +334,7 @@
             "is_superuser": {
                "type": "boolean"
             },
-            "last_login": {
-               "format": "date-time",
-               "type": "string"
-            },
             "last_name": {
-               "type": "string"
-            },
-            "person_id": {
-               "type": "string"
-            },
-            "person_name": {
                "type": "string"
             },
             "username": {
@@ -332,41 +342,116 @@
             }
          },
          "required": [
-            "person_id",
-            "first_name"
+            "id",
+            "date_joined",
+            "is_staff",
+            "is_superuser",
+            "username"
          ],
          "title": "Person",
-         "type": "object"
-      },
-      "SeqCollection": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "sequences": {
-               "items": {
-                  "$ref": "#/$defs/Ntseq"
-               },
-               "type": "array"
-            }
-         },
-         "required": [],
-         "title": "SeqCollection",
          "type": "object"
       },
       "SeqTypeEnum": {
          "description": "",
          "enum": [
-            "insertion",
-            "sequence",
             "deletion",
-            "flank2",
-            "flank1"
+            "sequence",
+            "insertion",
+            "flank1",
+            "flank2"
          ],
          "title": "SeqTypeEnum",
          "type": "string"
+      },
+      "StatusEnum": {
+         "description": "",
+         "enum": [
+            "In Progress",
+            "Abandoned"
+         ],
+         "title": "StatusEnum",
+         "type": "string"
+      },
+      "Strain": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "bio_safety_level": {
+               "$ref": "#/$defs/BioSafetyLevelEnum"
+            },
+            "creator": {
+               "type": "string"
+            },
+            "funding_source": {
+               "$ref": "#/$defs/FundingSourceEnum"
+            },
+            "genotype_phenotype": {
+               "type": "string"
+            },
+            "host_organism": {
+               "type": "string"
+            },
+            "id": {
+               "pattern": "MS:\\d+",
+               "type": "string"
+            },
+            "intellectual_property": {
+               "type": "string"
+            },
+            "keywords": {
+               "type": "string"
+            },
+            "name": {
+               "type": "string"
+            },
+            "notes": {
+               "type": "string"
+            },
+            "parent_parts": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "principal_investigator": {
+               "type": "string"
+            },
+            "references": {
+               "type": "string"
+            },
+            "status": {
+               "$ref": "#/$defs/StatusEnum"
+            },
+            "sub_parts": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "summary": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
+         "title": "Strain",
+         "type": "object"
+      },
+      "SubcategorySizeEnum": {
+         "description": "",
+         "enum": [
+            "lt_200",
+            "gt_3k",
+            "from_1k_to_3k",
+            "from_100_to_300",
+            "from_300_to_1k"
+         ],
+         "title": "SubcategorySizeEnum",
+         "type": "string"
       }
    },
-   "$id": "http://example.com/synbio",
+   "$id": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "additionalProperties": true,
    "metamodel_version": "1.7.0",

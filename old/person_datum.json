@@ -1,0 +1,7 @@
+{
+  "person_id": "prefix:rhs",
+  "first_name": "Gregor",
+  "last_name": "Mendel",
+  "email": "gregor@stthom.org",
+  "@type": "Person"
+}
