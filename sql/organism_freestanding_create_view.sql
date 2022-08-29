@@ -8,4 +8,13 @@ select concat('organism:', id) as id,
        "comment",
 --        default_genome_id,
        "name"                  as species_name
-from species s;
+from species s
+union
+(select distinct concat('NCBITaxon:', taxon_id) as id,
+                 NULL                           as abbreviation,
+                 NULL                           as strain_value,
+                 NULL                           as "comment",
+                 element_species                as "name"
+ from modifications m
+ where taxon_id is not null
+   and taxon_id != '' and taxon_id != '6100')

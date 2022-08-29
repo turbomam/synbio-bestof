@@ -282,6 +282,19 @@ schema_path=src/schema/synbio_bestof.yaml
 ###	yq --inplace '.prefixes.skos = "http://www.w3.org/2004/02/skos/core#"' $@
 
 
+# todo:
+#   propose read from postgres only; emphasize fields that aren't just Felix/Celnicker specific
+#   can I insert repair tables?
+#   no read permission on modifications_genes
+#   class centric modeling, esp organisms and persons
+#   wheres and joins filter out problematic data
+#   strain parent parts include self
+#   modifications parent parts don't indicate rank or emphasize nearest parent
+#   combine explicit organism, strain tables (?) and esp. taxon info embedded in modifications (element_species and taxon_id)
+#   need to check match between taxid and name
+
+#   ERROR:root:Expected: associated_part_json
+
 # ---
 
 current_all: current_clean combo_validator
@@ -361,6 +374,7 @@ target/modification_data.yaml: target/modifications_freestanding_select.tsv
 		--output $@ --schema $(schema_path) \
 		--target-class Database \
 		--index-slot modification_set target/modifications_freestanding_select.tsv
+	sed -E -i.bak 's/\|/\n  - /g' $@
 
 # ---
 
@@ -444,6 +458,9 @@ target/sequences_freestanding_select.tsv: create_sequences_view
 		--pset footer \
 		-f sql/sequences_freestanding_select.sql \
 		-o $@
+
+
+# ERROR:root:Expected: associated_part_json in {'id': 'sequence:3762', 'associated_part': 'IF:00586', 'seq_name': 'IF00586_ura3-Cterm_CDSpartial_685bp_insertion.site_Saccharomyces.cerevisiae', 'seq_type': 'insertion', 'date_added': '2022-03-17-19:04:09', 'nt_sequence': 'CACCAAGGAATTACTGGAGTTAGTTGAAGCATTAGGTCCCAAAATTTGTTTACTAAAAACACATGTGGATATCTTGACTGATTTTTCCATGGAGGGCACAGTTAAGCCGCTAAAGGCATTATCCGCCAAGTACAATTTTTTACTCTTCGAAGACAGAAAATTTGCTGACATTGGTAATACAGTCAAATTGCAGTACTCTGCGGGTGTATACAGAATAGCAGAATGGGCAGACATTACGAATGCACACGGTGTGGTGGGCCCAGGTATTGTTAGCGGTTTGAAGCAGGCGGCGGAAGAAGTAACAAAGGAACCTAGAGGCCTTTTGATGTTAGCAGAATTGTCATGCAAGGGCTCCCTAGCTACTGGAGAATATACTAAGGGTACTGTTGACATTGCGAAGAGCGACAAAGATTTTGTTATCGGCTTTATTGCTCAAAGAGACATGGGTGGAAGAGATGAAGGTTACGATTGGTTGATTATGACACCCGGTGTGGGTTTAGATGACAAGGGAGACGCATTGGGTCAACAGTATAGAACCGTGGATGATGTGGTCTCTACAGGATCTGACATTATTATTGTTGGAAGAGGACTATTTGCAAAGGGAAGGGATGCTAAGGTAGAGGGTGAACGTTACAGAAAAGCAGGCTGGGAAGCATATTTGAGAAGATGCGGCCAGCAAAACTAA'}
 
 target/sequence_data.yaml: target/sequences_freestanding_select.tsv
 	$(RUN) linkml-convert \

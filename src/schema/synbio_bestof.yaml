@@ -173,6 +173,7 @@ enums:
           - SO:0000141
       VP16: { }
 slots:
+  taxid:
   associated_part:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
     range: Modification
@@ -512,6 +513,7 @@ classes:
       - size_bp
       - status
       - subcategory_size
+      - parent_parts
     slot_usage:
       id:
         pattern: ^IF:\d+$
@@ -528,7 +530,7 @@ classes:
       el_name_short:
         required: false
       element_organism:
-        required: true
+        required: false
       notes:
         required: false
       descriptor:
@@ -563,11 +565,12 @@ classes:
       - strain_value
       - comment
       - species_name
+      - taxid
     slot_usage:
       id:
         multivalued: false
         required: true
-        pattern: ^organism:-?\d+$
+        pattern: '^organism:-?\d+$|^NCBITaxon:\d+$'
       abbreviation:
         multivalued: false
       comment:
