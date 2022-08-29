@@ -881,6 +881,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://synbio-bestof.github.io/synbio-bestof/taxid/</loc>
+         <lastmod>2022-08-29</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://synbio-bestof.github.io/synbio-bestof/taxon_id/</loc>
          <lastmod>2022-08-29</lastmod>
          <changefreq>daily</changefreq>
