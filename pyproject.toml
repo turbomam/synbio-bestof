@@ -15,6 +15,7 @@ pandas = "^1.4.2"
 db-to-sqlite = "^1.4"
 psycopg2 = "^2.9.3"
 ontodev-cogs = "^0.3.3"
+schema-automator = "^0.2.7"
 
 [tool.poetry.dev-dependencies]
 black = "^22.3.0"

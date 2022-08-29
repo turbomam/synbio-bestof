@@ -1,60 +1,83 @@
-message Address
+message ModCollection
  {
-  optional street String = 1
-  optional city String = 2
-  optional postalCode String = 3
+ repeated  modification modifications = 0
  }
-message FamilialRelationship
+message Modification
  {
-  optional startedAtTime Date = 1
-  optional endedAtTime Date = 2
-  optional relatedTo String = 3
-  type FamilialRelationshipType = 4
-  relatedTo Person = 5
+  string aaChange = 0
+  string bioSafetyLevel = 0
+  string category = 0
+  string creatorId = 0
+  string descriptor = 0
+  string element = 0
+  string elementId = 0
+  string elementIdNumber = 0
+  string elementName = 0
+  string elementSpecies = 0
+  string email = 0
+  string modAlias = 0
+  string modificationId = 0
+  string modificationType = 0
+  string name = 0
+  string notes = 0
+  string position = 0
+  string principalInvestigator = 0
+  string sCCuratedEnzymeName = 0
+  string sCCuratedGeneName = 0
+  string sCCuratedProteinName = 0
+  string sCCuratedUniprotId = 0
+  string seq2idsAlias = 0
+  string seq2idsAllGo = 0
+  string seq2idsBitscore = 0
+  string seq2idsBlastDb = 0
+  string seq2idsGeneName1ry = 0
+  string seq2idsGeneNames = 0
+  string seq2idsOrganism = 0
+  string seq2idsProtFunction = 0
+  string seq2idsProtNames = 0
+  string seq2idsSacc = 0
+  string size = 0
+  string status = 0
+  string subcategorySize = 0
+  string taxonId = 0
+  string type = 0
  }
-// A generic grouping for any identifiable entity
-message NamedThing
+message Ntseq
  {
-  id String = 1
-  optional name String = 2
-  optional description String = 3
-  optional image String = 4
+  string seqId = 0
+  string partId = 0
+  string file = 0
+  string seqName = 0
+  string seqType = 0
+  string dateAdded = 0
+  string sequence = 0
  }
-// An organization such as a company or university
-message Organization
+message OmniCollection
  {
-  id String = 1
-  optional name String = 2
-  optional description String = 3
-  optional image String = 4
-  optional missionStatement String = 5
-  optional foundingDate String = 6
-  repeated aliases String = 7
+ repeated  ntseq sequences = 0
+ repeated  modification modifications = 0
  }
-// A person (alive, dead, undead, or fictional).
+message Organism
+ {
+  string organismId = 0
+  string nCBIId = 0
+  string details = 0
+ }
 message Person
  {
-  id String = 1
-  optional name String = 2
-  optional description String = 3
-  optional image String = 4
-  optional primaryEmail String = 5
-  optional birthDate String = 6
-  optional ageInYears Integer = 7
-  optional currentAddress Address = 8
-  repeated hasFamilialRelationships FamilialRelationship = 9
-  repeated aliases String = 10
+  string personId = 0
+  string personName = 0
+  string firstName = 0
+  string lastName = 0
+  datetime lastLogin = 0
+  boolean isSuperuser = 0
+  string username = 0
+  string email = 0
+  boolean isStaff = 0
+  boolean isActive = 0
+  datetime dateJoined = 0
  }
-// Top level data container
-message Registry
+message SeqCollection
  {
-  repeated persons Person = 1
-  repeated organizations Organization = 2
- }
-message Relationship
- {
-  optional startedAtTime Date = 1
-  optional endedAtTime Date = 2
-  optional relatedTo String = 3
-  optional type String = 4
+ repeated  ntseq sequences = 0
  }

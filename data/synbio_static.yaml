@@ -1,0 +1,17 @@
+name: synbio_static
+id: http://example.org/synbio_static
+default_prefix: http://example.org/synbio_static/
+slots:
+  modifications:
+    range: Modification
+    multivalued: true
+    inlined_as_list: true
+  id:
+    identifier: true
+classes:
+  Database:
+    slots:
+      - modifications
+  Named_thing:
+    slots:
+      - id

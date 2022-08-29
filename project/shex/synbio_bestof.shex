@@ -1,9 +1,7 @@
-BASE <https://w3id.org/my_org/my_datamodel/>
-PREFIX prov: <http://www.w3.org/ns/prov#>
+BASE <http://example.com/synbio/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
-PREFIX schema1: <http://schema.org/>
 
 
 linkml:String xsd:string
@@ -24,6 +22,8 @@ linkml:Date xsd:date
 
 linkml:Datetime xsd:dateTime
 
+linkml:DateOrDatetime linkml:DateOrDatetime
+
 linkml:Uriorcurie IRI
 
 linkml:Uri IRI
@@ -34,91 +34,124 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<https://w3id.org/my_org/my_datamodelAddress> CLOSED {
-    (  $<https://w3id.org/my_org/my_datamodelAddress_tes> (  <https://w3id.org/my_org/my_datamodelstreet> @linkml:String ? ;
-          <https://w3id.org/my_org/my_datamodelcity> @linkml:String ? ;
-          <https://w3id.org/my_org/my_datamodelpostal_code> @linkml:String ?
+<ModCollection> CLOSED {
+    (  $<ModCollection_tes> <modifications> @<Modification> * ;
+       rdf:type [ <ModCollection> ] ?
+    )
+}
+
+<Modification> CLOSED {
+    (  $<Modification_tes> (  <aa_change> @linkml:String ? ;
+          <bio_safety_level> @linkml:String ;
+          <category> @linkml:String ? ;
+          <creator_id> @linkml:String ;
+          <descriptor> @linkml:String ? ;
+          <element> @linkml:String ;
+          <element_id> @linkml:String ;
+          <element_id_number> @linkml:String ;
+          <element_name> @linkml:String ? ;
+          <element_species> @linkml:String ? ;
+          <email> @linkml:String ? ;
+          <mod_alias> @linkml:String ;
+          <modification_type> @linkml:String ? ;
+          <name> @linkml:String ;
+          <notes> @linkml:String ? ;
+          <position> @linkml:String ? ;
+          <principal_investigator> @linkml:String ;
+          <SC_curated_enzyme_name> @linkml:String ? ;
+          <SC_curated_gene_name> @linkml:String ? ;
+          <SC_curated_protein_name> @linkml:String ? ;
+          <SC_curated_uniprot_id> @linkml:String ? ;
+          <seq2ids_alias> @linkml:String ? ;
+          <seq2ids_all_go> @linkml:String ? ;
+          <seq2ids_bitscore> @linkml:String ? ;
+          <seq2ids_blast_db> @linkml:String ? ;
+          <seq2ids_gene_name_1ry> @linkml:String ? ;
+          <seq2ids_gene_names> @linkml:String ? ;
+          <seq2ids_organism> @linkml:String ? ;
+          <seq2ids_prot_function> @linkml:String ? ;
+          <seq2ids_prot_names> @linkml:String ? ;
+          <seq2ids_sacc> @linkml:String ? ;
+          <size> @linkml:String ? ;
+          <status> @linkml:String ;
+          <subcategory_size> @linkml:String ? ;
+          <taxon_id> @linkml:String ? ;
+          <type> @linkml:String
        ) ;
-       rdf:type [ schema1:PostalAddress ] ?
+       rdf:type [ <Modification> ]
     )
 }
 
-<https://w3id.org/my_org/my_datamodelFamilialRelationship> CLOSED {
-    (  $<https://w3id.org/my_org/my_datamodelFamilialRelationship_tes> (  &<https://w3id.org/my_org/my_datamodelRelationship_tes> ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelRelationship> ] ? ;
-          <https://w3id.org/my_org/my_datamodeltype> @<https://w3id.org/my_org/my_datamodelFamilialRelationshipType> ;
-          <https://w3id.org/my_org/my_datamodelrelated_to> @<https://w3id.org/my_org/my_datamodelPerson>
+<Ntseq> CLOSED {
+    (  $<Ntseq_tes> (  <part_id> @linkml:String ;
+          <file> @linkml:String ;
+          <seq_name> @linkml:String ;
+          <seq_type> @linkml:String ;
+          <date_added> @linkml:String ;
+          <sequence> @linkml:String
        ) ;
-       rdf:type [ <https://w3id.org/my_org/my_datamodelFamilialRelationship> ] ?
+       rdf:type [ <Ntseq> ]
     )
 }
 
-<https://w3id.org/my_org/my_datamodelHasAliases> {
-    (  $<https://w3id.org/my_org/my_datamodelHasAliases_tes> <https://w3id.org/my_org/my_datamodelaliases> @linkml:String * ;
-       rdf:type [ <https://w3id.org/my_org/my_datamodelHasAliases> ] ?
-    )
-}
-
-<https://w3id.org/my_org/my_datamodelNamedThing>  (
-    CLOSED {
-       (  $<https://w3id.org/my_org/my_datamodelNamedThing_tes> (  schema1:name @linkml:String ? ;
-             schema1:description @linkml:String ? ;
-             schema1:image @linkml:String ?
-          ) ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelNamedThing> ]
-       )
-    } OR @<https://w3id.org/my_org/my_datamodelOrganization> OR @<https://w3id.org/my_org/my_datamodelPerson>
-)
-
-<https://w3id.org/my_org/my_datamodelOrganization> CLOSED {
-    (  $<https://w3id.org/my_org/my_datamodelOrganization_tes> (  &<https://w3id.org/my_org/my_datamodelNamedThing_tes> ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelNamedThing> ] ? ;
-          &<https://w3id.org/my_org/my_datamodelHasAliases_tes> ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelHasAliases> ] ? ;
-          <https://w3id.org/my_org/my_datamodelmission_statement> @linkml:String ? ;
-          <https://w3id.org/my_org/my_datamodelfounding_date> @linkml:String ? ;
-          <https://w3id.org/my_org/my_datamodelaliases> @linkml:String *
+<OmniCollection> CLOSED {
+    (  $<OmniCollection_tes> (  <sequences> @<Ntseq> * ;
+          <modifications> @<Modification> *
        ) ;
-       rdf:type [ schema1:Organization ]
+       rdf:type [ <OmniCollection> ] ?
     )
 }
 
-<https://w3id.org/my_org/my_datamodelPerson> CLOSED {
-    (  $<https://w3id.org/my_org/my_datamodelPerson_tes> (  &<https://w3id.org/my_org/my_datamodelNamedThing_tes> ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelNamedThing> ] ? ;
-          &<https://w3id.org/my_org/my_datamodelHasAliases_tes> ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelHasAliases> ] ? ;
-          schema1:email @linkml:String ? ;
-          schema1:birthDate @linkml:String ? ;
-          <https://w3id.org/my_org/my_datamodelage_in_years> @linkml:Integer ? ;
-          <https://w3id.org/my_org/my_datamodelcurrent_address> @<https://w3id.org/my_org/my_datamodelAddress> ? ;
-          <https://w3id.org/my_org/my_datamodelhas_familial_relationships>
-          @<https://w3id.org/my_org/my_datamodelFamilialRelationship> * ;
-          <https://w3id.org/my_org/my_datamodelaliases> @linkml:String *
+<Organism> CLOSED {
+    (  $<Organism_tes> (  <organism_id> @linkml:String ? ;
+          <NCBI_id> @linkml:String ? ;
+          <details> @linkml:String ?
        ) ;
-       rdf:type [ schema1:Person ]
+       rdf:type [ <Organism> ] ?
     )
 }
 
-<https://w3id.org/my_org/my_datamodelRegistry> CLOSED {
-    (  $<https://w3id.org/my_org/my_datamodelRegistry_tes> (  <https://w3id.org/my_org/my_datamodelpersons>
-          @<https://w3id.org/my_org/my_datamodelPerson> * ;
-          <https://w3id.org/my_org/my_datamodelorganizations> @<https://w3id.org/my_org/my_datamodelOrganization> *
+<Part> {
+    (  $<Part_tes> (  <alias> @linkml:String ? ;
+          <bio_safety_level> @linkml:String ;
+          <creator> @<Person> ? ;
+          <funding_source> @linkml:String ? ;
+          <genotype_phenotype> @linkml:String ? ;
+          <intellectual_property> @linkml:String ? ;
+          <keywords> @linkml:String ? ;
+          <notes> @linkml:String ? ;
+          <part_id> @linkml:String ;
+          <part_name> @linkml:String ;
+          <part_type> @linkml:String ;
+          <principal_investigator> @linkml:String ;
+          <references> @linkml:String ? ;
+          <status> @linkml:String ;
+          <summary> @linkml:String
        ) ;
-       rdf:type [ <https://w3id.org/my_org/my_datamodelRegistry> ] ?
+       rdf:type [ <Part> ] ?
     )
 }
 
-<https://w3id.org/my_org/my_datamodelRelationship>  (
-    CLOSED {
-       (  $<https://w3id.org/my_org/my_datamodelRelationship_tes> (  prov:startedAtTime @linkml:Date ? ;
-             prov:endedAtTime @linkml:Date ? ;
-             <https://w3id.org/my_org/my_datamodelrelated_to> @linkml:String ? ;
-             <https://w3id.org/my_org/my_datamodeltype> @linkml:String ?
-          ) ;
-          rdf:type [ <https://w3id.org/my_org/my_datamodelRelationship> ] ?
-       )
-    } OR @<https://w3id.org/my_org/my_datamodelFamilialRelationship>
-)
+<Person> CLOSED {
+    (  $<Person_tes> (  <person_name> @linkml:String ? ;
+          <first_name> @linkml:String ;
+          <last_name> @linkml:String ? ;
+          <last_login> @linkml:Datetime ? ;
+          <is_superuser> @linkml:Boolean ? ;
+          <username> @linkml:String ? ;
+          <email> @linkml:String ? ;
+          <is_staff> @linkml:Boolean ? ;
+          <is_active> @linkml:Boolean ? ;
+          <date_joined> @linkml:Datetime ?
+       ) ;
+       rdf:type [ <Person> ]
+    )
+}
+
+<SeqCollection> CLOSED {
+    (  $<SeqCollection_tes> <sequences> @<Ntseq> * ;
+       rdf:type [ <SeqCollection> ] ?
+    )
+}
 
 

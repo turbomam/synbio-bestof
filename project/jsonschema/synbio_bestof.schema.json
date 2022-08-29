@@ -1,243 +1,378 @@
 {
    "$defs": {
-      "Address": {
+      "ModCatEnum": {
+         "description": "",
+         "enum": [
+            "origin/structural",
+            "biosynthetic",
+            "toxin/virulence",
+            "compound",
+            "promoter",
+            "control element",
+            "terminator",
+            "antibiotic resistance",
+            "fluorescent/epitope",
+            "GOI"
+         ],
+         "title": "ModCatEnum",
+         "type": "string"
+      },
+      "ModCollection": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "city": {
+            "modifications": {
+               "items": {
+                  "$ref": "#/$defs/Modification"
+               },
+               "type": "array"
+            }
+         },
+         "required": [],
+         "title": "ModCollection",
+         "type": "object"
+      },
+      "ModDescriptorEnum": {
+         "description": "",
+         "enum": [
+            "CDSpartial",
+            "CDS",
+            "terminator",
+            "scar",
+            "promoter",
+            "CDSpartial-5prime",
+            "CDSpartial-3prime",
+            "1bpG707A",
+            "ribosomal.binding.site",
+            "gene",
+            "fragment",
+            "epitope"
+         ],
+         "title": "ModDescriptorEnum",
+         "type": "string"
+      },
+      "ModTypeEnum": {
+         "description": "",
+         "enum": [
+            "Plasmid",
+            "deletion",
+            "insertion",
+            "frameshift",
+            "CDSpartial",
+            "amber.stop.codon",
+            "ochre.stop.codon",
+            "subtitutions",
+            "substitution.transition",
+            "transition",
+            "substitution.transversion",
+            "inversion",
+            "plasmid.element",
+            "compound.insertion",
+            "compound.deletion",
+            "insertion.site",
+            "reassortment",
+            "fluorescent/epitope",
+            "transition,plasmid.element",
+            "in-frame.deletion",
+            "plasmid element",
+            "chrXIII-chrII",
+            "transition.plasmid.element"
+         ],
+         "title": "ModTypeEnum",
+         "type": "string"
+      },
+      "Modification": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "SC_curated_enzyme_name": {
                "type": "string"
             },
-            "postal_code": {
+            "SC_curated_gene_name": {
                "type": "string"
             },
-            "street": {
+            "SC_curated_protein_name": {
+               "type": "string"
+            },
+            "SC_curated_uniprot_id": {
+               "type": "string"
+            },
+            "aa_change": {
+               "type": "string"
+            },
+            "bio_safety_level": {
+               "type": "string"
+            },
+            "category": {
+               "type": "string"
+            },
+            "creator_id": {
+               "type": "string"
+            },
+            "descriptor": {
+               "type": "string"
+            },
+            "element": {
+               "type": "string"
+            },
+            "element_id": {
+               "type": "string"
+            },
+            "element_id_number": {
+               "type": "string"
+            },
+            "element_name": {
+               "type": "string"
+            },
+            "element_species": {
+               "type": "string"
+            },
+            "email": {
+               "type": "string"
+            },
+            "mod_alias": {
+               "type": "string"
+            },
+            "modification_id": {
+               "type": "string"
+            },
+            "modification_type": {
+               "type": "string"
+            },
+            "name": {
+               "type": "string"
+            },
+            "notes": {
+               "type": "string"
+            },
+            "position": {
+               "type": "string"
+            },
+            "principal_investigator": {
+               "type": "string"
+            },
+            "seq2ids_alias": {
+               "type": "string"
+            },
+            "seq2ids_all_go": {
+               "type": "string"
+            },
+            "seq2ids_bitscore": {
+               "type": "string"
+            },
+            "seq2ids_blast_db": {
+               "type": "string"
+            },
+            "seq2ids_gene_name_1ry": {
+               "type": "string"
+            },
+            "seq2ids_gene_names": {
+               "type": "string"
+            },
+            "seq2ids_organism": {
+               "type": "string"
+            },
+            "seq2ids_prot_function": {
+               "type": "string"
+            },
+            "seq2ids_prot_names": {
+               "type": "string"
+            },
+            "seq2ids_sacc": {
+               "type": "string"
+            },
+            "size": {
+               "type": "string"
+            },
+            "status": {
+               "type": "string"
+            },
+            "subcategory_size": {
+               "type": "string"
+            },
+            "taxon_id": {
+               "type": "string"
+            },
+            "type": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "bio_safety_level",
+            "creator_id",
+            "element",
+            "element_id",
+            "element_id_number",
+            "mod_alias",
+            "modification_id",
+            "name",
+            "principal_investigator",
+            "status",
+            "type"
+         ],
+         "title": "Modification",
+         "type": "object"
+      },
+      "Ntseq": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "date_added": {
+               "type": "string"
+            },
+            "file": {
+               "type": "string"
+            },
+            "part_id": {
+               "type": "string"
+            },
+            "seq_id": {
+               "type": "string"
+            },
+            "seq_name": {
+               "type": "string"
+            },
+            "seq_type": {
+               "type": "string"
+            },
+            "sequence": {
+               "pattern": "^[ACGTacgt]+$",
+               "type": "string"
+            }
+         },
+         "required": [
+            "seq_id",
+            "part_id",
+            "file",
+            "seq_name",
+            "seq_type",
+            "date_added",
+            "sequence"
+         ],
+         "title": "Ntseq",
+         "type": "object"
+      },
+      "OmniCollection": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "modifications": {
+               "items": {
+                  "$ref": "#/$defs/Modification"
+               },
+               "type": "array"
+            },
+            "sequences": {
+               "items": {
+                  "$ref": "#/$defs/Ntseq"
+               },
+               "type": "array"
+            }
+         },
+         "required": [],
+         "title": "OmniCollection",
+         "type": "object"
+      },
+      "Organism": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "NCBI_id": {
+               "type": "string"
+            },
+            "details": {
+               "type": "string"
+            },
+            "organism_id": {
                "type": "string"
             }
          },
          "required": [],
-         "title": "Address",
-         "type": "object"
-      },
-      "FamilialRelationship": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "ended_at_time": {
-               "format": "date",
-               "type": "string"
-            },
-            "related_to": {
-               "type": "string"
-            },
-            "started_at_time": {
-               "format": "date",
-               "type": "string"
-            },
-            "type": {
-               "$ref": "#/$defs/FamilialRelationshipType"
-            }
-         },
-         "required": [
-            "type",
-            "related_to"
-         ],
-         "title": "FamilialRelationship",
-         "type": "object"
-      },
-      "FamilialRelationshipType": {
-         "description": "",
-         "enum": [
-            "SIBLING_OF",
-            "PARENT_OF",
-            "CHILD_OF"
-         ],
-         "title": "FamilialRelationshipType",
-         "type": "string"
-      },
-      "NamedThing": {
-         "additionalProperties": false,
-         "description": "A generic grouping for any identifiable entity",
-         "properties": {
-            "description": {
-               "type": "string"
-            },
-            "id": {
-               "type": "string"
-            },
-            "image": {
-               "type": "string"
-            },
-            "name": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
-         "title": "NamedThing",
-         "type": "object"
-      },
-      "Organization": {
-         "additionalProperties": false,
-         "description": "An organization such as a company or university",
-         "properties": {
-            "aliases": {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            "description": {
-               "type": "string"
-            },
-            "founding_date": {
-               "type": "string"
-            },
-            "id": {
-               "type": "string"
-            },
-            "image": {
-               "type": "string"
-            },
-            "mission_statement": {
-               "type": "string"
-            },
-            "name": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
-         "title": "Organization",
+         "title": "Organism",
          "type": "object"
       },
       "Person": {
          "additionalProperties": false,
-         "description": "A person (alive, dead, undead, or fictional).",
+         "description": "",
          "properties": {
-            "age_in_years": {
-               "maximum": 999,
-               "minimum": 0,
-               "type": "integer"
-            },
-            "aliases": {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            "birth_date": {
+            "date_joined": {
+               "format": "date-time",
                "type": "string"
             },
-            "current_address": {
-               "$ref": "#/$defs/Address",
-               "description": "The address at which a person currently lives"
-            },
-            "description": {
+            "email": {
                "type": "string"
             },
-            "has_familial_relationships": {
-               "items": {
-                  "$ref": "#/$defs/FamilialRelationship"
-               },
-               "type": "array"
-            },
-            "id": {
+            "first_name": {
                "type": "string"
             },
-            "image": {
+            "is_active": {
+               "type": "boolean"
+            },
+            "is_staff": {
+               "type": "boolean"
+            },
+            "is_superuser": {
+               "type": "boolean"
+            },
+            "last_login": {
+               "format": "date-time",
                "type": "string"
             },
-            "name": {
+            "last_name": {
                "type": "string"
             },
-            "primary_email": {
-               "pattern": "^\\S+@[\\S+\\.]+\\S+",
+            "person_id": {
+               "type": "string"
+            },
+            "person_name": {
+               "type": "string"
+            },
+            "username": {
                "type": "string"
             }
          },
          "required": [
-            "id"
+            "person_id",
+            "first_name"
          ],
          "title": "Person",
          "type": "object"
       },
-      "PersonStatus": {
+      "SeqCollection": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "sequences": {
+               "items": {
+                  "$ref": "#/$defs/Ntseq"
+               },
+               "type": "array"
+            }
+         },
+         "required": [],
+         "title": "SeqCollection",
+         "type": "object"
+      },
+      "SeqTypeEnum": {
          "description": "",
          "enum": [
-            "ALIVE",
-            "DEAD",
-            "UNKNOWN"
+            "insertion",
+            "sequence",
+            "deletion",
+            "flank2",
+            "flank1"
          ],
-         "title": "PersonStatus",
+         "title": "SeqTypeEnum",
          "type": "string"
-      },
-      "Registry": {
-         "additionalProperties": false,
-         "description": "Top level data container",
-         "properties": {
-            "organizations": {
-               "items": {
-                  "$ref": "#/$defs/Organization"
-               },
-               "type": "array"
-            },
-            "persons": {
-               "items": {
-                  "$ref": "#/$defs/Person"
-               },
-               "type": "array"
-            }
-         },
-         "required": [],
-         "title": "Registry",
-         "type": "object"
-      },
-      "Relationship": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "ended_at_time": {
-               "format": "date",
-               "type": "string"
-            },
-            "related_to": {
-               "type": "string"
-            },
-            "started_at_time": {
-               "format": "date",
-               "type": "string"
-            },
-            "type": {
-               "type": "string"
-            }
-         },
-         "required": [],
-         "title": "Relationship",
-         "type": "object"
       }
    },
-   "$id": "https://w3id.org/my_org/my_datamodel",
+   "$id": "http://example.com/synbio",
    "$schema": "http://json-schema.org/draft-07/schema#",
    "additionalProperties": true,
    "metamodel_version": "1.7.0",
-   "properties": {
-      "organizations": {
-         "items": {
-            "$ref": "#/$defs/Organization"
-         },
-         "type": "array"
-      },
-      "persons": {
-         "items": {
-            "$ref": "#/$defs/Person"
-         },
-         "type": "array"
-      }
-   },
+   "properties": {},
    "required": [],
-   "title": "my_datamodel",
+   "title": "synbio",
    "type": "object",
    "version": null
 }

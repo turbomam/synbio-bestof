@@ -1,45 +1,45 @@
 {
-  "name": "my_datamodel",
-  "description": "Enter a detailed description of your project here",
-  "title": "My Datamodel",
-  "see_also": [
-    "https://example.org/"
+  "name": "synbio",
+  "description": "A schema for synthetic biology and it's detectability",
+  "comments": [
+    "linkml:types import gets repeated"
   ],
-  "id": "https://w3id.org/my_org/my_datamodel",
+  "id": "http://example.com/synbio",
   "imports": [
+    "linkml:types",
     "linkml:types"
   ],
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "prefixes": [
     {
-      "prefix_prefix": "my_datamodel",
-      "prefix_reference": "https://w3id.org/my_org/my_datamodel"
+      "prefix_prefix": "SO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/SO_"
     },
     {
       "prefix_prefix": "linkml",
       "prefix_reference": "https://w3id.org/linkml/"
     },
     {
-      "prefix_prefix": "biolink",
-      "prefix_reference": "https://w3id.org/biolink/"
+      "prefix_prefix": "synbio",
+      "prefix_reference": "http://example.com/synbio/"
     },
     {
-      "prefix_prefix": "schema",
-      "prefix_reference": "http://schema.org/"
+      "prefix_prefix": "synbio_part",
+      "prefix_reference": "http://example.com/synbio/part/"
     },
     {
-      "prefix_prefix": "PATO",
-      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
+      "prefix_prefix": "synbio_mod",
+      "prefix_reference": "http://example.com/synbio/modification/"
     },
     {
-      "prefix_prefix": "famrel",
-      "prefix_reference": "http://example.org/famrel/"
+      "prefix_prefix": "synbio_person",
+      "prefix_reference": "http://example.com/synbio/person/"
     }
   ],
   "default_curi_maps": [
     "semweb_context"
   ],
-  "default_prefix": "my_datamodel",
+  "default_prefix": "synbio",
   "default_range": "string",
   "types": [
     {
@@ -143,6 +143,17 @@
       "@type": "TypeDefinition"
     },
     {
+      "name": "date_or_datetime",
+      "definition_uri": "https://w3id.org/linkml/DateOrDatetime",
+      "description": "Either a date or a datetime",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "https://w3id.org/linkml/DateOrDatetime",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
       "name": "uriorcurie",
       "definition_uri": "https://w3id.org/linkml/Uriorcurie",
       "description": "a URI or a CURIE",
@@ -203,611 +214,1641 @@
   ],
   "enums": [
     {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelPersonStatus",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
+      "name": "seq_type_enum",
+      "definition_uri": "http://example.com/synbio/SeqTypeEnum",
+      "comments": [
+        "SO:0000001 = \"region\", a seqeunce feature with extent > 0"
+      ],
+      "from_schema": "http://example.com/synbio",
       "permissible_values": [
         {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
+          "text": "insertion",
+          "meaning": "SO:0000667",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "192"
+            }
+          ]
         },
         {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
+          "text": "sequence",
+          "meaning": "SO:0000001",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "96"
+            }
+          ]
         },
         {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
+          "text": "deletion",
+          "meaning": "SO:0000159",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "83"
+            }
+          ]
+        },
+        {
+          "text": "flank2",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "77"
+            }
+          ]
+        },
+        {
+          "text": "flank1",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "76"
+            }
           ]
         }
       ]
     },
     {
-      "name": "FamilialRelationshipType",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelFamilialRelationshipType",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
+      "name": "mod_cat_enum",
+      "definition_uri": "http://example.com/synbio/ModCatEnum",
+      "comments": [
+        "166 blank, 4 NA"
+      ],
+      "from_schema": "http://example.com/synbio",
       "permissible_values": [
         {
-          "text": "SIBLING_OF",
-          "meaning": "famrel:01"
+          "text": "origin/structural",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "31"
+            }
+          ]
         },
         {
-          "text": "PARENT_OF",
-          "meaning": "famrel:02"
+          "text": "biosynthetic",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "29"
+            }
+          ]
         },
         {
-          "text": "CHILD_OF",
-          "meaning": "famrel:01"
+          "text": "toxin/virulence",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "28"
+            }
+          ]
+        },
+        {
+          "text": "compound",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "24"
+            }
+          ]
+        },
+        {
+          "text": "promoter",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "24"
+            }
+          ]
+        },
+        {
+          "text": "control element",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "23"
+            }
+          ]
+        },
+        {
+          "text": "terminator",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "18"
+            }
+          ]
+        },
+        {
+          "text": "antibiotic resistance",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "18"
+            }
+          ]
+        },
+        {
+          "text": "fluorescent/epitope",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "13"
+            }
+          ]
+        },
+        {
+          "text": "GOI",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mod_type_enum",
+      "definition_uri": "http://example.com/synbio/ModTypeEnum",
+      "comments": [
+        "1 blank, 3 NA"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "permissible_values": [
+        {
+          "text": "Plasmid",
+          "meaning": "SO:0000155",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "8"
+            }
+          ]
+        },
+        {
+          "text": "deletion",
+          "meaning": "SO:0000159",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "73"
+            }
+          ]
+        },
+        {
+          "text": "insertion",
+          "meaning": "SO:0000667",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "149"
+            }
+          ]
+        },
+        {
+          "text": "frameshift",
+          "meaning": "SO:0000865",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "9"
+            }
+          ]
+        },
+        {
+          "text": "CDSpartial",
+          "meaning": "SO:0001384",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "amber.stop.codon",
+          "meaning": "SO:0002333",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "text": "ochre.stop.codon",
+          "meaning": "SO:0002334",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "text": "subtitutions",
+          "meaning": "SO:1000002",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "substitution.transition",
+          "meaning": "SO:1000009",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "transition",
+          "meaning": "SO:1000009",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "substitution.transversion",
+          "meaning": "SO:1000017",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "inversion",
+          "meaning": "SO:1000036",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "3"
+            }
+          ]
+        },
+        {
+          "text": "plasmid.element",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "83"
+            }
+          ]
+        },
+        {
+          "text": "compound.insertion",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "24"
+            }
+          ]
+        },
+        {
+          "text": "compound.deletion",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "9"
+            }
+          ]
+        },
+        {
+          "text": "insertion.site",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "text": "reassortment",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "text": "fluorescent/epitope",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "transition,plasmid.element",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "in-frame.deletion",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "plasmid element",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "chrXIII-chrII",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "transition.plasmid.element",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "mod_descriptor_enum",
+      "definition_uri": "http://example.com/synbio/ModDescriptorEnum",
+      "comments": [
+        "310 blank"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "permissible_values": [
+        {
+          "text": "CDSpartial",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "33"
+            }
+          ]
+        },
+        {
+          "text": "CDS",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "11"
+            }
+          ]
+        },
+        {
+          "text": "terminator",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "7"
+            }
+          ]
+        },
+        {
+          "text": "scar",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "text": "promoter",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "6"
+            }
+          ]
+        },
+        {
+          "text": "CDSpartial-5prime",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "text": "CDSpartial-3prime",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "4"
+            }
+          ]
+        },
+        {
+          "text": "1bpG707A",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "text": "ribosomal.binding.site",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "2"
+            }
+          ]
+        },
+        {
+          "text": "gene",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "fragment",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "text": "epitope",
+          "annotations": [
+            {
+              "tag": "count",
+              "value": "1"
+            }
+          ]
         }
       ]
     }
   ],
   "slots": [
     {
-      "name": "id",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelid",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/identifier",
-      "identifier": true,
-      "owner": "NamedThing",
+      "name": "aa_change",
+      "definition_uri": "http://example.com/synbio/aa_change",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/aa_change",
+      "owner": "Modification",
       "domain_of": [
-        "NamedThing"
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "alias",
+      "definition_uri": "http://example.com/synbio/alias",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/alias",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "bio_safety_level",
+      "definition_uri": "http://example.com/synbio/bio_safety_level",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/bio_safety_level",
+      "owner": "Modification",
+      "domain_of": [
+        "Part",
+        "Modification"
       ],
       "range": "string",
       "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "name",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelname",
-      "mappings": [
-        "http://schema.org/name"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/name",
-      "owner": "NamedThing",
+      "name": "category",
+      "definition_uri": "http://example.com/synbio/category",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/category",
+      "owner": "Modification",
       "domain_of": [
-        "NamedThing"
+        "Modification"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "description",
-      "definition_uri": "https://w3id.org/my_org/my_datamodeldescription",
-      "mappings": [
-        "http://schema.org/description"
+      "name": "creator",
+      "definition_uri": "http://example.com/synbio/creator",
+      "comments": [
+        "was creator_id",
+        "pain to enter this way?"
       ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/description",
-      "owner": "NamedThing",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/creator",
+      "owner": "Part",
       "domain_of": [
-        "NamedThing"
+        "Part"
+      ],
+      "range": "Person",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "creator_id",
+      "definition_uri": "http://example.com/synbio/creator_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/creator_id",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "date_added",
+      "definition_uri": "http://example.com/synbio/date_added",
+      "notes": [
+        "linkml-sqldb dump seems to be picky about dates"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/date_added",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "date_joined",
+      "definition_uri": "http://example.com/synbio/date_joined",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/date_joined",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "descriptor",
+      "definition_uri": "http://example.com/synbio/descriptor",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/descriptor",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "image",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelimage",
-      "mappings": [
-        "http://schema.org/image"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/image",
-      "owner": "NamedThing",
+      "name": "details",
+      "definition_uri": "http://example.com/synbio/details",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/details",
+      "owner": "Organism",
       "domain_of": [
-        "NamedThing"
+        "Organism"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelprimary_email",
-      "mappings": [
-        "http://schema.org/email"
+      "name": "element",
+      "definition_uri": "http://example.com/synbio/element",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/element",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
       ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/email",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "element_id",
+      "definition_uri": "http://example.com/synbio/element_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/element_id",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "element_id_number",
+      "definition_uri": "http://example.com/synbio/element_id_number",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/element_id_number",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "element_name",
+      "definition_uri": "http://example.com/synbio/element_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/element_name",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "element_species",
+      "definition_uri": "http://example.com/synbio/element_species",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/element_species",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "email",
+      "definition_uri": "http://example.com/synbio/email",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/email",
+      "owner": "Modification",
+      "domain_of": [
+        "Person",
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "file",
+      "definition_uri": "http://example.com/synbio/file",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/file",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "first_name",
+      "definition_uri": "http://example.com/synbio/first_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/first_name",
       "owner": "Person",
       "domain_of": [
         "Person"
       ],
       "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelbirth_date",
-      "mappings": [
-        "http://schema.org/birthDate"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://schema.org/birthDate",
-      "owner": "Person",
+      "name": "funding_source",
+      "definition_uri": "http://example.com/synbio/funding_source",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/funding_source",
+      "owner": "Part",
       "domain_of": [
-        "Person"
+        "Part"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "employed_at",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelemployed_at",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelemployed_at",
-      "range": "Organization",
+      "name": "genotype_phenotype",
+      "definition_uri": "http://example.com/synbio/genotype_phenotype",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/genotype_phenotype",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "is_current",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelis_current",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelis_current",
+      "name": "host_species_id",
+      "definition_uri": "http://example.com/synbio/host_species_id",
+      "comments": [
+        "change back to Organism"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/host_species_id",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "id",
+      "definition_uri": "http://example.com/synbio/id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/id",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "intellectual_property",
+      "definition_uri": "http://example.com/synbio/intellectual_property",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/intellectual_property",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_active",
+      "definition_uri": "http://example.com/synbio/is_active",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/is_active",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
       "range": "boolean",
       "@type": "SlotDefinition"
     },
     {
-      "name": "has_familial_relationships",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelhas_familial_relationships",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelhas_familial_relationships",
+      "name": "is_staff",
+      "definition_uri": "http://example.com/synbio/is_staff",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/is_staff",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "is_superuser",
+      "definition_uri": "http://example.com/synbio/is_superuser",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/is_superuser",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "boolean",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "keywords",
+      "definition_uri": "http://example.com/synbio/keywords",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/keywords",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "last_login",
+      "definition_uri": "http://example.com/synbio/last_login",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/last_login",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "datetime",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "last_name",
+      "definition_uri": "http://example.com/synbio/last_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/last_name",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "middle_init_or_name",
+      "definition_uri": "http://example.com/synbio/middle_init_or_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/middle_init_or_name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "mod_alias",
+      "definition_uri": "http://example.com/synbio/mod_alias",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/mod_alias",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "modification_id",
+      "id_prefixes": [
+        "synbio_mod"
+      ],
+      "definition_uri": "http://example.com/synbio/modification_id",
+      "comments": [
+        "might not need this"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/modification_id",
+      "identifier": true,
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "modification_type",
+      "definition_uri": "http://example.com/synbio/modification_type",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/modification_type",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "modifications",
+      "definition_uri": "http://example.com/synbio/modifications",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/modifications",
       "multivalued": true,
+      "owner": "OmniCollection",
+      "domain_of": [
+        "ModCollection",
+        "OmniCollection"
+      ],
+      "range": "Modification",
       "inlined": true,
       "inlined_as_list": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "http://example.com/synbio/name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/name",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NCBI_id",
+      "definition_uri": "http://example.com/synbio/NCBI_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/NCBI_id",
+      "owner": "Organism",
+      "domain_of": [
+        "Organism"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "notes",
+      "definition_uri": "http://example.com/synbio/notes",
+      "comments": [
+        "replace carriage returns etc with pipes? and other normalization?"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/notes",
+      "owner": "Modification",
+      "domain_of": [
+        "Part",
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "organism_id",
+      "definition_uri": "http://example.com/synbio/organism_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/organism_id",
+      "owner": "Organism",
+      "domain_of": [
+        "Organism"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "part_id",
+      "id_prefixes": [
+        "synbio_part"
+      ],
+      "definition_uri": "http://example.com/synbio/part_id",
+      "comments": [
+        "why can't this be a Modification identifier? \"test.Modification() argument after ** must be a mapping, not extended_str\"",
+        "part_id can't be an identifier if its mixed in with classes that have their own id"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/part_id",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Part",
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "part_name",
+      "definition_uri": "http://example.com/synbio/part_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/part_name",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "part_type",
+      "definition_uri": "http://example.com/synbio/part_type",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/part_type",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "parts_ptr_id",
+      "definition_uri": "http://example.com/synbio/parts_ptr_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/parts_ptr_id",
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "person_id",
+      "id_prefixes": [
+        "synbio_person"
+      ],
+      "definition_uri": "http://example.com/synbio/person_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/person_id",
+      "identifier": true,
       "owner": "Person",
       "domain_of": [
         "Person"
       ],
-      "range": "FamilialRelationship",
+      "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "current_address",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelcurrent_address",
-      "description": "The address at which a person currently lives",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelcurrent_address",
+      "name": "person_name",
+      "definition_uri": "http://example.com/synbio/person_name",
+      "comments": [
+        "use string serialization?"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "string_serialization": "{first_name} {middle_init_or_name} (last_name}",
+      "slot_uri": "http://example.com/synbio/person_name",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "position",
+      "definition_uri": "http://example.com/synbio/position",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/position",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "principal_investigator",
+      "definition_uri": "http://example.com/synbio/principal_investigator",
+      "comments": [
+        "principal_investigator_email implemented as Person_email"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/principal_investigator",
+      "owner": "Modification",
+      "domain_of": [
+        "Part",
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "references",
+      "definition_uri": "http://example.com/synbio/references",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/references",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SC_curated_enzyme_name",
+      "definition_uri": "http://example.com/synbio/SC_curated_enzyme_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/SC_curated_enzyme_name",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SC_curated_gene_name",
+      "definition_uri": "http://example.com/synbio/SC_curated_gene_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/SC_curated_gene_name",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SC_curated_protein_name",
+      "definition_uri": "http://example.com/synbio/SC_curated_protein_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/SC_curated_protein_name",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SC_curated_uniprot_id",
+      "definition_uri": "http://example.com/synbio/SC_curated_uniprot_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/SC_curated_uniprot_id",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq_id",
+      "definition_uri": "http://example.com/synbio/seq_id",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq_id",
+      "identifier": true,
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq_name",
+      "definition_uri": "http://example.com/synbio/seq_name",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq_name",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq_type",
+      "definition_uri": "http://example.com/synbio/seq_type",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq_type",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_alias",
+      "definition_uri": "http://example.com/synbio/seq2ids_alias",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_alias",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_all_go",
+      "definition_uri": "http://example.com/synbio/seq2ids_all_go",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_all_go",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_bitscore",
+      "definition_uri": "http://example.com/synbio/seq2ids_bitscore",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_bitscore",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_blast_db",
+      "definition_uri": "http://example.com/synbio/seq2ids_blast_db",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_blast_db",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_gene_name_1ry",
+      "definition_uri": "http://example.com/synbio/seq2ids_gene_name_1ry",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_gene_name_1ry",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_gene_names",
+      "definition_uri": "http://example.com/synbio/seq2ids_gene_names",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_gene_names",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_organism",
+      "definition_uri": "http://example.com/synbio/seq2ids_organism",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_organism",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_prot_function",
+      "definition_uri": "http://example.com/synbio/seq2ids_prot_function",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_prot_function",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_prot_names",
+      "definition_uri": "http://example.com/synbio/seq2ids_prot_names",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_prot_names",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "seq2ids_sacc",
+      "definition_uri": "http://example.com/synbio/seq2ids_sacc",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/seq2ids_sacc",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sequence",
+      "definition_uri": "http://example.com/synbio/sequence",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/sequence",
+      "owner": "Ntseq",
+      "domain_of": [
+        "Ntseq"
+      ],
+      "range": "string",
+      "required": true,
+      "pattern": "^[ACGTacgt]+$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "sequences",
+      "definition_uri": "http://example.com/synbio/sequences",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/sequences",
+      "multivalued": true,
+      "owner": "OmniCollection",
+      "domain_of": [
+        "SeqCollection",
+        "OmniCollection"
+      ],
+      "range": "Ntseq",
       "inlined": true,
-      "owner": "Person",
-      "domain_of": [
-        "Person"
-      ],
-      "range": "Address",
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelage_in_years",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelage_in_years",
-      "owner": "Person",
+      "name": "size",
+      "definition_uri": "http://example.com/synbio/size",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/size",
+      "owner": "Modification",
       "domain_of": [
-        "Person"
+        "Modification"
       ],
-      "range": "integer",
-      "minimum_value": 0,
-      "maximum_value": 999,
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "related_to",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelrelated_to",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelrelated_to",
-      "owner": "Relationship",
+      "name": "status",
+      "definition_uri": "http://example.com/synbio/status",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/status",
+      "owner": "Modification",
       "domain_of": [
-        "Relationship"
+        "Part",
+        "Modification"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "subcategory_size",
+      "definition_uri": "http://example.com/synbio/subcategory_size",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/subcategory_size",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "summary",
+      "definition_uri": "http://example.com/synbio/summary",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/summary",
+      "owner": "Part",
+      "domain_of": [
+        "Part"
+      ],
+      "range": "string",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "taxon_id",
+      "definition_uri": "http://example.com/synbio/taxon_id",
+      "comments": [
+        "change back to Organism"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/taxon_id",
+      "owner": "Modification",
+      "domain_of": [
+        "Modification"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
       "name": "type",
-      "definition_uri": "https://w3id.org/my_org/my_datamodeltype",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodeltype",
-      "owner": "Relationship",
+      "definition_uri": "http://example.com/synbio/type",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/type",
+      "owner": "Modification",
       "domain_of": [
-        "Relationship"
+        "Modification"
       ],
       "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "street",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelstreet",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelstreet",
-      "owner": "Address",
-      "domain_of": [
-        "Address"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "city",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelcity",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelcity",
-      "owner": "Address",
-      "domain_of": [
-        "Address"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "mission_statement",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelmission_statement",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelmission_statement",
-      "owner": "Organization",
-      "domain_of": [
-        "Organization"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "founding_date",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelfounding_date",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelfounding_date",
-      "owner": "Organization",
-      "domain_of": [
-        "Organization"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "postal_code",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelpostal_code",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelpostal_code",
-      "owner": "Address",
-      "domain_of": [
-        "Address"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "started_at_time",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelstarted_at_time",
-      "mappings": [
-        "http://www.w3.org/ns/prov#startedAtTime"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://www.w3.org/ns/prov#startedAtTime",
-      "owner": "Relationship",
-      "domain_of": [
-        "Relationship"
-      ],
-      "range": "date",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "ended_at_time",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelended_at_time",
-      "mappings": [
-        "http://www.w3.org/ns/prov#endedAtTime"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "http://www.w3.org/ns/prov#endedAtTime",
-      "owner": "Relationship",
-      "domain_of": [
-        "Relationship"
-      ],
-      "range": "date",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "registry__persons",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelpersons",
-      "multivalued": true,
-      "inlined": true,
-      "inlined_as_list": true,
-      "alias": "persons",
-      "owner": "Registry",
-      "domain_of": [
-        "Registry"
-      ],
-      "range": "Person",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "registry__organizations",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelorganizations",
-      "multivalued": true,
-      "inlined": true,
-      "inlined_as_list": true,
-      "alias": "organizations",
-      "owner": "Registry",
-      "domain_of": [
-        "Registry"
-      ],
-      "range": "Organization",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "hasAliases__aliases",
-      "exact_mappings": [
-        "http://schema.org/alternateName"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelaliases",
-      "multivalued": true,
-      "alias": "aliases",
-      "owner": "HasAliases",
-      "domain_of": [
-        "HasAliases"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "related_to",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelrelated_to",
-      "range": "Person",
       "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "Person_primary_email",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelprimary_email",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "primary_email",
-      "domain": "Person",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
+      "name": "username",
+      "definition_uri": "http://example.com/synbio/username",
+      "from_schema": "http://example.com/synbio",
+      "slot_uri": "http://example.com/synbio/username",
       "owner": "Person",
       "domain_of": [
         "Person"
       ],
-      "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
       "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "FamilialRelationship_type",
-      "definition_uri": "https://w3id.org/my_org/my_datamodeltype",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "type",
-      "domain": "FamilialRelationship",
-      "slot_uri": "https://w3id.org/my_org/my_datamodeltype",
-      "alias": "type",
-      "owner": "FamilialRelationship",
-      "domain_of": [
-        "FamilialRelationship"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "type",
-      "range": "FamilialRelationshipType",
-      "required": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "FamilialRelationship_related_to",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "related_to",
-      "domain": "FamilialRelationship",
-      "slot_uri": "https://w3id.org/my_org/my_datamodelrelated_to",
-      "alias": "related to",
-      "owner": "FamilialRelationship",
-      "domain_of": [
-        "FamilialRelationship"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "related to",
-      "range": "Person",
-      "required": true,
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
     {
-      "name": "Registry",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelRegistry",
-      "description": "Top level data container",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
+      "name": "Organism",
+      "definition_uri": "http://example.com/synbio/Organism",
+      "title": "Organism",
+      "from_schema": "http://example.com/synbio",
       "slots": [
-        "registry__persons",
-        "registry__organizations"
+        "organism_id",
+        "NCBI_id",
+        "details"
       ],
       "slot_usage": {},
-      "attributes": [
-        {
-          "name": "persons",
-          "multivalued": true,
-          "inlined": true,
-          "inlined_as_list": true,
-          "range": "Person",
-          "@type": "SlotDefinition"
-        },
-        {
-          "name": "organizations",
-          "multivalued": true,
-          "inlined": true,
-          "inlined_as_list": true,
-          "range": "Organization",
-          "@type": "SlotDefinition"
-        }
-      ],
-      "class_uri": "https://w3id.org/my_org/my_datamodelRegistry",
-      "tree_root": true,
+      "class_uri": "http://example.com/synbio/Organism",
       "@type": "ClassDefinition"
     },
     {
-      "name": "NamedThing",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelNamedThing",
-      "close_mappings": [
-        "schema:Thing"
+      "name": "Part",
+      "definition_uri": "http://example.com/synbio/Part",
+      "title": "Part",
+      "notes": [
+        "removed host_species_id"
       ],
-      "description": "A generic grouping for any identifiable entity",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
+      "from_schema": "http://example.com/synbio",
+      "mixin": true,
       "slots": [
-        "id",
-        "name",
-        "description",
-        "image"
+        "alias",
+        "bio_safety_level",
+        "creator",
+        "funding_source",
+        "genotype_phenotype",
+        "intellectual_property",
+        "keywords",
+        "notes",
+        "part_id",
+        "part_name",
+        "part_type",
+        "principal_investigator",
+        "references",
+        "status",
+        "summary"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/my_org/my_datamodelNamedThing",
+      "class_uri": "http://example.com/synbio/Part",
       "@type": "ClassDefinition"
     },
     {
       "name": "Person",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelPerson",
-      "mappings": [
-        "schema:Person"
-      ],
-      "description": "A person (alive, dead, undead, or fictional).",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "NamedThing",
-      "mixins": [
-        "HasAliases"
-      ],
+      "definition_uri": "http://example.com/synbio/Person",
+      "title": "Person",
+      "from_schema": "http://example.com/synbio",
       "slots": [
-        "id",
+        "person_id",
+        "person_name",
+        "first_name",
+        "last_name",
+        "last_login",
+        "is_superuser",
+        "username",
+        "email",
+        "is_staff",
+        "is_active",
+        "date_joined"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/synbio/Person",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Ntseq",
+      "definition_uri": "http://example.com/synbio/Ntseq",
+      "title": "Nucleotide sequence",
+      "from_schema": "http://example.com/synbio",
+      "slots": [
+        "seq_id",
+        "part_id",
+        "file",
+        "seq_name",
+        "seq_type",
+        "date_added",
+        "sequence"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/synbio/Ntseq",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "SeqCollection",
+      "definition_uri": "http://example.com/synbio/SeqCollection",
+      "title": "Sequence Collection",
+      "from_schema": "http://example.com/synbio",
+      "slots": [
+        "sequences"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/synbio/SeqCollection",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Modification",
+      "definition_uri": "http://example.com/synbio/Modification",
+      "title": "Modification",
+      "notes": [
+        "linkml sql dumper did not like the fact that Modification used the Part mixin. Just manually added all of the slots for now. Or maybe it had something to do with Modification.host_species_id"
+      ],
+      "comments": [
+        "return Part as a mixin"
+      ],
+      "from_schema": "http://example.com/synbio",
+      "slots": [
+        "aa_change",
+        "bio_safety_level",
+        "category",
+        "creator_id",
+        "descriptor",
+        "element",
+        "element_id",
+        "element_id_number",
+        "element_name",
+        "element_species",
+        "email",
+        "mod_alias",
+        "modification_id",
+        "modification_type",
         "name",
-        "description",
-        "image",
-        "Person_primary_email",
-        "birth_date",
-        "age_in_years",
-        "current_address",
-        "has_familial_relationships",
-        "hasAliases__aliases"
-      ],
-      "slot_usage": {},
-      "class_uri": "http://schema.org/Person",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "HasAliases",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelHasAliases",
-      "description": "A mixin applied to any class that can have aliases/alternateNames",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "mixin": true,
-      "slots": [
-        "hasAliases__aliases"
-      ],
-      "slot_usage": {},
-      "attributes": [
-        {
-          "name": "aliases",
-          "exact_mappings": [
-            "schema:alternateName"
-          ],
-          "multivalued": true,
-          "@type": "SlotDefinition"
-        }
-      ],
-      "class_uri": "https://w3id.org/my_org/my_datamodelHasAliases",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "Organization",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelOrganization",
-      "mappings": [
-        "schema:Organization"
-      ],
-      "description": "An organization such as a company or university",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "NamedThing",
-      "mixins": [
-        "HasAliases"
-      ],
-      "slots": [
-        "id",
-        "name",
-        "description",
-        "image",
-        "mission_statement",
-        "founding_date",
-        "hasAliases__aliases"
-      ],
-      "slot_usage": {},
-      "class_uri": "http://schema.org/Organization",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "Address",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelAddress",
-      "mappings": [
-        "schema:PostalAddress"
-      ],
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slots": [
-        "street",
-        "city",
-        "postal_code"
-      ],
-      "slot_usage": {},
-      "class_uri": "http://schema.org/PostalAddress",
-      "@type": "ClassDefinition"
-    },
-    {
-      "name": "Relationship",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelRelationship",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "slots": [
-        "started_at_time",
-        "ended_at_time",
-        "related_to",
+        "notes",
+        "position",
+        "principal_investigator",
+        "SC_curated_enzyme_name",
+        "SC_curated_gene_name",
+        "SC_curated_protein_name",
+        "SC_curated_uniprot_id",
+        "seq2ids_alias",
+        "seq2ids_all_go",
+        "seq2ids_bitscore",
+        "seq2ids_blast_db",
+        "seq2ids_gene_name_1ry",
+        "seq2ids_gene_names",
+        "seq2ids_organism",
+        "seq2ids_prot_function",
+        "seq2ids_prot_names",
+        "seq2ids_sacc",
+        "size",
+        "status",
+        "subcategory_size",
+        "taxon_id",
         "type"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/my_org/my_datamodelRelationship",
+      "class_uri": "http://example.com/synbio/Modification",
       "@type": "ClassDefinition"
     },
     {
-      "name": "FamilialRelationship",
-      "definition_uri": "https://w3id.org/my_org/my_datamodelFamilialRelationship",
-      "from_schema": "https://w3id.org/my_org/my_datamodel",
-      "is_a": "Relationship",
+      "name": "ModCollection",
+      "definition_uri": "http://example.com/synbio/ModCollection",
+      "title": "Modification Collection",
+      "from_schema": "http://example.com/synbio",
       "slots": [
-        "started_at_time",
-        "ended_at_time",
-        "related_to",
-        "FamilialRelationship_type",
-        "FamilialRelationship_related_to"
+        "modifications"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/my_org/my_datamodelFamilialRelationship",
+      "class_uri": "http://example.com/synbio/ModCollection",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "OmniCollection",
+      "definition_uri": "http://example.com/synbio/OmniCollection",
+      "from_schema": "http://example.com/synbio",
+      "slots": [
+        "sequences",
+        "modifications"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://example.com/synbio/OmniCollection",
       "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "synbio_bestof.yaml",
-  "source_file_date": "2022-05-17T17:37:44",
-  "source_file_size": 3771,
-  "generation_date": "2022-05-17T17:38:33",
+  "source_file_date": "2022-07-01T12:26:58",
+  "source_file_size": 16734,
+  "generation_date": "2022-07-01T13:05:36",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/synbio_bestof.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
     {
-      "@base": "https://w3id.org/my_org/my_datamodel"
+      "@base": "http://example.com/synbio/"
     }
   ]
 }

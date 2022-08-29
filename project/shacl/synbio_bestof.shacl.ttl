@@ -1,166 +1,316 @@
-@prefix famrel: <http://example.org/famrel/> .
-@prefix my_datamodel: <https://w3id.org/my_org/my_datamodel> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix schema1: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix synbio: <http://example.com/synbio/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-my_datamodel:HasAliases a sh:NodeShape ;
+synbio:ModCollection a sh:NodeShape ;
     sh:closed true ;
-    sh:description "A mixin applied to any class that can have aliases/alternateNames" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:order 0 ;
-            sh:path my_datamodel:aliases ] ;
-    sh:targetClass my_datamodel:HasAliases .
-
-my_datamodel:NamedThing a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "A generic grouping for any identifiable entity" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:name ],
-        [ sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path schema1:description ],
-        [ sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:image ],
-        [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:identifier ] ;
-    sh:targetClass my_datamodel:NamedThing .
-
-my_datamodel:Registry a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "Top level data container" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class schema1:Organization ;
-            sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path my_datamodel:organizations ],
-        [ sh:class schema1:Person ;
+    sh:name "Modification Collection" ;
+    sh:property [ sh:class synbio:Modification ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
-            sh:path my_datamodel:persons ] ;
-    sh:targetClass my_datamodel:Registry .
+            sh:path synbio:modifications ] ;
+    sh:targetClass synbio:ModCollection .
 
-my_datamodel:Relationship a sh:NodeShape ;
+synbio:OmniCollection a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path my_datamodel:type ],
-        [ sh:maxCount 1 ;
+    sh:property [ sh:class synbio:Ntseq ;
+            sh:nodeKind sh:IRI ;
             sh:order 0 ;
-            sh:path prov:startedAtTime ],
-        [ sh:maxCount 1 ;
+            sh:path synbio:sequences ],
+        [ sh:class synbio:Modification ;
+            sh:nodeKind sh:IRI ;
             sh:order 1 ;
-            sh:path prov:endedAtTime ],
+            sh:path synbio:modifications ] ;
+    sh:targetClass synbio:OmniCollection .
+
+synbio:Organism a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Organism" ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path synbio:organism_id ],
         [ sh:maxCount 1 ;
             sh:order 2 ;
-            sh:path my_datamodel:related_to ] ;
-    sh:targetClass my_datamodel:Relationship .
-
-schema1:Organization a sh:NodeShape ;
-    sh:closed true ;
-    sh:description "An organization such as a company or university" ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path schema1:identifier ],
-        [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path my_datamodel:mission_statement ],
-        [ sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:image ],
-        [ sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path schema1:name ],
-        [ sh:order 2 ;
-            sh:path my_datamodel:aliases ],
-        [ sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:description ],
+            sh:path synbio:details ],
         [ sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path my_datamodel:founding_date ] ;
-    sh:targetClass schema1:Organization .
+            sh:path synbio:NCBI_id ] ;
+    sh:targetClass synbio:Organism .
 
-schema1:Person a sh:NodeShape ;
+synbio:Part a sh:NodeShape ;
     sh:closed true ;
-    sh:description "A person (alive, dead, undead, or fictional)." ;
     sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Part" ;
     sh:property [ sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:identifier ],
-        [ sh:class my_datamodel:FamilialRelationship ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 4 ;
-            sh:path my_datamodel:has_familial_relationships ],
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path synbio:bio_safety_level ],
+        [ sh:class synbio:Person ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path synbio:creator ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 9 ;
+            sh:path synbio:part_name ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 14 ;
+            sh:path synbio:summary ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path synbio:alias ],
         [ sh:maxCount 1 ;
             sh:order 7 ;
-            sh:path schema1:name ],
+            sh:path synbio:notes ],
         [ sh:maxCount 1 ;
-            sh:order 8 ;
-            sh:path schema1:description ],
+            sh:order 12 ;
+            sh:path synbio:references ],
         [ sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:birthDate ],
+            sh:order 4 ;
+            sh:path synbio:genotype_phenotype ],
         [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+            sh:minCount 1 ;
+            sh:order 13 ;
+            sh:path synbio:status ],
         [ sh:maxCount 1 ;
-            sh:maxInclusive 999 ;
-            sh:minInclusive 0 ;
-            sh:order 2 ;
-            sh:path my_datamodel:age_in_years ],
-        [ sh:class schema1:PostalAddress ;
-            sh:description "The address at which a person currently lives" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:BlankNode ;
             sh:order 3 ;
-            sh:path my_datamodel:current_address ],
+            sh:path synbio:funding_source ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path synbio:intellectual_property ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path synbio:keywords ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 10 ;
+            sh:path synbio:part_type ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 11 ;
+            sh:path synbio:principal_investigator ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 8 ;
+            sh:path synbio:part_id ] ;
+    sh:targetClass synbio:Part .
+
+synbio:SeqCollection a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Sequence Collection" ;
+    sh:property [ sh:class synbio:Ntseq ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path synbio:sequences ] ;
+    sh:targetClass synbio:SeqCollection .
+
+synbio:Person a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Person" ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path synbio:is_staff ],
+        [ sh:maxCount 1 ;
+            sh:order 7 ;
+            sh:path synbio:email ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path synbio:last_login ],
         [ sh:maxCount 1 ;
             sh:order 9 ;
-            sh:path schema1:image ],
-        [ sh:order 5 ;
-            sh:path my_datamodel:aliases ] ;
-    sh:targetClass schema1:Person .
-
-schema1:PostalAddress a sh:NodeShape ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
+            sh:path synbio:is_active ],
+        [ sh:maxCount 1 ;
+            sh:order 6 ;
+            sh:path synbio:username ],
+        [ sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path synbio:is_superuser ],
+        [ sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path my_datamodel:street ],
+            sh:path synbio:person_id ],
+        [ sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path synbio:last_name ],
         [ sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path my_datamodel:city ],
+            sh:path synbio:person_name ],
         [ sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:order 2 ;
-            sh:path my_datamodel:postal_code ] ;
-    sh:targetClass schema1:PostalAddress .
+            sh:path synbio:first_name ],
+        [ sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path synbio:date_joined ] ;
+    sh:targetClass synbio:Person .
 
-my_datamodel:FamilialRelationship a sh:NodeShape ;
+synbio:Modification a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:in ( famrel:01 famrel:02 famrel:01 ) ;
-            sh:maxCount 1 ;
+    sh:name "Modification" ;
+    sh:property [ sh:maxCount 1 ;
+            sh:order 16 ;
+            sh:path synbio:position ],
+        [ sh:maxCount 1 ;
+            sh:order 34 ;
+            sh:path synbio:subcategory_size ],
+        [ sh:maxCount 1 ;
+            sh:order 10 ;
+            sh:path synbio:email ],
+        [ sh:maxCount 1 ;
+            sh:order 35 ;
+            sh:path synbio:taxon_id ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 11 ;
+            sh:path synbio:mod_alias ],
+        [ sh:maxCount 1 ;
+            sh:order 25 ;
+            sh:path synbio:seq2ids_blast_db ],
+        [ sh:maxCount 1 ;
+            sh:order 31 ;
+            sh:path synbio:seq2ids_sacc ],
+        [ sh:maxCount 1 ;
+            sh:order 24 ;
+            sh:path synbio:seq2ids_bitscore ],
+        [ sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path synbio:element_name ],
+        [ sh:maxCount 1 ;
+            sh:order 32 ;
+            sh:path synbio:size ],
+        [ sh:maxCount 1 ;
+            sh:order 23 ;
+            sh:path synbio:seq2ids_all_go ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 7 ;
+            sh:path synbio:element_id_number ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 17 ;
+            sh:path synbio:principal_investigator ],
+        [ sh:maxCount 1 ;
+            sh:order 13 ;
+            sh:path synbio:modification_type ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path synbio:category ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 33 ;
+            sh:path synbio:status ],
+        [ sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 3 ;
-            sh:path my_datamodel:type ],
+            sh:path synbio:creator_id ],
         [ sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path prov:endedAtTime ],
+            sh:order 21 ;
+            sh:path synbio:SC_curated_uniprot_id ],
         [ sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path prov:startedAtTime ],
+            sh:path synbio:aa_change ],
         [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 36 ;
+            sh:path synbio:type ],
+        [ sh:maxCount 1 ;
+            sh:order 20 ;
+            sh:path synbio:SC_curated_protein_name ],
+        [ sh:maxCount 1 ;
+            sh:order 29 ;
+            sh:path synbio:seq2ids_prot_function ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 14 ;
+            sh:path synbio:name ],
+        [ sh:maxCount 1 ;
+            sh:order 30 ;
+            sh:path synbio:seq2ids_prot_names ],
+        [ sh:maxCount 1 ;
+            sh:order 19 ;
+            sh:path synbio:SC_curated_gene_name ],
+        [ sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path synbio:notes ],
+        [ sh:maxCount 1 ;
+            sh:order 22 ;
+            sh:path synbio:seq2ids_alias ],
+        [ sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path synbio:element_species ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path synbio:element_id ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 12 ;
+            sh:path synbio:modification_id ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path synbio:descriptor ],
+        [ sh:maxCount 1 ;
+            sh:order 28 ;
+            sh:path synbio:seq2ids_organism ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path synbio:element ],
+        [ sh:maxCount 1 ;
+            sh:order 26 ;
+            sh:path synbio:seq2ids_gene_name_1ry ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path synbio:bio_safety_level ],
+        [ sh:maxCount 1 ;
+            sh:order 27 ;
+            sh:path synbio:seq2ids_gene_names ],
+        [ sh:maxCount 1 ;
+            sh:order 18 ;
+            sh:path synbio:SC_curated_enzyme_name ] ;
+    sh:targetClass synbio:Modification .
+
+synbio:Ntseq a sh:NodeShape ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:name "Nucleotide sequence" ;
+    sh:property [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 4 ;
+            sh:path synbio:seq_type ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path synbio:seq_id ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path synbio:part_id ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path synbio:seq_name ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path synbio:date_added ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 6 ;
+            sh:path synbio:sequence ;
+            sh:pattern "^[ACGTacgt]+$" ],
+        [ sh:maxCount 1 ;
+            sh:minCount 1 ;
             sh:order 2 ;
-            sh:path my_datamodel:related_to ] ;
-    sh:targetClass my_datamodel:FamilialRelationship .
+            sh:path synbio:file ] ;
+    sh:targetClass synbio:Ntseq .
 

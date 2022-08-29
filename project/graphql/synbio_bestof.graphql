@@ -1,68 +1,109 @@
-type Address
+type ModCollection
   {
-    street: String
-    city: String
-    postalCode: String
+    modifications: [Modification]
   }
 
-type FamilialRelationship
+type Modification
   {
-    startedAtTime: Date
-    endedAtTime: Date
-    relatedTo: String
-    type: FamilialRelationshipType!
-    relatedTo: Person!
+    aaChange: String
+    bioSafetyLevel: String!
+    category: String
+    creatorId: String!
+    descriptor: String
+    element: String!
+    elementId: String!
+    elementIdNumber: String!
+    elementName: String
+    elementSpecies: String
+    email: String
+    modAlias: String!
+    modificationId: String!
+    modificationType: String
+    name: String!
+    notes: String
+    position: String
+    principalInvestigator: String!
+    sCCuratedEnzymeName: String
+    sCCuratedGeneName: String
+    sCCuratedProteinName: String
+    sCCuratedUniprotId: String
+    seq2idsAlias: String
+    seq2idsAllGo: String
+    seq2idsBitscore: String
+    seq2idsBlastDb: String
+    seq2idsGeneName1ry: String
+    seq2idsGeneNames: String
+    seq2idsOrganism: String
+    seq2idsProtFunction: String
+    seq2idsProtNames: String
+    seq2idsSacc: String
+    size: String
+    status: String!
+    subcategorySize: String
+    taxonId: String
+    type: String!
   }
 
-interface HasAliases
+type Ntseq
   {
-    aliases: [String]
+    seqId: String!
+    partId: String!
+    file: String!
+    seqName: String!
+    seqType: String!
+    dateAdded: String!
+    sequence: String!
   }
 
-type NamedThing
+type OmniCollection
   {
-    id: String!
-    name: String
-    description: String
-    image: String
+    sequences: [Ntseq]
+    modifications: [Modification]
   }
 
-type Organization implements HasAliases
+type Organism
   {
-    id: String!
-    name: String
-    description: String
-    image: String
-    missionStatement: String
-    foundingDate: String
-    aliases: [String]
+    organismId: String
+    nCBIId: String
+    details: String
   }
 
-type Person implements HasAliases
+interface Part
   {
-    id: String!
-    name: String
-    description: String
-    image: String
-    primaryEmail: String
-    birthDate: String
-    ageInYears: Integer
-    currentAddress: Address
-    hasFamilialRelationships: [FamilialRelationship]
-    aliases: [String]
+    alias: String
+    bioSafetyLevel: String!
+    creator: Person
+    fundingSource: String
+    genotypePhenotype: String
+    intellectualProperty: String
+    keywords: String
+    notes: String
+    partId: String!
+    partName: String!
+    partType: String!
+    principalInvestigator: String!
+    references: String
+    status: String!
+    summary: String!
   }
 
-type Registry
+type Person
   {
-    persons: [Person]
-    organizations: [Organization]
+    personId: String!
+    personName: String
+    firstName: String!
+    lastName: String
+    lastLogin: Datetime
+    isSuperuser: Boolean
+    username: String
+    email: String
+    isStaff: Boolean
+    isActive: Boolean
+    dateJoined: Datetime
   }
 
-type Relationship
+type SeqCollection
   {
-    startedAtTime: Date
-    endedAtTime: Date
-    relatedTo: String
-    type: String
+    sequences: [Ntseq]
   }
 

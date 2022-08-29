@@ -1,16 +1,52 @@
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix SO: <http://purl.obolibrary.org/obo/SO_> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix famrel: <http://example.org/famrel/> .
 @prefix linkml: <https://w3id.org/linkml/> .
-@prefix my_datamodel: <https://w3id.org/my_org/my_datamodel> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema1: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix synbio: <http://example.com/synbio/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.com/synbio> a owl:Ontology ;
+    rdfs:label "synbio" ;
+    IAO:0000700 synbio:ModCollection,
+        synbio:Modification,
+        synbio:Ntseq,
+        synbio:OmniCollection,
+        synbio:Organism,
+        synbio:Part,
+        synbio:Person,
+        synbio:SeqCollection ;
+    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
+    skos:note "linkml:types import gets repeated" ;
+    linkml:generation_date "2022-07-01T13:05:39" ;
+    linkml:metamodel_version "1.7.0" ;
+    linkml:source_file "synbio_bestof.yaml" ;
+    linkml:source_file_date "2022-07-01T12:26:58" ;
+    linkml:source_file_size 16734 .
+
+synbio:host_species_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "host_species_id" ;
+    rdfs:range linkml:String ;
+    skos:note "change back to Organism" .
+
+synbio:id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "id" ;
+    rdfs:range linkml:String .
+
+synbio:middle_init_or_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "middle_init_or_name" ;
+    rdfs:range linkml:String .
+
+synbio:parts_ptr_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "parts_ptr_id" ;
+    rdfs:range linkml:String .
 
 linkml:SubsetDefinition a owl:Class ;
     rdfs:label "subset_definition" .
@@ -21,313 +57,974 @@ linkml:TypeDefinition a owl:Class ;
 linkml:topValue a owl:DatatypeProperty ;
     rdfs:label "value" .
 
-my_datamodel: a owl:Ontology ;
-    rdfs:label "my_datamodel" ;
-    IAO:0000700 my_datamodel:Address,
-        my_datamodel:HasAliases,
-        my_datamodel:NamedThing,
-        my_datamodel:Registry,
-        my_datamodel:Relationship ;
-    dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
-    dcterms:title "My Datamodel" ;
-    rdfs:seeAlso "https://example.org/" ;
-    linkml:generation_date "2022-05-17T17:38:35" ;
-    linkml:metamodel_version "1.7.0" ;
-    linkml:source_file "synbio_bestof.yaml" ;
-    linkml:source_file_date "2022-05-17T17:37:44" ;
-    linkml:source_file_size 3771 .
+synbio:ModCollection a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ModCollection" ;
+    dcterms:title "Modification Collection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom synbio:Modification ;
+            owl:onProperty synbio:modifications ] .
 
-my_datamodel:employed_at a owl:ObjectProperty,
+synbio:NCBI_id a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "employed_at" ;
-    rdfs:range my_datamodel:Organization .
+    rdfs:label "NCBI_id" ;
+    rdfs:range linkml:String .
 
-my_datamodel:is_current a owl:ObjectProperty,
+synbio:OmniCollection a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "OmniCollection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom synbio:Modification ;
+            owl:onProperty synbio:modifications ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom synbio:Ntseq ;
+            owl:onProperty synbio:sequences ] .
+
+synbio:Organism a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Organism" ;
+    dcterms:title "Organism" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:organism_id ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:details ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:NCBI_id ] .
+
+synbio:Part a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Part" ;
+    dcterms:title "Part" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:genotype_phenotype ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:status ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:notes ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:references ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:summary ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:part_name ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:keywords ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:intellectual_property ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:alias ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:part_type ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:principal_investigator ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass synbio:Person ;
+            owl:onProperty synbio:creator ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:part_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:funding_source ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:bio_safety_level ;
+            owl:qualifiedCardinality 1 ],
+        linkml:mixin ;
+    skos:editorialNote "removed host_species_id" .
+
+synbio:SC_curated_enzyme_name a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "is_current" ;
+    rdfs:label "SC_curated_enzyme_name" ;
+    rdfs:range linkml:String .
+
+synbio:SC_curated_gene_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "SC_curated_gene_name" ;
+    rdfs:range linkml:String .
+
+synbio:SC_curated_protein_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "SC_curated_protein_name" ;
+    rdfs:range linkml:String .
+
+synbio:SC_curated_uniprot_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "SC_curated_uniprot_id" ;
+    rdfs:range linkml:String .
+
+synbio:SeqCollection a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "SeqCollection" ;
+    dcterms:title "Sequence Collection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom synbio:Ntseq ;
+            owl:onProperty synbio:sequences ] .
+
+synbio:aa_change a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "aa_change" ;
+    rdfs:range linkml:String .
+
+synbio:alias a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "alias" ;
+    rdfs:range linkml:String .
+
+synbio:category a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "category" ;
+    rdfs:range linkml:String .
+
+synbio:creator a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "creator" ;
+    rdfs:range synbio:Person ;
+    skos:note "pain to enter this way?",
+        "was creator_id" .
+
+synbio:creator_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "creator_id" ;
+    rdfs:range linkml:String .
+
+synbio:date_added a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "date_added" ;
+    rdfs:range linkml:String ;
+    skos:editorialNote "linkml-sqldb dump seems to be picky about dates" .
+
+synbio:date_joined a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "date_joined" ;
+    rdfs:range linkml:Datetime .
+
+synbio:descriptor a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "descriptor" ;
+    rdfs:range linkml:String .
+
+synbio:details a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "details" ;
+    rdfs:range linkml:String .
+
+synbio:element a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "element" ;
+    rdfs:range linkml:String .
+
+synbio:element_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "element_id" ;
+    rdfs:range linkml:String .
+
+synbio:element_id_number a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "element_id_number" ;
+    rdfs:range linkml:String .
+
+synbio:element_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "element_name" ;
+    rdfs:range linkml:String .
+
+synbio:element_species a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "element_species" ;
+    rdfs:range linkml:String .
+
+synbio:file a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "file" ;
+    rdfs:range linkml:String .
+
+synbio:first_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "first_name" ;
+    rdfs:range linkml:String .
+
+synbio:funding_source a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "funding_source" ;
+    rdfs:range linkml:String .
+
+synbio:genotype_phenotype a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "genotype_phenotype" ;
+    rdfs:range linkml:String .
+
+synbio:intellectual_property a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "intellectual_property" ;
+    rdfs:range linkml:String .
+
+synbio:is_active a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "is_active" ;
     rdfs:range linkml:Boolean .
 
-schema1:email a owl:ObjectProperty,
-        linkml:SlotDefinition .
-
-my_datamodel:Registry a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Registry" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom my_datamodel:Organization ;
-            owl:onProperty my_datamodel:organizations ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom my_datamodel:Person ;
-            owl:onProperty my_datamodel:persons ] .
-
-my_datamodel:age_in_years a owl:ObjectProperty,
+synbio:is_staff a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "age_in_years" ;
-    rdfs:range linkml:Integer .
+    rdfs:label "is_staff" ;
+    rdfs:range linkml:Boolean .
 
-my_datamodel:city a owl:ObjectProperty,
+synbio:is_superuser a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "city" ;
+    rdfs:label "is_superuser" ;
+    rdfs:range linkml:Boolean .
+
+synbio:keywords a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "keywords" ;
     rdfs:range linkml:String .
 
-my_datamodel:current_address a owl:ObjectProperty,
+synbio:last_login a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "current_address" ;
-    rdfs:range my_datamodel:Address .
+    rdfs:label "last_login" ;
+    rdfs:range linkml:Datetime .
 
-my_datamodel:founding_date a owl:ObjectProperty,
+synbio:last_name a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "founding_date" ;
+    rdfs:label "last_name" ;
     rdfs:range linkml:String .
 
-my_datamodel:has_familial_relationships a owl:ObjectProperty,
+synbio:mod_alias a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "has_familial_relationships" ;
-    rdfs:range my_datamodel:FamilialRelationship .
-
-my_datamodel:mission_statement a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "mission_statement" ;
+    rdfs:label "mod_alias" ;
     rdfs:range linkml:String .
 
-my_datamodel:organizations a owl:ObjectProperty,
+synbio:modification_id a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "organizations" ;
-    rdfs:range my_datamodel:Organization .
-
-my_datamodel:persons a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "persons" ;
-    rdfs:range my_datamodel:Person .
-
-my_datamodel:postal_code a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "postal_code" ;
-    rdfs:range linkml:String .
-
-my_datamodel:street a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "street" ;
-    rdfs:range linkml:String .
-
-famrel:02 a owl:Class,
-        my_datamodel:FamilialRelationshipType ;
-    rdfs:label "PARENT_OF" .
-
-PATO:0001421 a owl:Class,
-        my_datamodel:PersonStatus ;
-    rdfs:label "ALIVE" .
-
-PATO:0001422 a owl:Class,
-        my_datamodel:PersonStatus ;
-    rdfs:label "DEAD" .
-
-schema1:birthDate a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "birth_date" ;
+    rdfs:label "modification_id" ;
     rdfs:range linkml:String ;
-    skos:exactMatch schema1:birthDate .
+    skos:note "might not need this" .
 
-schema1:description a owl:ObjectProperty,
+synbio:modification_type a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "description" ;
-    rdfs:range linkml:String ;
-    skos:exactMatch schema1:description .
+    rdfs:label "modification_type" ;
+    rdfs:range linkml:String .
 
-schema1:identifier a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "id" ;
-    rdfs:range linkml:String ;
-    skos:exactMatch schema1:identifier .
-
-schema1:image a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "image" ;
-    rdfs:range linkml:String ;
-    skos:exactMatch schema1:image .
-
-schema1:name a owl:ObjectProperty,
+synbio:name a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "name" ;
+    rdfs:range linkml:String .
+
+synbio:organism_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "organism_id" ;
+    rdfs:range linkml:String .
+
+synbio:part_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "part_name" ;
+    rdfs:range linkml:String .
+
+synbio:part_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "part_type" ;
+    rdfs:range linkml:String .
+
+synbio:person_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "person_id" ;
+    rdfs:range linkml:String .
+
+synbio:person_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "person_name" ;
     rdfs:range linkml:String ;
-    skos:exactMatch schema1:name .
+    skos:note "use string serialization?" .
 
-prov:endedAtTime a owl:ObjectProperty,
+synbio:position a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "ended_at_time" ;
-    rdfs:range linkml:Date ;
-    skos:exactMatch prov:endedAtTime .
+    rdfs:label "position" ;
+    rdfs:range linkml:String .
 
-prov:startedAtTime a owl:ObjectProperty,
+synbio:references a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "started_at_time" ;
-    rdfs:range linkml:Date ;
-    skos:exactMatch prov:startedAtTime .
+    rdfs:label "references" ;
+    rdfs:range linkml:String .
 
-my_datamodel:FamilialRelationship a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "FamilialRelationship" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass my_datamodel:FamilialRelationshipType ;
-            owl:onProperty my_datamodel:type ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:onClass my_datamodel:Person ;
-            owl:onProperty my_datamodel:related_to ;
-            owl:qualifiedCardinality 1 ],
-        my_datamodel:Relationship .
+synbio:seq2ids_alias a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_alias" ;
+    rdfs:range linkml:String .
 
-<https://w3id.org/my_org/my_datamodelPersonStatus#UNKNOWN> a owl:Class,
-        my_datamodel:PersonStatus ;
-    rdfs:label "UNKNOWN" .
+synbio:seq2ids_all_go a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_all_go" ;
+    rdfs:range linkml:String .
 
-my_datamodel:Relationship a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Relationship" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty prov:startedAtTime ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:type ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:related_to ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty prov:endedAtTime ] .
+synbio:seq2ids_bitscore a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_bitscore" ;
+    rdfs:range linkml:String .
 
-my_datamodel:related_to a owl:ObjectProperty,
-        linkml:SlotDefinition .
+synbio:seq2ids_blast_db a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_blast_db" ;
+    rdfs:range linkml:String .
 
-my_datamodel:type a owl:ObjectProperty,
-        linkml:SlotDefinition .
+synbio:seq2ids_gene_name_1ry a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_gene_name_1ry" ;
+    rdfs:range linkml:String .
 
-famrel:01 a owl:Class,
-        my_datamodel:FamilialRelationshipType ;
-    rdfs:label "CHILD_OF",
-        "SIBLING_OF" .
+synbio:seq2ids_gene_names a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_gene_names" ;
+    rdfs:range linkml:String .
 
-my_datamodel:Address a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Address" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:city ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:street ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:postal_code ] ;
-    skos:exactMatch schema1:PostalAddress .
+synbio:seq2ids_organism a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_organism" ;
+    rdfs:range linkml:String .
 
-my_datamodel:FamilialRelationshipType a owl:Class,
-        linkml:EnumDefinition ;
-    rdfs:label "FamilialRelationshipType" ;
-    owl:unionOf ( famrel:01 famrel:02 famrel:01 ) ;
-    linkml:permissible_values famrel:01,
-        famrel:02 .
+synbio:seq2ids_prot_function a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_prot_function" ;
+    rdfs:range linkml:String .
 
-my_datamodel:HasAliases a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "HasAliases" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty my_datamodel:aliases ],
-        linkml:mixin .
+synbio:seq2ids_prot_names a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_prot_names" ;
+    rdfs:range linkml:String .
 
-my_datamodel:NamedThing a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "NamedThing" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:identifier ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:image ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:name ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty schema1:description ] ;
-    skos:closeMatch schema1:Thing .
+synbio:seq2ids_sacc a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq2ids_sacc" ;
+    rdfs:range linkml:String .
 
-my_datamodel:Organization a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "Organization" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:mission_statement ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty my_datamodel:aliases ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty my_datamodel:founding_date ],
-        my_datamodel:HasAliases,
-        my_datamodel:NamedThing ;
-    skos:exactMatch schema1:Organization .
+synbio:seq_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq_id" ;
+    rdfs:range linkml:String .
 
-my_datamodel:Person a owl:Class,
+synbio:seq_name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq_name" ;
+    rdfs:range linkml:String .
+
+synbio:seq_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "seq_type" ;
+    rdfs:range linkml:String .
+
+synbio:sequence a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "sequence" ;
+    rdfs:range linkml:String .
+
+synbio:size a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "size" ;
+    rdfs:range linkml:String .
+
+synbio:subcategory_size a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "subcategory_size" ;
+    rdfs:range linkml:String .
+
+synbio:summary a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "summary" ;
+    rdfs:range linkml:String .
+
+synbio:taxon_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "taxon_id" ;
+    rdfs:range linkml:String ;
+    skos:note "change back to Organism" .
+
+synbio:type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "type" ;
+    rdfs:range linkml:String .
+
+synbio:username a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "username" ;
+    rdfs:range linkml:String .
+
+<http://example.com/synbio/ModCatEnum#GOI> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "GOI" .
+
+<http://example.com/synbio/ModCatEnum#antibiotic+resistance> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "antibiotic resistance" .
+
+<http://example.com/synbio/ModCatEnum#biosynthetic> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "biosynthetic" .
+
+<http://example.com/synbio/ModCatEnum#compound> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "compound" .
+
+<http://example.com/synbio/ModCatEnum#control+element> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "control element" .
+
+<http://example.com/synbio/ModCatEnum#fluorescent/epitope> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "fluorescent/epitope" .
+
+<http://example.com/synbio/ModCatEnum#origin/structural> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "origin/structural" .
+
+<http://example.com/synbio/ModCatEnum#promoter> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "promoter" .
+
+<http://example.com/synbio/ModCatEnum#terminator> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "terminator" .
+
+<http://example.com/synbio/ModCatEnum#toxin/virulence> a synbio:ModCatEnum,
+        owl:Class ;
+    rdfs:label "toxin/virulence" .
+
+<http://example.com/synbio/ModDescriptorEnum#1bpG707A> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "1bpG707A" .
+
+<http://example.com/synbio/ModDescriptorEnum#CDS> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "CDS" .
+
+<http://example.com/synbio/ModDescriptorEnum#CDSpartial> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "CDSpartial" .
+
+<http://example.com/synbio/ModDescriptorEnum#CDSpartial-3prime> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "CDSpartial-3prime" .
+
+<http://example.com/synbio/ModDescriptorEnum#CDSpartial-5prime> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "CDSpartial-5prime" .
+
+<http://example.com/synbio/ModDescriptorEnum#epitope> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "epitope" .
+
+<http://example.com/synbio/ModDescriptorEnum#fragment> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "fragment" .
+
+<http://example.com/synbio/ModDescriptorEnum#gene> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "gene" .
+
+<http://example.com/synbio/ModDescriptorEnum#promoter> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "promoter" .
+
+<http://example.com/synbio/ModDescriptorEnum#ribosomal.binding.site> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "ribosomal.binding.site" .
+
+<http://example.com/synbio/ModDescriptorEnum#scar> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "scar" .
+
+<http://example.com/synbio/ModDescriptorEnum#terminator> a synbio:ModDescriptorEnum,
+        owl:Class ;
+    rdfs:label "terminator" .
+
+<http://example.com/synbio/ModTypeEnum#chrXIII-chrII> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "chrXIII-chrII" .
+
+<http://example.com/synbio/ModTypeEnum#compound.deletion> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "compound.deletion" .
+
+<http://example.com/synbio/ModTypeEnum#compound.insertion> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "compound.insertion" .
+
+<http://example.com/synbio/ModTypeEnum#fluorescent/epitope> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "fluorescent/epitope" .
+
+<http://example.com/synbio/ModTypeEnum#in-frame.deletion> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "in-frame.deletion" .
+
+<http://example.com/synbio/ModTypeEnum#insertion.site> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "insertion.site" .
+
+<http://example.com/synbio/ModTypeEnum#plasmid+element> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "plasmid element" .
+
+<http://example.com/synbio/ModTypeEnum#plasmid.element> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "plasmid.element" .
+
+<http://example.com/synbio/ModTypeEnum#reassortment> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "reassortment" .
+
+<http://example.com/synbio/ModTypeEnum#transition,plasmid.element> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "transition,plasmid.element" .
+
+<http://example.com/synbio/ModTypeEnum#transition.plasmid.element> a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "transition.plasmid.element" .
+
+<http://example.com/synbio/SeqTypeEnum#flank1> a synbio:SeqTypeEnum,
+        owl:Class ;
+    rdfs:label "flank1" .
+
+<http://example.com/synbio/SeqTypeEnum#flank2> a synbio:SeqTypeEnum,
+        owl:Class ;
+    rdfs:label "flank2" .
+
+synbio:bio_safety_level a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "bio_safety_level" ;
+    rdfs:range linkml:String .
+
+synbio:email a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "email" ;
+    rdfs:range linkml:String .
+
+synbio:modifications a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "modifications" ;
+    rdfs:range synbio:Modification .
+
+synbio:notes a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "notes" ;
+    rdfs:range linkml:String ;
+    skos:note "replace carriage returns etc with pipes? and other normalization?" .
+
+synbio:part_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "part_id" ;
+    rdfs:range linkml:String ;
+    skos:note "part_id can't be an identifier if its mixed in with classes that have their own id",
+        "why can't this be a Modification identifier? \"test.Modification() argument after ** must be a mapping, not extended_str\"" .
+
+synbio:principal_investigator a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "principal_investigator" ;
+    rdfs:range linkml:String ;
+    skos:note "principal_investigator_email implemented as Person_email" .
+
+synbio:sequences a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "sequences" ;
+    rdfs:range synbio:Ntseq .
+
+synbio:status a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "status" ;
+    rdfs:range linkml:String .
+
+SO:0000001 a synbio:SeqTypeEnum,
+        owl:Class ;
+    rdfs:label "sequence" .
+
+SO:0000155 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "Plasmid" .
+
+SO:0000865 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "frameshift" .
+
+SO:0001384 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "CDSpartial" .
+
+SO:0002333 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "amber.stop.codon" .
+
+SO:0002334 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "ochre.stop.codon" .
+
+SO:1000002 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "subtitutions" .
+
+SO:1000017 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "substitution.transversion" .
+
+SO:1000036 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "inversion" .
+
+synbio:Person a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Person" ;
+    dcterms:title "Person" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:person_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:username ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty synbio:is_superuser ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:person_name ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:first_name ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Datetime ;
+            owl:onProperty synbio:date_joined ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:last_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Datetime ;
+            owl:onProperty synbio:last_login ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty synbio:is_staff ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:email ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Boolean ;
+            owl:onProperty synbio:is_active ] .
+
+SO:1000009 a synbio:ModTypeEnum,
+        owl:Class ;
+    rdfs:label "substitution.transition",
+        "transition" .
+
+synbio:Modification a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Modification" ;
+    dcterms:title "Modification" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass my_datamodel:Address ;
-            owl:onProperty my_datamodel:current_address ],
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:element_species ],
         [ a owl:Restriction ;
-            owl:allValuesFrom my_datamodel:FamilialRelationship ;
-            owl:onProperty my_datamodel:has_familial_relationships ],
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:name ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:element_id_number ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:bio_safety_level ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:email ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Integer ;
-            owl:onProperty my_datamodel:age_in_years ],
+            owl:onProperty synbio:notes ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:birthDate ],
+            owl:onProperty synbio:seq2ids_gene_name_1ry ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty my_datamodel:aliases ],
-        my_datamodel:HasAliases,
-        my_datamodel:NamedThing ;
-    skos:exactMatch schema1:Person .
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:creator_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_bitscore ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_sacc ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:modification_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:principal_investigator ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_prot_names ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_alias ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:email ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_prot_function ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_organism ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:mod_alias ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:descriptor ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:SC_curated_protein_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:size ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:aa_change ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:position ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:taxon_id ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:category ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:element_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:status ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_gene_names ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:SC_curated_enzyme_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:modification_type ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:element ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_all_go ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:subcategory_size ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:element_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:SC_curated_gene_name ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:SC_curated_uniprot_id ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:type ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq2ids_blast_db ] ;
+    skos:editorialNote "linkml sql dumper did not like the fact that Modification used the Part mixin. Just manually added all of the slots for now. Or maybe it had something to do with Modification.host_species_id" ;
+    skos:note "return Part as a mixin" .
 
-my_datamodel:PersonStatus a owl:Class,
+synbio:Ntseq a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Ntseq" ;
+    dcterms:title "Nucleotide sequence" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:date_added ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:part_id ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:file ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq_name ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:seq_type ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
+            owl:onProperty synbio:sequence ;
+            owl:qualifiedCardinality 1 ] .
+
+SO:0000159 a synbio:ModTypeEnum,
+        synbio:SeqTypeEnum,
+        owl:Class ;
+    rdfs:label "deletion" .
+
+SO:0000667 a synbio:ModTypeEnum,
+        synbio:SeqTypeEnum,
+        owl:Class ;
+    rdfs:label "insertion" .
+
+synbio:SeqTypeEnum a owl:Class,
         linkml:EnumDefinition ;
-    rdfs:label "PersonStatus" ;
-    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/my_org/my_datamodelPersonStatus#UNKNOWN> ) ;
-    linkml:permissible_values PATO:0001421,
-        PATO:0001422,
-        <https://w3id.org/my_org/my_datamodelPersonStatus#UNKNOWN> .
-
-my_datamodel:aliases a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "aliases" ;
-    rdfs:range linkml:String ;
-    skos:exactMatch schema1:alternateName .
+    rdfs:label "seq_type_enum" ;
+    owl:unionOf ( SO:0000667 SO:0000001 SO:0000159 <http://example.com/synbio/SeqTypeEnum#flank2> <http://example.com/synbio/SeqTypeEnum#flank1> ) ;
+    skos:note "SO:0000001 = \"region\", a seqeunce feature with extent > 0" ;
+    linkml:permissible_values <http://example.com/synbio/SeqTypeEnum#flank1>,
+        <http://example.com/synbio/SeqTypeEnum#flank2>,
+        SO:0000001,
+        SO:0000159,
+        SO:0000667 .
 
 linkml:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" .
+
+synbio:ModCatEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "mod_cat_enum" ;
+    owl:unionOf ( <http://example.com/synbio/ModCatEnum#origin/structural> <http://example.com/synbio/ModCatEnum#biosynthetic> <http://example.com/synbio/ModCatEnum#toxin/virulence> <http://example.com/synbio/ModCatEnum#compound> <http://example.com/synbio/ModCatEnum#promoter> <http://example.com/synbio/ModCatEnum#control+element> <http://example.com/synbio/ModCatEnum#terminator> <http://example.com/synbio/ModCatEnum#antibiotic+resistance> <http://example.com/synbio/ModCatEnum#fluorescent/epitope> <http://example.com/synbio/ModCatEnum#GOI> ) ;
+    skos:note "166 blank, 4 NA" ;
+    linkml:permissible_values <http://example.com/synbio/ModCatEnum#GOI>,
+        <http://example.com/synbio/ModCatEnum#antibiotic+resistance>,
+        <http://example.com/synbio/ModCatEnum#biosynthetic>,
+        <http://example.com/synbio/ModCatEnum#compound>,
+        <http://example.com/synbio/ModCatEnum#control+element>,
+        <http://example.com/synbio/ModCatEnum#fluorescent/epitope>,
+        <http://example.com/synbio/ModCatEnum#origin/structural>,
+        <http://example.com/synbio/ModCatEnum#promoter>,
+        <http://example.com/synbio/ModCatEnum#terminator>,
+        <http://example.com/synbio/ModCatEnum#toxin/virulence> .
+
+synbio:ModDescriptorEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "mod_descriptor_enum" ;
+    owl:unionOf ( <http://example.com/synbio/ModDescriptorEnum#CDSpartial> <http://example.com/synbio/ModDescriptorEnum#CDS> <http://example.com/synbio/ModDescriptorEnum#terminator> <http://example.com/synbio/ModDescriptorEnum#scar> <http://example.com/synbio/ModDescriptorEnum#promoter> <http://example.com/synbio/ModDescriptorEnum#CDSpartial-5prime> <http://example.com/synbio/ModDescriptorEnum#CDSpartial-3prime> <http://example.com/synbio/ModDescriptorEnum#1bpG707A> <http://example.com/synbio/ModDescriptorEnum#ribosomal.binding.site> <http://example.com/synbio/ModDescriptorEnum#gene> <http://example.com/synbio/ModDescriptorEnum#fragment> <http://example.com/synbio/ModDescriptorEnum#epitope> ) ;
+    skos:note "310 blank" ;
+    linkml:permissible_values <http://example.com/synbio/ModDescriptorEnum#1bpG707A>,
+        <http://example.com/synbio/ModDescriptorEnum#CDS>,
+        <http://example.com/synbio/ModDescriptorEnum#CDSpartial>,
+        <http://example.com/synbio/ModDescriptorEnum#CDSpartial-3prime>,
+        <http://example.com/synbio/ModDescriptorEnum#CDSpartial-5prime>,
+        <http://example.com/synbio/ModDescriptorEnum#epitope>,
+        <http://example.com/synbio/ModDescriptorEnum#fragment>,
+        <http://example.com/synbio/ModDescriptorEnum#gene>,
+        <http://example.com/synbio/ModDescriptorEnum#promoter>,
+        <http://example.com/synbio/ModDescriptorEnum#ribosomal.binding.site>,
+        <http://example.com/synbio/ModDescriptorEnum#scar>,
+        <http://example.com/synbio/ModDescriptorEnum#terminator> .
+
+synbio:ModTypeEnum a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "mod_type_enum" ;
+    owl:unionOf ( SO:0000155 SO:0000159 SO:0000667 SO:0000865 SO:0001384 SO:0002333 SO:0002334 SO:1000002 SO:1000009 SO:1000009 SO:1000017 SO:1000036 <http://example.com/synbio/ModTypeEnum#plasmid.element> <http://example.com/synbio/ModTypeEnum#compound.insertion> <http://example.com/synbio/ModTypeEnum#compound.deletion> <http://example.com/synbio/ModTypeEnum#insertion.site> <http://example.com/synbio/ModTypeEnum#reassortment> <http://example.com/synbio/ModTypeEnum#fluorescent/epitope> <http://example.com/synbio/ModTypeEnum#transition,plasmid.element> <http://example.com/synbio/ModTypeEnum#in-frame.deletion> <http://example.com/synbio/ModTypeEnum#plasmid+element> <http://example.com/synbio/ModTypeEnum#chrXIII-chrII> <http://example.com/synbio/ModTypeEnum#transition.plasmid.element> ) ;
+    skos:note "1 blank, 3 NA" ;
+    linkml:permissible_values <http://example.com/synbio/ModTypeEnum#chrXIII-chrII>,
+        <http://example.com/synbio/ModTypeEnum#compound.deletion>,
+        <http://example.com/synbio/ModTypeEnum#compound.insertion>,
+        <http://example.com/synbio/ModTypeEnum#fluorescent/epitope>,
+        <http://example.com/synbio/ModTypeEnum#in-frame.deletion>,
+        <http://example.com/synbio/ModTypeEnum#insertion.site>,
+        <http://example.com/synbio/ModTypeEnum#plasmid+element>,
+        <http://example.com/synbio/ModTypeEnum#plasmid.element>,
+        <http://example.com/synbio/ModTypeEnum#reassortment>,
+        <http://example.com/synbio/ModTypeEnum#transition,plasmid.element>,
+        <http://example.com/synbio/ModTypeEnum#transition.plasmid.element>,
+        SO:0000155,
+        SO:0000159,
+        SO:0000667,
+        SO:0000865,
+        SO:0001384,
+        SO:0002333,
+        SO:0002334,
+        SO:1000002,
+        SO:1000009,
+        SO:1000017,
+        SO:1000036 .
 
 linkml:SlotDefinition a owl:Class ;
     rdfs:label "slot_definition" .

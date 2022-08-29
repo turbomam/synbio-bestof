@@ -1,0 +1,74 @@
+id	species_ncbi_taxon_number	species_name	abbreviation	special_name	strain	comment
+organism:1		Homo sapiens	hsap		unknown	
+organism:10		Mus musculus	mouse		unknown	
+organism:11			hsap_mouse	Homo sapiens Mus musculus	unknown	IMR90-Mouse ES cell hybrid project
+organism:12		Drosophila melanogaster	dmel		Oregon-R modENCODE	"modENCODE strain, Bloomington Stock Number 25211 \(http://flystocks.bio.indiana.edu/Reports/25211.html\)"
+organism:14		Acetobacter tropicalis	a_tropicalis		unknown	
+organism:15		Bacillus kochii	b_kochii		unknown	
+organism:16		Enterococcus durans	e_durans		unknown	
+organism:17		Bacillus flexus	b_flexus		unknown	
+organism:18		Lactobacillus brevis	l_brevis		unknown	
+organism:19		Lactobacillus plantarum	l_plantarum		unknown	
+organism:2			PhiX	PhiX	unknown	
+organism:20		Paenibacillus taichungensis	p_taichungensis		unknown	
+organism:21		Leuconostoc mesenteroides	l_mesenteroides		unknown	
+organism:22		Acetobacter pomorum	a_pomorum		unknown	
+organism:23		Escherichia coli	Escherichia coli		MG1655	JBEI_part_id = JBx_030603; JBEI_name = JBEI-7882
+organism:27			testspecies	testspecies	teststrain	
+organism:28		Bacillus subtilis	Bacillus subtilis		168	
+organism:29		Saccharomyces cerevisiae	Saccharomyces cerevisiae		BY4742	
+organism:3		Drosophila pseudoobscura	dpse		unknown	
+organism:30		Saccharomyces cerevisiae	Saccharomyces cerevisiae		BY4741	
+organism:31		Escherichia coli	E. coli		Nissle	
+organism:32		Yarrowia lipolytica	Yarrowia lipolytica		FEB360	
+organism:33		Yarrowia lipolytica	Yarrowia lipolytica		"Phaff 51-30, CBS 2073"	
+organism:34		Yarrowia lipolytica	Yarrowia lipolytica		FEB130	
+organism:35		Yarrowia lipolytica	Yarrowia lipolytica		FEB380	
+organism:36		Saccharomyces cerevisiae	Saccharomyces cerevisiae		CEN.PK	
+organism:37		Saccharomyces cerevisiae	Saccharomyces cerevisiae		YJF153	
+organism:38		Saccharomyces cerevisiae	Saccharomyces cerevisiae		YJF181	
+organism:39		Escherichia coli	Escherichia coli		MG1655-R	
+organism:4		Drosophila melanogaster	dmel		Cell Line	Dmel derived cell lines
+organism:40		Saccharomyces cerevisiae	Saccharomyces cerevisiae		YPS163	"https://www.yeastgenome.org/strain/S000203501. YPS163 was isolated in 1999 from the soil beneath an oak tree (Quercus rubra) in a Pennsylvania woodland. YPS163 is freeze tolerant, a phenotype associated with its increased expression of aquaporin AQY2. "
+organism:41			ms21	ms21	IARPA-FELIX	Master Sample ID 21; IARPA-FELIX; E. coli with pDG148_AcrBQ
+organism:56		Saccharomyces cerevisiae	Saccharomyces cerevisiae		M22	
+organism:57		Escherichia coli	Escherichia coli		DH5a	
+organism:58		Bacillus subtilis	Bacillus subtilis		DSM10	
+organism:59		Bacillus subtilis	Bacillus subtilis		W23	
+organism:6		Drosophila melanogaster	dmel		w[1118]	"w[1118] line isogenic for chromosomes 1,2 & 3, tested for normal learning, memory and circadian rhythms, J. Roote. From Oregon-R. Original number 5905; DGRC Stock Number 108479"
+organism:60		Bacillus subtilis	Bacillus subtilis		RUB331	
+organism:61		Escherichia coli	Escherichia coli		DH10B	
+organism:62		Yarrowia lipolytica	Yarrowia lipolytica		Phaff 70-19.1	
+organism:63		Escherichia coli	Escherichia coli		"FDA strain Seattle 1946 [DSM 1103, NCIB 12210]"	
+organism:64		Bacillus subtilis	Bacillus subtilis		Wild type isolate	
+organism:65		Bacillus subtilis	Bacillus subtilis		Wild type isolate (pLS11)	
+organism:66		Bacillus subtilis	Bacillus subtilis		Wild type isolate (pLS20)(pLS19)	
+organism:67		Mus musculus	Mus musculus		C57BL/6	"C57 black 6, ""C57"" or ""black 6"""
+organism:69		Citrobacter freundii	Citrobacter_freundii		ATCC 8090 (Braak)	
+organism:70			plasmids	plasmids	plasmids	
+organism:71		Pichia pastoris	Pichia pastoris		FEB544	
+organism:72		Pichia pastoris	Pichia pastoris		X-33	
+organism:73		Yarrowia lipolytica	Yarrowia lipolytica		FKP355	
+organism:74		Yarrowia lipolytica	Yarrowia lipolytica		FEB318	
+organism:75		Yarrowia lipolytica	Yarrowia lipolytica		Phaff 50-46	
+organism:76		Yarrowia lipolytica	Yarrowia lipolytica		Phaff 74-78	
+organism:77		Komagataella pastoris	Komagataella pastoris		Phaff 60-58	
+organism:78		Yarrowia lipolytica	Yarrowia lipolytica		FEB540	
+organism:79		Pseudomonas aeruginosa	Pseudomonas aeruginosa		mPAO1	
+organism:8		Drosophila melanogaster	dmel		iso31; dfmr1[3]/TM6 Tb	
+organism:80		Pseudomonas aeruginosa	Pseudomonas aeruginosa		PAO1	
+organism:81		Pseudomonas aeruginosa	Pseudomonas aeruginosa		ATCC 27853	
+organism:82		Pseudomonas aeruginosa	Pseudomonas aeruginosa		PA103	
+organism:83		Pseudomonas aeruginosa	Pseudomonas aeruginosa		PAO1DF	
+organism:84		Pseudomonas aeruginosa	Pseudomonas aeruginosa		PAO1F	
+organism:85		Bacillus subtilis	Bacillus subtilis		SCK6	
+organism:86		Salmonella enterica	Salmonella enterica		TR6583	
+organism:87		Vibrio natriegens	Vibrio natriegens		14048	
+organism:88		Escherichia coli	Escherichia coli		W2244	
+organism:89		Escherichia coli	Escherichia coli		RC30	
+organism:9		Drosophila melanogaster	dmel		iso31; dfmr1[3]dfmr1[3]	
+organism:90		Escherichia coli	Escherichia coli		GM124	
+organism:91		Saccharomyces cerevisiae	Saccharomyces cerevisiae		W303-1B/A	
+organism:9993		Drosophila melanogaster	dmel		Canton-S	
+organism:9994		Drosophila melanogaster	dmel		Oregon-R	
+organism:9995		Drosophila melanogaster	dmel		y-cn bw sp	

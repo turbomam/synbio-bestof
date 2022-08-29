@@ -1,0 +1,28 @@
+id	is_superuser	username	first_name	last_name	email	is_staff	date_joined
+person:1	1	labtrack				1	2014-03-05T19:46:23.097136+00:00
+person:2	1	nboley				1	2014-03-05T20:16:28+00:00
+person:3	0	roger				1	2014-03-13T22:07:32+00:00
+person:4	1	obiwan	Kenneth	Wan	obiwan@fruitfly.org	1	2014-04-14T21:49:36+00:00
+person:5	0	Esther	Esther	Chan		1	2014-07-17T21:52:57+00:00
+person:6	0	Eurie	Eurie	Hong	euriehong@stanford.edu	1	2014-07-17T21:53:35+00:00
+person:7	1	marcus.stoiber	Marcus	Stoiber		1	2014-07-25T19:12:28+00:00
+person:8	1	leepc12				1	2014-09-29T22:45:48+00:00
+person:10	1	testuser				1	2018-05-17T21:00:53+00:00
+person:11	1	bbooth	Ben	Booth	bwbooth@lbl.gov	1	2018-08-07T18:27:09+00:00
+person:12	1	iarpa_felix	IARPA	Felix		1	2018-08-20T21:16:14+00:00
+person:13	1	kelly.stratton	Kelly	Stratton	kelly.stratton@pnnl.gov	1	2018-08-20T21:17:59+00:00
+person:14	1	becky.hess	Becky	Hess	Becky.Hess@pnnl.gov	1	2018-08-20T21:18:32+00:00
+person:15	1	jon.magnuson	Jon	Magnuson	Jon.Magnuson@pnnl.gov	1	2018-08-20T21:19:32+00:00
+person:16	1	abigail.tucker	Abigail	Tucker	Abigail.Tucker@pnnl.gov	1	2018-09-24T22:41:15+00:00
+person:17	1	robert.egbert	Robert	Egbert	robert.egbert@pnnl.gov	1	2018-09-24T22:42:05+00:00
+person:18	1	erin.bredewig	Erin	Bredewig	erin.bredeweg@pnnl.gov	1	2018-09-24T22:42:42+00:00
+person:19	1	ellen.panisko	Ellen	Panisko	Ellen.Panisko@pnnl.gov	1	2018-09-24T22:43:12+00:00
+person:20	1	janine.hutchison	Janine	Hutchison	Janine.Hutchison@pnnl.gov	1	2018-09-24T22:43:52+00:00
+person:21	1	kristin.burnum-johnson	Kristin	Burnam-Johnson	Kristin.Burnum-Johnson@pnnl.gov	1	2018-10-08T23:39:16+00:00
+person:22	1	michael.neff	Michael	Neff	MichaelNeff@lbl.gov	1	2018-11-05T21:51:26+00:00
+person:23	1	susan.celniker	Susan	Celniker	secelniker@lbl.gov	1	2018-12-07T23:03:12+00:00
+person:24	1	ben.brown	Ben	Brown	benbrownofberkeley@gmail.com	1	2018-12-07T23:03:48+00:00
+person:25	1	chris.mungall	Chris	Mungall	cjmungall@lbl.gov	1	2021-02-17T00:51:16+00:00
+person:26	1	mark.miller	Mark	Miller	mam@lbl.gov	1	2021-03-22T15:08:27+00:00
+person:27	1	becky.jackson	Becky	Jackson	rbca.jackson@gmail.com	1	2021-07-15T14:33:57+00:00
+person:28	1	doug.hyatt	Doug	Hyatt	doug.hyatt@ornl.gov	1	2021-09-20T19:41:25+00:00

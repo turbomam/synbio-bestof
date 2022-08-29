@@ -1,5 +1,7 @@
 ## Add your own custom Makefile targets here
 
+RUN=poetry run
+
 schemasheet_key=1OMPPggJNP-4vom020KDVSwvxLqH5WfTH7k3GceL9IgI # synbio_bottom_up_cleanroom
 credentials_file=local/felix-sheets-4d1f37aa312b.json
 
@@ -156,3 +158,280 @@ target/synbio.db: target/omnicollection.yaml
 #	poetry run linkml2sheets -s src/schema/synbio-bestof.yaml l2s_templates/*tsv -d target
 
 # PRETTY GOOD SCHEMA ROUND TRIPPING
+
+target/dumps/%.tsv:
+	# @echo $(basename $(notdir $@))
+	psql \
+		-h localhost \
+		-p 1111 \
+		-d felix \
+		-U mam \
+		-c "\copy (select * from $(basename $(notdir $@))) TO 'target/dumps/$(basename $(notdir $@)).tsv' CSV HEADER DELIMITER E'\t';"
+
+# whats a good way to do customized dumps like this?
+# for example, we may want to rename some columns
+
+target/dumps/manual/auth_user.tsv:
+	psql \
+		-h localhost \
+		-p 1111 \
+		-d felix \
+		-U mam \
+		-c "\copy (select date_joined, email, first_name, id, is_staff, initcap(cast(is_superuser as text)) as is_superuser, last_name, username from $(basename $(notdir $@))) TO '$@' CSV HEADER DELIMITER E'\t';"
+
+target/dumps/manual/auth_user_schema.yaml: target/dumps/manual/auth_user.tsv
+	head -n 4 $<
+	$(RUN) schemauto generalize-tsv \
+		--annotator bioportal: \
+		--output $@ \
+		--schema-name $(basename $(notdir $@)) \
+		--class-name $(basename $(notdir $@)) $<
+
+.PHONY: clean_dumps dumps
+
+clean_dumps:
+	rm -rf target/dumps/*
+	rm -rf target/postgres_dump_schema.db
+	mkdir -p target/dumps/manual
+
+target/dumps/%_schema.yaml: target/dumps/%.tsv
+	head -n 4 $<
+	$(RUN) schemauto generalize-tsv \
+		--annotator bioportal: \
+		--output $@ \
+		--schema-name $(basename $(notdir $@)) \
+		--class-name $(basename $(notdir $@)) $<
+
+# target/dumps/auth_user.tsv target/dumps/auth_user_schema.yaml \
+
+dumps: clean_dumps target/dumps/postgres_dump_schema.yaml \
+target/dumps/manual/auth_user.tsv target/dumps/manual/auth_user_schema.yaml \
+target/dumps/modifications.tsv target/dumps/modifications_schema.yaml \
+target/dumps/parts.tsv target/dumps/parts_schema.yaml
+
+target/postgres_dump.db:
+	- $(RUN) sh utils/pgsql2sqlite.sh mam 1111 auth_user,biological_samples,external_urls,genomes,modifications,parts,parts_parameters,parts_sequences,performer_aliquots,plasmids,proteins,selection_markers,species,sub_parts,sub_parts_attributes $(basename $(notdir $@))
+
+target/dumps/postgres_dump_schema.yaml: target/postgres_dump.db
+	$(RUN) schemauto import-sql \
+		--output $@ \
+		--schema-name $(basename $(notdir $@)) $<
+	# how to re-implement as yq or something else more graceful than sed?
+	sed -i.bak 's/auth_user/Person/' $@
+	sed -i.bak 's/modifications:/Modification:/' $@
+	# this doesn't delete any password data that might have been extracted from the database in other steps
+	yq 'del(.classes.Person.attributes.password)' -i $@
+	yq 'del(.classes.Person.attributes.last_login)' -i $@
+	yq 'del(.classes.Person.attributes.is_active)' -i $@
+	# capitalize class names
+	# convert some is... integer slots to boolean
+	# generalize attributes to slots
+	# add Database class and related slots
+	# add some imports
+
+# not currently modeling highly variable attributes like is_active or last_login
+# not currently modeling site-specific file paths
+# all ids are prefixed
+# no negative ids
+
+target/dumps/synbio.yaml:
+	$(RUN) schemauto import-owl \
+		--output $@ target/dumps/synbio.ofn
+	sed -E -i.bak 's/multivalued: true//' target/dumps/synbio.yaml
+	sed -E -i.bak 's/nmsfe/synbio/' target/dumps/synbio.yaml
+	sed -E -i.bak 's/xsd:boolean/boolean/' target/dumps/synbio.yaml
+	sed -E -i.bak 's/xsd:date/date/' target/dumps/synbio.yaml
+	sed -E -i.bak 's/xsd:string/string/' target/dumps/synbio.yaml
+	rm -rf $@.bak
+	yq --inplace '.classes.Organism.slot_usage.id.pattern = "^organism:"' $@
+	yq --inplace '.classes.Person.slot_usage.id.pattern = "^person:"' $@
+	yq --inplace '.default_range = "string"' $@
+	yq --inplace '.slots.organism_set.inlined_as_list = true' $@
+	yq --inplace '.slots.organism_set.multivalued = true' $@
+	yq --inplace '.slots.person_set.inlined_as_list = true' $@
+	yq --inplace '.slots.person_set.multivalued = true' $@
+#	yq --inplace '.prefixes.dcterms = "http://purl.org/dc/terms/"' $@
+#	yq --inplace '.prefixes.skos = "http://www.w3.org/2004/02/skos/core#"' $@
+
+# ---
+
+create_person_view:
+	rm -rf target/dumps/person_data.json target/dumps/person_freestanding_select.tsv
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/person_freestanding_crete_view.sql
+
+target/dumps/person_freestanding_select.tsv:
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/person_freestanding_select.sql \
+		-o $@
+
+target/dumps/person_data.yaml: target/dumps/person_freestanding_select.tsv target/dumps/synbio.yaml
+	$(RUN) linkml-convert \
+		--output $@ --schema $(word 2,$^) \
+		--target-class Database \
+		--index-slot person_set $<
+
+target/dumps/synbio.schema.json: target/dumps/synbio.yaml
+	$(RUN) gen-json-schema $< > $@
+
+#person_data_jsonschema_validator: target/dumps/synbio.schema.json target/dumps/person_data.json
+#	jsonschema -i $(word 2,$^) $<
+
+# ---
+
+create_modifications_view:
+	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/modifications_freestanding_create_view.sql
+
+target/dumps/modifications_freestanding_select.tsv: create_modifications_view
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/modifications_freestanding_select.sql \
+		-o $@
+
+target/dumps/modification_data.yaml: target/dumps/modifications_freestanding_select.tsv
+	$(RUN) linkml-convert \
+		--output $@ --schema target/dumps/synbio.yaml \
+		--target-class Database \
+		--index-slot modification_set target/dumps/modifications_freestanding_select.tsv
+
+
+# ---
+
+create_strain_view:
+	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/strain_freestanding_create_view.sql
+
+
+target/dumps/strain_freestanding_select.tsv: create_strain_view
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/strain_freestanding_select.sql \
+		-o $@
+
+
+target/dumps/strain_data.yaml: target/dumps/strain_freestanding_select.tsv
+	$(RUN) linkml-convert \
+		--output $@ --schema target/dumps/synbio.yaml \
+		--target-class Database \
+		--index-slot strain_set target/dumps/strain_freestanding_select.tsv
+	sed -E -i.bak 's/\|/\n  - /g' $@
+
+# ---
+
+
+create_organism_view:
+	rm -rf target/dumps/modification_data.json target/dumps/modifications_freestanding_select.tsv
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		-f sql/organism_freestanding_create_view.sql
+
+
+target/dumps/organism_freestanding_select.tsv: create_organism_view
+	psql \
+		-h localhost \
+		-p 1111 \
+		-U mam \
+		-d felix \
+		--no-align \
+		--field-separator '	' \
+		--no-align \
+		--pset footer \
+		-f sql/organism_freestanding_select.sql \
+		-o $@
+
+
+target/dumps/organism_data.yaml: target/dumps/organism_freestanding_select.tsv
+	$(RUN) linkml-convert \
+		--output $@ --schema target/dumps/synbio.yaml \
+		--target-class Database \
+		--index-slot organism_set target/dumps/organism_freestanding_select.tsv
+
+
+
+# ---
+
+target/dumps/combo.yaml: \
+target/dumps/modification_data.yaml \
+target/dumps/organism_data.yaml \
+target/dumps/person_data.yaml \
+target/dumps/strain_data.yaml
+	cat $^ > $@
+
+target/dumps/combo.json: target/dumps/combo.yaml
+	$(RUN) linkml-convert \
+		--output $@ --target-class Database --schema target/dumps/synbio.yaml $<
+
+combo_validator: target/dumps/synbio.schema.json target/dumps/combo.json
+	jsonschema -i $(word 2,$^) $<
+
+#target/dumps/combo.db: target/dumps/combo.json target/dumps/synbio.yaml
+#	$(RUN) linkml-sqldb dump \
+#		-s $(word 2,$^) \
+#		-D $@ \
+#		--target-class Database $<
+
+
+# ---
+
+#target/dumps/organism_data.json: data/organism_via_species_subset.tsv target/dumps/synbio.yaml
+#	$(RUN) linkml-convert \
+#		--output $@ --schema $(word 2,$^) \
+#		--target-class Database \
+#		--index-slot organism_set $<
+
+# ---
+
+## looses too much
+#target/dumps/synbio.ttl:
+#	$(RUN) gen-owl \
+#		--metadata-profile linkml \
+#		--no-type-objects \
+#		--no-metaclasses \
+#		--no-add-ols-annotations \
+#		--format ttl \
+#		--no-metadata \
+#		--output $@ target/dumps/synbio.yaml
+#
+#target/dumps/synbio.ofn:
+#	robot convert --input target/dumps/synbio.ttl --output $@
+
