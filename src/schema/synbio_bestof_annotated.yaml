@@ -4,15 +4,10 @@ id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
 imports:
   - linkml:types
 prefixes:
-  IAO: http://purl.obolibrary.org/obo/IAO_
-  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
-  NCIT: http://purl.obolibrary.org/obo/NCIT_
-  OBI: http://purl.obolibrary.org/obo/OBI_
-  SO: http://purl.obolibrary.org/obo/SO_
-  dcterms: http://purl.org/dc/terms/
   linkml: https://w3id.org/linkml/
-  skos: http://www.w3.org/2004/02/skos/core#
   synbio: https://w3id.org/None/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
 default_prefix: synbio
 default_range: string
 enums:
@@ -205,6 +200,7 @@ slots:
   sequence_set:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
     exact_mappings:
+      - http://edamontology.org/data_0850
     multivalued: true
     range: PartsSequence
     inlined_as_list: true
@@ -214,6 +210,7 @@ slots:
   genotype_phenotype:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
     exact_mappings:
+      - http://sbmi.uth.tmc.edu/ontology/ochv#42949
     range: string
   intellectual_property:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
@@ -421,7 +418,30 @@ slots:
     slot_uri: synbio:username
     range: string
     required: true
-
+  examples:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    slot_uri: linkml:examples
+  generation_date:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    slot_uri: linkml:generation_date
+  metamodel_version:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    slot_uri: linkml:metamodel_version
+  permissible_values:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    exact_mappings:
+      - http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl#C41109
+    slot_uri: linkml:permissible_values
+  source_file:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    exact_mappings:
+    slot_uri: linkml:source_file
+  source_file_date:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    slot_uri: linkml:source_file_date
+  source_file_size:
+    from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+    slot_uri: linkml:source_file_size
 classes:
   PartsSequence:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
@@ -549,6 +569,7 @@ classes:
   NamedThing:
     from_schema: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
     exact_mappings:
+      - https://w3id.org/biolink/vocab/NamedThing
     slot_usage:
       id:
         multivalued: false

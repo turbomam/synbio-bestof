@@ -1,6 +1,26 @@
 {
-   "_comments": "Auto generated from synbio_bestof.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T09:24:23\n    Schema: synbio\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio\n    description: synbio\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
+   "_comments": "Auto generated from synbio_bestof.yaml by jsonldcontextgen.py version: 0.1.1\n    Generation date: 2022-08-29T10:12:53\n    Schema: synbio\n    metamodel version: 1.7.0\n    model version: None\n    \n    id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio\n    description: synbio\n    license: https://creativecommons.org/publicdomain/zero/1.0/\n    ",
    "@context": {
+      "IAO": {
+         "@id": "http://purl.obolibrary.org/obo/IAO_",
+         "@prefix": true
+      },
+      "NCBITaxon": {
+         "@id": "http://purl.obolibrary.org/obo/NCBITaxon_",
+         "@prefix": true
+      },
+      "NCIT": {
+         "@id": "http://purl.obolibrary.org/obo/NCIT_",
+         "@prefix": true
+      },
+      "OBI": {
+         "@id": "http://purl.obolibrary.org/obo/OBI_",
+         "@prefix": true
+      },
+      "SO": {
+         "@id": "http://purl.obolibrary.org/obo/SO_",
+         "@prefix": true
+      },
       "dcterms": "http://purl.org/dc/terms/",
       "linkml": "https://w3id.org/linkml/",
       "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -42,9 +62,6 @@
       "exactMatch": {
          "@id": "skos:exactMatch"
       },
-      "examples": {
-         "@id": "linkml:examples"
-      },
       "funding_source": {
          "@context": {
             "@vocab": "@null",
@@ -52,9 +69,6 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          }
-      },
-      "generation_date": {
-         "@id": "linkml:generation_date"
       },
       "host_organism": {
          "@type": "@id"
@@ -69,9 +83,6 @@
       "license": {
          "@id": "dcterms:license"
       },
-      "metamodel_version": {
-         "@id": "linkml:metamodel_version"
-      },
       "modification_set": {
          "@type": "@id"
       },
@@ -85,9 +96,6 @@
       },
       "organism_set": {
          "@type": "@id"
-      },
-      "permissible_values": {
-         "@id": "linkml:permissible_values"
       },
       "person_set": {
          "@type": "@id"
@@ -108,15 +116,6 @@
       },
       "size_bp": {
          "@type": "xsd:integer"
-      },
-      "source_file": {
-         "@id": "linkml:source_file"
-      },
-      "source_file_date": {
-         "@id": "linkml:source_file_date"
-      },
-      "source_file_size": {
-         "@id": "linkml:source_file_size"
       },
       "status": {
          "@context": {

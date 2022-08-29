@@ -1,5 +1,5 @@
 # Auto generated from synbio_bestof.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-08-29T09:24:30
+# Generation date: 2022-08-29T10:13:01
 # Schema: synbio
 #
 # id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
@@ -32,6 +32,11 @@ version = None
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+IAO = CurieNamespace('IAO', 'http://purl.obolibrary.org/obo/IAO_')
+NCBITAXON = CurieNamespace('NCBITaxon', 'http://purl.obolibrary.org/obo/NCBITaxon_')
+NCIT = CurieNamespace('NCIT', 'http://purl.obolibrary.org/obo/NCIT_')
+OBI = CurieNamespace('OBI', 'http://purl.obolibrary.org/obo/OBI_')
+SO = CurieNamespace('SO', 'http://purl.obolibrary.org/obo/SO_')
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
@@ -828,27 +833,6 @@ slots.strain_value = Slot(uri=SYNBIO.strain, name="strain_value", curie=SYNBIO.c
 
 slots.username = Slot(uri=SYNBIO.username, name="username", curie=SYNBIO.curie('username'),
                    model_uri=SYNBIO.username, domain=None, range=str)
-
-slots.examples = Slot(uri=LINKML.examples, name="examples", curie=LINKML.curie('examples'),
-                   model_uri=SYNBIO.examples, domain=None, range=Optional[str])
-
-slots.generation_date = Slot(uri=LINKML.generation_date, name="generation_date", curie=LINKML.curie('generation_date'),
-                   model_uri=SYNBIO.generation_date, domain=None, range=Optional[str])
-
-slots.metamodel_version = Slot(uri=LINKML.metamodel_version, name="metamodel_version", curie=LINKML.curie('metamodel_version'),
-                   model_uri=SYNBIO.metamodel_version, domain=None, range=Optional[str])
-
-slots.permissible_values = Slot(uri=LINKML.permissible_values, name="permissible_values", curie=LINKML.curie('permissible_values'),
-                   model_uri=SYNBIO.permissible_values, domain=None, range=Optional[str])
-
-slots.source_file = Slot(uri=LINKML.source_file, name="source_file", curie=LINKML.curie('source_file'),
-                   model_uri=SYNBIO.source_file, domain=None, range=Optional[str])
-
-slots.source_file_date = Slot(uri=LINKML.source_file_date, name="source_file_date", curie=LINKML.curie('source_file_date'),
-                   model_uri=SYNBIO.source_file_date, domain=None, range=Optional[str])
-
-slots.source_file_size = Slot(uri=LINKML.source_file_size, name="source_file_size", curie=LINKML.curie('source_file_size'),
-                   model_uri=SYNBIO.source_file_size, domain=None, range=Optional[str])
 
 slots.PartsSequence_id = Slot(uri=SYNBIO.id, name="PartsSequence_id", curie=SYNBIO.curie('id'),
                    model_uri=SYNBIO.PartsSequence_id, domain=PartsSequence, range=Union[str, PartsSequenceId],

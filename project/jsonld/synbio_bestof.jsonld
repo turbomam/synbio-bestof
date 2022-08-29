@@ -8,20 +8,40 @@
   "license": "https://creativecommons.org/publicdomain/zero/1.0/",
   "prefixes": [
     {
-      "prefix_prefix": "linkml",
-      "prefix_reference": "https://w3id.org/linkml/"
+      "prefix_prefix": "IAO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/IAO_"
     },
     {
-      "prefix_prefix": "synbio",
-      "prefix_reference": "https://w3id.org/None/"
+      "prefix_prefix": "NCBITaxon",
+      "prefix_reference": "http://purl.obolibrary.org/obo/NCBITaxon_"
+    },
+    {
+      "prefix_prefix": "NCIT",
+      "prefix_reference": "http://purl.obolibrary.org/obo/NCIT_"
+    },
+    {
+      "prefix_prefix": "OBI",
+      "prefix_reference": "http://purl.obolibrary.org/obo/OBI_"
+    },
+    {
+      "prefix_prefix": "SO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/SO_"
     },
     {
       "prefix_prefix": "dcterms",
       "prefix_reference": "http://purl.org/dc/terms/"
     },
     {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
       "prefix_prefix": "skos",
       "prefix_reference": "http://www.w3.org/2004/02/skos/core#"
+    },
+    {
+      "prefix_prefix": "synbio",
+      "prefix_reference": "https://w3id.org/None/"
     }
   ],
   "default_prefix": "synbio",
@@ -204,13 +224,22 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "permissible_values": [
         {
-          "text": "deletion"
+          "text": "deletion",
+          "exact_mappings": [
+            "SO:0000159"
+          ]
         },
         {
-          "text": "sequence"
+          "text": "sequence",
+          "exact_mappings": [
+            "SO:0000001"
+          ]
         },
         {
-          "text": "insertion"
+          "text": "insertion",
+          "exact_mappings": [
+            "SO:0000667"
+          ]
         },
         {
           "text": "flank1"
@@ -286,7 +315,10 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "permissible_values": [
         {
-          "text": "amber stop codon"
+          "text": "amber stop codon",
+          "exact_mappings": [
+            "SO:0002333"
+          ]
         },
         {
           "text": "CDSpartial"
@@ -301,31 +333,52 @@
           "text": "compound insertion"
         },
         {
-          "text": "deletion"
+          "text": "deletion",
+          "exact_mappings": [
+            "SO:0000159"
+          ]
         },
         {
           "text": "fluorescent/epitope"
         },
         {
-          "text": "frameshift"
+          "text": "frameshift",
+          "exact_mappings": [
+            "SO:0000865"
+          ]
         },
         {
           "text": "in-frame deletion"
         },
         {
-          "text": "insertion"
+          "text": "insertion",
+          "exact_mappings": [
+            "SO:0000667"
+          ]
         },
         {
-          "text": "insertion site"
+          "text": "insertion site",
+          "exact_mappings": [
+            "SO:0000366"
+          ]
         },
         {
-          "text": "inversion"
+          "text": "inversion",
+          "exact_mappings": [
+            "SO:1000036"
+          ]
         },
         {
-          "text": "ochre stop codon"
+          "text": "ochre stop codon",
+          "exact_mappings": [
+            "SO:0002334"
+          ]
         },
         {
-          "text": "plasmid"
+          "text": "plasmid",
+          "exact_mappings": [
+            "SO:0000155"
+          ]
         },
         {
           "text": "plasmid element"
@@ -334,7 +387,10 @@
           "text": "reassortment"
         },
         {
-          "text": "substitution"
+          "text": "substitution",
+          "exact_mappings": [
+            "SO:1000002"
+          ]
         },
         {
           "text": "substitution transition"
@@ -346,7 +402,10 @@
           "text": "subtitutions"
         },
         {
-          "text": "transition"
+          "text": "transition",
+          "exact_mappings": [
+            "SO:1000009"
+          ]
         },
         {
           "text": "transition plasmid element"
@@ -372,7 +431,10 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "permissible_values": [
         {
-          "text": "antibiotic resistance"
+          "text": "antibiotic resistance",
+          "exact_mappings": [
+            "IDO:0000581"
+          ]
         },
         {
           "text": "biosynthetic"
@@ -393,10 +455,16 @@
           "text": "origin/structural"
         },
         {
-          "text": "promoter"
+          "text": "promoter",
+          "exact_mappings": [
+            "SO:0000167"
+          ]
         },
         {
-          "text": "terminator"
+          "text": "terminator",
+          "exact_mappings": [
+            "SO:0000141"
+          ]
         },
         {
           "text": "toxin/virulence"
@@ -433,22 +501,37 @@
           "text": "eGFP"
         },
         {
-          "text": "enhancer"
+          "text": "enhancer",
+          "exact_mappings": [
+            "SO:0000165"
+          ]
         },
         {
-          "text": "epitope"
+          "text": "epitope",
+          "exact_mappings": [
+            "SO:0001018"
+          ]
         },
         {
-          "text": "fragment"
+          "text": "fragment",
+          "exact_mappings": [
+            "SO:0000731"
+          ]
         },
         {
           "text": "G"
         },
         {
-          "text": "gene"
+          "text": "gene",
+          "exact_mappings": [
+            "SO:0000704"
+          ]
         },
         {
-          "text": "insertion site"
+          "text": "insertion site",
+          "exact_mappings": [
+            "SO:0000366"
+          ]
         },
         {
           "text": "multiple cloning site"
@@ -457,7 +540,10 @@
           "text": "opt"
         },
         {
-          "text": "promoter"
+          "text": "promoter",
+          "exact_mappings": [
+            "SO:0000167"
+          ]
         },
         {
           "text": "ribosomal binding site"
@@ -469,7 +555,10 @@
           "text": "SUMO"
         },
         {
-          "text": "terminator"
+          "text": "terminator",
+          "exact_mappings": [
+            "SO:0000141"
+          ]
         },
         {
           "text": "VP16"
@@ -638,6 +727,9 @@
       "name": "keywords",
       "definition_uri": "https://w3id.org/None/keywords",
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000630"
+      ],
       "slot_uri": "https://w3id.org/None/keywords",
       "owner": "Strain",
       "domain_of": [
@@ -662,6 +754,9 @@
       "name": "references",
       "definition_uri": "https://w3id.org/None/references",
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000320"
+      ],
       "slot_uri": "https://w3id.org/None/references",
       "owner": "Strain",
       "domain_of": [
@@ -811,6 +906,9 @@
       "mappings": [
         "https://w3id.org/None/principal_investigator"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/OBI_0000103"
+      ],
       "slot_uri": "https://w3id.org/None/principal_investigator",
       "owner": "Modification",
       "domain_of": [
@@ -841,6 +939,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "http://purl.org/dc/terms/license"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/NCIT_C43611"
       ],
       "slot_uri": "http://purl.org/dc/terms/license",
       "range": "string",
@@ -879,6 +980,9 @@
       "mappings": [
         "https://w3id.org/None/abbreviation"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/NCIT_C42610"
+      ],
       "slot_uri": "https://w3id.org/None/abbreviation",
       "owner": "Organism",
       "domain_of": [
@@ -909,6 +1013,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/comment"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/NCIT_C25393"
       ],
       "slot_uri": "https://w3id.org/None/comment",
       "owner": "Organism",
@@ -1015,6 +1122,9 @@
       "mappings": [
         "https://w3id.org/None/email"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000429"
+      ],
       "slot_uri": "https://w3id.org/None/email",
       "range": "string",
       "@type": "SlotDefinition"
@@ -1025,6 +1135,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/first_name"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0020016"
       ],
       "slot_uri": "https://w3id.org/None/first_name",
       "range": "string",
@@ -1079,6 +1192,9 @@
       "mappings": [
         "https://w3id.org/None/last_name"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0020017"
+      ],
       "slot_uri": "https://w3id.org/None/last_name",
       "range": "string",
       "@type": "SlotDefinition"
@@ -1115,6 +1231,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/notes"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000634"
       ],
       "slot_uri": "https://w3id.org/None/notes",
       "owner": "Modification",
@@ -1199,6 +1318,9 @@
       "mappings": [
         "https://w3id.org/None/status"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/SO_0000905"
+      ],
       "slot_uri": "https://w3id.org/None/status",
       "owner": "Modification",
       "domain_of": [
@@ -1233,83 +1355,6 @@
       "slot_uri": "https://w3id.org/None/username",
       "range": "string",
       "required": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "examples",
-      "definition_uri": "https://w3id.org/None/examples",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/examples"
-      ],
-      "slot_uri": "https://w3id.org/linkml/examples",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "generation_date",
-      "definition_uri": "https://w3id.org/None/generation_date",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/generation_date"
-      ],
-      "slot_uri": "https://w3id.org/linkml/generation_date",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "metamodel_version",
-      "definition_uri": "https://w3id.org/None/metamodel_version",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/metamodel_version"
-      ],
-      "slot_uri": "https://w3id.org/linkml/metamodel_version",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "permissible_values",
-      "definition_uri": "https://w3id.org/None/permissible_values",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/permissible_values"
-      ],
-      "slot_uri": "https://w3id.org/linkml/permissible_values",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "source_file",
-      "definition_uri": "https://w3id.org/None/source_file",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/source_file"
-      ],
-      "slot_uri": "https://w3id.org/linkml/source_file",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "source_file_date",
-      "definition_uri": "https://w3id.org/None/source_file_date",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/source_file_date"
-      ],
-      "slot_uri": "https://w3id.org/linkml/source_file_date",
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "source_file_size",
-      "definition_uri": "https://w3id.org/None/source_file_size",
-      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
-      "mappings": [
-        "https://w3id.org/linkml/source_file_size"
-      ],
-      "slot_uri": "https://w3id.org/linkml/source_file_size",
-      "range": "string",
       "@type": "SlotDefinition"
     },
     {
@@ -1512,6 +1557,9 @@
       "mappings": [
         "https://w3id.org/None/principal_investigator"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/OBI_0000103"
+      ],
       "is_a": "principal_investigator",
       "domain": "Modification",
       "slot_uri": "https://w3id.org/None/principal_investigator",
@@ -1532,6 +1580,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/status"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/SO_0000905"
       ],
       "is_a": "status",
       "domain": "Modification",
@@ -1657,6 +1708,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/notes"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000634"
       ],
       "is_a": "notes",
       "domain": "Modification",
@@ -1863,6 +1917,9 @@
       "mappings": [
         "https://w3id.org/None/abbreviation"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/NCIT_C42610"
+      ],
       "is_a": "abbreviation",
       "domain": "Organism",
       "slot_uri": "https://w3id.org/None/abbreviation",
@@ -1882,6 +1939,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/comment"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/NCIT_C25393"
       ],
       "is_a": "comment",
       "domain": "Organism",
@@ -2027,6 +2087,9 @@
       "mappings": [
         "https://w3id.org/None/email"
       ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0000429"
+      ],
       "is_a": "email",
       "domain": "Person",
       "slot_uri": "https://w3id.org/None/email",
@@ -2046,6 +2109,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/first_name"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0020016"
       ],
       "is_a": "first_name",
       "domain": "Person",
@@ -2108,6 +2174,9 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "mappings": [
         "https://w3id.org/None/last_name"
+      ],
+      "exact_mappings": [
+        "http://purl.obolibrary.org/obo/IAO_0020017"
       ],
       "is_a": "last_name",
       "domain": "Person",
@@ -2204,6 +2273,9 @@
       "mappings": [
         "synbio:Strain"
       ],
+      "exact_mappings": [
+        "OBI:0001185"
+      ],
       "slots": [
         "Strain_id",
         "bio_safety_level",
@@ -2295,6 +2367,9 @@
       "mappings": [
         "synbio:Organism"
       ],
+      "exact_mappings": [
+        "OBI:0100026"
+      ],
       "slots": [
         "Organism_abbreviation",
         "Organism_strain_value",
@@ -2318,6 +2393,9 @@
       "mappings": [
         "synbio:Person"
       ],
+      "exact_mappings": [
+        "NCBITaxon:9606"
+      ],
       "slots": [
         "Person_id",
         "Person_date_joined",
@@ -2335,9 +2413,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "synbio_bestof.yaml",
-  "source_file_date": "2022-08-29T09:13:27",
-  "source_file_size": 9666,
-  "generation_date": "2022-08-29T09:24:24",
+  "source_file_date": "2022-08-29T10:11:14",
+  "source_file_size": 17307,
+  "generation_date": "2022-08-29T10:12:53",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/synbio_bestof.context.jsonld",

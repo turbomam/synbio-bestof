@@ -1,0 +1,456 @@
+name: synbio
+description: synbio
+id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
+imports:
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  synbio: https://w3id.org/None/
+  dcterms: http://purl.org/dc/terms/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: synbio
+enums:
+  SeqTypeEnum:
+    permissible_values:
+      deletion:
+      sequence:
+      insertion:
+      flank1:
+      flank2:
+  IntellectualPropertyEnum:
+    permissible_values:
+      Limited License Agreement required from Scarab Genomics:
+  FundingSourceEnum:
+    permissible_values:
+      IARPA-FELIX:
+  SubcategorySizeEnum:
+    permissible_values:
+      lt_200:
+        title: '<200'
+      gt_3k:
+        title: '>3K'
+      from_1k_to_3k:
+        title: '1K-3K'
+      from_100_to_300:
+        title: '200-600'
+      from_300_to_1k:
+        title: '600-1K'
+
+  StatusEnum:
+    permissible_values:
+      In Progress:
+      Abandoned:
+  ModificationTypeEnum:
+    permissible_values:
+      amber stop codon:
+      CDSpartial:
+      chrXIII-chrII:
+      compound deletion:
+      compound insertion:
+      deletion:
+      fluorescent/epitope:
+      frameshift:
+      in-frame deletion:
+      insertion:
+      insertion site:
+      inversion:
+      ochre stop codon:
+      plasmid:
+      plasmid element:
+      reassortment:
+      substitution:
+      substitution transition:
+      substitution transversion:
+      subtitutions:
+      transition:
+      transition plasmid element:
+  BioSafetyLevelEnum:
+    permissible_values:
+      Level 1:
+      Level 2:
+  CategoryEnum:
+    permissible_values:
+      antibiotic resistance:
+      biosynthetic:
+      compound:
+      control element:
+      fluorescent/epitope:
+      GOI:
+      origin/structural:
+      promoter:
+      terminator:
+      toxin/virulence:
+  DescriptorEnum:
+    permissible_values:
+      3pUTR:
+      5pUTR:
+      activiation domain:
+      CDS:
+      CDSpartial:
+      CDSpartial-3prime:
+      CDSpartial-5prime:
+      eGFP:
+      enhancer:
+      epitope:
+      fragment:
+      G:
+      gene:
+      insertion site:
+      multiple cloning site:
+      opt:
+      promoter:
+      ribosomal binding site:
+      scar:
+      SUMO:
+      terminator:
+      VP16:
+slots:
+  associated_part:
+    range: Modification
+  seq_name:
+    range: string
+  seq_type:
+    range: SeqTypeEnum
+  date_added:
+  nt_sequence:
+    range: string
+
+  sub_parts:
+    multivalued: true
+  parent_parts:
+    multivalued: true
+  host_organism:
+    range: Organism
+  strain_set:
+    range: Strain
+    multivalued: true
+    inlined_as_list: true
+  sequence_set:
+    range: PartsSequence
+    multivalued: true
+    inlined_as_list: true
+  name:
+    range: string
+  genotype_phenotype:
+    range: string
+  intellectual_property:
+    range: string
+  keywords:
+    range: string
+  summary:
+    range: string
+  references:
+    range: string
+  funding_source:
+    range: FundingSourceEnum
+  modification_set:
+    multivalued: true
+    inlined_as_list: true
+    range: Modification
+  category:
+    slot_uri: synbio:category
+    range: CategoryEnum
+  creator:
+    slot_uri: synbio:creator
+    range: Person
+    inlined: false
+  descriptor:
+    slot_uri: synbio:descriptor
+    range: DescriptorEnum
+  modification_taxon:
+    slot_uri: synbio:modification_taxon
+  #    range: Organism
+  modification_type:
+    slot_uri: synbio:modification_type
+    range: ModificationTypeEnum
+  organism_basis:
+    slot_uri: synbio:organism_basis
+  #    range: Organism
+  organism_set:
+    slot_uri: synbio:organism_set
+    range: Organism
+    inlined_as_list: true
+    multivalued: true
+  person_set:
+    slot_uri: synbio:person_set
+    range: Person
+    inlined_as_list: true
+    multivalued: true
+  principal_investigator:
+    slot_uri: synbio:principal_investigator
+    range: Person
+  subcategory_size:
+    slot_uri: synbio:subcategory_size
+    range: string
+  license:
+    slot_uri: dcterms:license
+  exactMatch:
+    slot_uri: skos:exactMatch
+  aa_change:
+    slot_uri: synbio:aa_change
+    range: string
+  abbreviation:
+    slot_uri: synbio:abbreviation
+  bio_safety_level:
+    slot_uri: synbio:bio_safety_level
+    range: BioSafetyLevelEnum
+  comment:
+    slot_uri: synbio:comment
+  date_joined:
+    slot_uri: synbio:date_joined
+    range: datetime
+    required: true
+  el_name_long:
+    slot_uri: synbio:el_name_long
+    range: string
+  el_name_short:
+    slot_uri: synbio:el_name_short
+    range: string
+  element:
+    slot_uri: synbio:element
+  element_id:
+    slot_uri: synbio:element_id
+  element_name:
+    slot_uri: synbio:element_name
+  element_organism:
+    slot_uri: synbio:element_organism
+  email:
+    slot_uri: synbio:email
+    range: string
+  first_name:
+    slot_uri: synbio:first_name
+    range: string
+  id:
+    slot_uri: synbio:id
+    identifier: true
+  is_staff:
+    slot_uri: synbio:is_staff
+    range: boolean
+    required: true
+  is_superuser:
+    slot_uri: synbio:is_superuser
+    range: boolean
+    required: true
+  last_name:
+    slot_uri: synbio:last_name
+    range: string
+  modification_genes:
+    slot_uri: synbio:modification_genes
+  modifications_genes:
+    slot_uri: synbio:modifications_genes
+  notes:
+    slot_uri: synbio:notes
+    range: string
+  position:
+    slot_uri: synbio:position
+    range: string
+  size_bp:
+    slot_uri: synbio:size_bp
+    range: integer
+  special_name:
+    slot_uri: synbio:special_name
+  species_name:
+    slot_uri: synbio:species_name
+  species_ncbi_taxon_number:
+    slot_uri: synbio:species_ncbi_taxon_number
+  status:
+    slot_uri: synbio:status
+    range: StatusEnum
+  strain_value:
+    slot_uri: synbio:strain
+  username:
+    slot_uri: synbio:username
+    range: string
+    required: true
+  examples:
+    slot_uri: linkml:examples
+  generation_date:
+    slot_uri: linkml:generation_date
+  metamodel_version:
+    slot_uri: linkml:metamodel_version
+  permissible_values:
+    slot_uri: linkml:permissible_values
+  source_file:
+    slot_uri: linkml:source_file
+  source_file_date:
+    slot_uri: linkml:source_file_date
+  source_file_size:
+    slot_uri: linkml:source_file_size
+classes:
+  PartsSequence:
+    slots:
+      - id
+      - associated_part
+      - seq_name
+      - seq_type
+      - date_added
+      - nt_sequence
+    slot_usage:
+      id:
+        pattern: '^sequence:\d+$'
+      associated_part:
+        pattern: '^IF:\d+$'
+  PartsComments:
+    aliases:
+      - parts_comments
+    description: empty, so skip
+  ArabadopsisSeeds:
+    aliases:
+      - arabidopsis_seeds
+    description: empty, so skip
+  BiologicalSamples:
+    aliases:
+      - biological_samples
+    description: currently out-of-scope, so skip
+
+
+  Strain:
+    slots:
+      - id
+      - bio_safety_level
+      - creator
+      - funding_source
+      - genotype_phenotype
+      - host_organism
+      - intellectual_property
+      - keywords
+      - name
+      - notes
+      - principal_investigator
+      - references
+      - status
+      - summary
+      - sub_parts
+      - parent_parts
+    #    is_a: SynbioPart
+    class_uri: synbio:Strain
+    slot_usage:
+      id:
+        pattern: 'MS:\d+'
+
+  Database:
+    slot_usage:
+      strain_set:
+        range: Strain
+      modification_set:
+        range: Modification
+      organism_set:
+        range: Organism
+      person_set:
+        range: Person
+      sequence_set:
+        range: PartsSequence
+    class_uri: synbio:Database
+
+  Modification:
+    #    is_a: SynbioPart
+    class_uri: synbio:Modification
+    slots:
+      - aa_change
+      - bio_safety_level
+      - category
+      - creator
+      - descriptor
+      - el_name_long
+      - el_name_short
+      - element_organism
+      - modification_type
+      - modifications_genes
+      - notes
+      - position
+      - principal_investigator
+      - size_bp
+      - status
+      - subcategory_size
+    slot_usage:
+      id:
+        pattern: '^IF:\d+$'
+      principal_investigator:
+        required: true
+      status:
+        required: true
+      bio_safety_level:
+        required: true
+      creator:
+        required: true
+      el_name_long:
+        required: true
+      el_name_short:
+        required: false
+      element_organism:
+        required: true
+      notes:
+        required: false
+      descriptor:
+        required: false
+      size_bp:
+        required: false
+      position:
+        required: false
+      aa_change:
+        required: false
+      category:
+        required: false
+      subcategory_size:
+        required: false
+      modifications_genes:
+        required: false
+
+  NamedThing:
+    slot_usage:
+      id:
+        multivalued: false
+        required: true
+    class_uri: synbio:NamedThing
+
+  Organism:
+    slots:
+      - abbreviation
+      - strain_value
+      - comment
+      - species_name
+    #    is_a: NamedThing
+    slot_usage:
+      id:
+        multivalued: false
+        required: true
+        pattern: '^organism:-?\d+$'
+      abbreviation:
+        multivalued: false
+      comment:
+        multivalued: false
+      special_name:
+        multivalued: false
+      species_name:
+        multivalued: false
+      species_ncbi_taxon_number:
+        multivalued: false
+      strain_value:
+        multivalued: false
+    class_uri: synbio:Organism
+  Person:
+    #    is_a: NamedThing
+    aliases:
+      - auth_user
+    slot_usage:
+      id:
+        multivalued: false
+        required: true
+        pattern: '^person:\d+$'
+      date_joined:
+        multivalued: false
+      email:
+        multivalued: false
+      first_name:
+        multivalued: false
+      is_staff:
+        multivalued: false
+      is_superuser:
+        multivalued: false
+      last_name:
+        multivalued: false
+      username:
+        multivalued: false
+    class_uri: synbio:Person
+
+default_range: string
