@@ -24,7 +24,7 @@ type Modification
     descriptor: DescriptorEnum
     elNameLong: String!
     elNameShort: String
-    elementOrganism: String!
+    elementOrganism: String
     modificationType: ModificationTypeEnum
     modificationsGenes: String
     notes: String
@@ -33,6 +33,7 @@ type Modification
     sizeBp: Integer
     status: StatusEnum!
     subcategorySize: String
+    parentParts: [String]
     id: String!
   }
 
@@ -47,6 +48,7 @@ type Organism
     strainValue: String
     comment: String
     speciesName: String
+    taxid: String
     id: String!
     specialName: String
     speciesNcbiTaxonNumber: String

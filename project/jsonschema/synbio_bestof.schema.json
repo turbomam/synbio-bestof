@@ -167,6 +167,12 @@
             "notes": {
                "type": "string"
             },
+            "parent_parts": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
             "position": {
                "type": "string"
             },
@@ -187,7 +193,6 @@
             "bio_safety_level",
             "creator",
             "el_name_long",
-            "element_organism",
             "principal_investigator",
             "status",
             "id"
@@ -249,7 +254,7 @@
                "type": "string"
             },
             "id": {
-               "pattern": "^organism:-?\\d+$",
+               "pattern": "^organism:-?\\d+$|^NCBITaxon:\\d+$",
                "type": "string"
             },
             "special_name": {
@@ -262,6 +267,9 @@
                "type": "string"
             },
             "strain_value": {
+               "type": "string"
+            },
+            "taxid": {
                "type": "string"
             }
          },

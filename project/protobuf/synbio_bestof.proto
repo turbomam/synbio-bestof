@@ -24,6 +24,7 @@ message Modification
   integer sizeBp = 0
   statusEnum status = 0
   string subcategorySize = 0
+ repeated  string parentParts = 0
   string id = 0
  }
 message NamedThing
@@ -36,6 +37,7 @@ message Organism
   string strainValue = 0
   string comment = 0
   string speciesName = 0
+  string taxid = 0
   string id = 0
   string specialName = 0
   string speciesNcbiTaxonNumber = 0

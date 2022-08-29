@@ -34,20 +34,16 @@ synbio:PartsComments a sh:NodeShape ;
 synbio:PartsSequence a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path synbio:seq_name ],
-        [ sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path synbio:date_added ],
-        [ sh:in ( "deletion" "sequence" "insertion" "flank1" "flank2" ) ;
+    sh:property [ sh:in ( "deletion" "sequence" "insertion" "flank1" "flank2" ) ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path synbio:seq_type ],
         [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path synbio:id ;
-            sh:pattern "^sequence:\\d+$" ],
+            sh:order 5 ;
+            sh:path synbio:nt_sequence ],
+        [ sh:maxCount 1 ;
+            sh:order 4 ;
+            sh:path synbio:date_added ],
         [ sh:class synbio:Modification ;
             sh:maxCount 1 ;
             sh:nodeKind sh:BlankNode ;
@@ -55,14 +51,40 @@ synbio:PartsSequence a sh:NodeShape ;
             sh:path synbio:associated_part ;
             sh:pattern "^IF:\\d+$" ],
         [ sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path synbio:nt_sequence ] ;
+            sh:order 0 ;
+            sh:path synbio:id ;
+            sh:pattern "^sequence:\\d+$" ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path synbio:seq_name ] ;
     sh:targetClass synbio:PartsSequence .
 
 synbio:Strain a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:maxCount 1 ;
+    sh:property [ sh:class synbio:Person ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 10 ;
+            sh:path synbio:principal_investigator ],
+        [ sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path synbio:name ],
+        [ sh:order 14 ;
+            sh:path synbio:sub_parts ],
+        [ sh:in ( "Level 1" "Level 2" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path synbio:bio_safety_level ],
+        [ sh:class synbio:Organism ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNode ;
+            sh:order 5 ;
+            sh:path synbio:host_organism ],
+        [ sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path synbio:notes ],
+        [ sh:maxCount 1 ;
             sh:order 6 ;
             sh:path synbio:intellectual_property ],
         [ sh:maxCount 1 ;
@@ -70,26 +92,13 @@ synbio:Strain a sh:NodeShape ;
             sh:path synbio:id ;
             sh:pattern "MS:\\d+" ],
         [ sh:maxCount 1 ;
-            sh:order 13 ;
-            sh:path synbio:summary ],
-        [ sh:class synbio:Organism ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 5 ;
-            sh:path synbio:host_organism ],
-        [ sh:maxCount 1 ;
             sh:order 11 ;
             sh:path synbio:references ],
+        [ sh:order 15 ;
+            sh:path synbio:parent_parts ],
         [ sh:maxCount 1 ;
             sh:order 4 ;
             sh:path synbio:genotype_phenotype ],
-        [ sh:maxCount 1 ;
-            sh:order 7 ;
-            sh:path synbio:keywords ],
-        [ sh:in ( "Level 1" "Level 2" ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path synbio:bio_safety_level ],
         [ sh:in ( "In Progress" "Abandoned" ) ;
             sh:maxCount 1 ;
             sh:order 12 ;
@@ -103,21 +112,12 @@ synbio:Strain a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 3 ;
             sh:path synbio:funding_source ],
-        [ sh:order 15 ;
-            sh:path synbio:parent_parts ],
         [ sh:maxCount 1 ;
-            sh:order 8 ;
-            sh:path synbio:name ],
-        [ sh:order 14 ;
-            sh:path synbio:sub_parts ],
-        [ sh:class synbio:Person ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:BlankNode ;
-            sh:order 10 ;
-            sh:path synbio:principal_investigator ],
+            sh:order 7 ;
+            sh:path synbio:keywords ],
         [ sh:maxCount 1 ;
-            sh:order 9 ;
-            sh:path synbio:notes ] ;
+            sh:order 13 ;
+            sh:path synbio:summary ] ;
     sh:targetClass synbio:Strain .
 
 synbio:Modification a sh:NodeShape ;
@@ -127,79 +127,83 @@ synbio:Modification a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNode ;
-            sh:order 3 ;
-            sh:path synbio:creator ],
+            sh:order 12 ;
+            sh:path synbio:principal_investigator ],
         [ sh:maxCount 1 ;
             sh:order 10 ;
             sh:path synbio:notes ],
-        [ sh:in ( "antibiotic resistance" "biosynthetic" "compound" "control element" "fluorescent/epitope" "GOI" "origin/structural" "promoter" "terminator" "toxin/virulence" ) ;
+        [ sh:in ( "3pUTR" "5pUTR" "activiation domain" "CDS" "CDSpartial" "CDSpartial-3prime" "CDSpartial-5prime" "eGFP" "enhancer" "epitope" "fragment" "G" "gene" "insertion site" "multiple cloning site" "opt" "promoter" "ribosomal binding site" "scar" "SUMO" "terminator" "VP16" ) ;
             sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path synbio:category ],
-        [ sh:in ( "Level 1" "Level 2" ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 1 ;
-            sh:path synbio:bio_safety_level ],
-        [ sh:maxCount 1 ;
-            sh:order 13 ;
-            sh:path synbio:size_bp ],
-        [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path synbio:aa_change ],
-        [ sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 5 ;
-            sh:path synbio:el_name_long ],
+            sh:order 4 ;
+            sh:path synbio:descriptor ],
         [ sh:in ( "In Progress" "Abandoned" ) ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 14 ;
             sh:path synbio:status ],
         [ sh:maxCount 1 ;
-            sh:order 11 ;
-            sh:path synbio:position ],
-        [ sh:maxCount 1 ;
-            sh:order 9 ;
-            sh:path synbio:modifications_genes ],
+            sh:order 13 ;
+            sh:path synbio:size_bp ],
         [ sh:maxCount 1 ;
             sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path synbio:el_name_long ],
+        [ sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path synbio:aa_change ],
+        [ sh:order 16 ;
+            sh:path synbio:parent_parts ],
+        [ sh:maxCount 1 ;
             sh:order 7 ;
             sh:path synbio:element_organism ],
-        [ sh:in ( "3pUTR" "5pUTR" "activiation domain" "CDS" "CDSpartial" "CDSpartial-3prime" "CDSpartial-5prime" "eGFP" "enhancer" "epitope" "fragment" "G" "gene" "insertion site" "multiple cloning site" "opt" "promoter" "ribosomal binding site" "scar" "SUMO" "terminator" "VP16" ) ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path synbio:descriptor ],
-        [ sh:maxCount 1 ;
-            sh:order 15 ;
-            sh:path synbio:subcategory_size ],
-        [ sh:in ( "amber stop codon" "CDSpartial" "chrXIII-chrII" "compound deletion" "compound insertion" "deletion" "fluorescent/epitope" "frameshift" "in-frame deletion" "insertion" "insertion site" "inversion" "ochre stop codon" "plasmid" "plasmid element" "reassortment" "substitution" "substitution transition" "substitution transversion" "subtitutions" "transition" "transition plasmid element" ) ;
-            sh:maxCount 1 ;
-            sh:order 8 ;
-            sh:path synbio:modification_type ],
         [ sh:class synbio:Person ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:nodeKind sh:BlankNode ;
-            sh:order 12 ;
-            sh:path synbio:principal_investigator ],
+            sh:order 3 ;
+            sh:path synbio:creator ],
+        [ sh:maxCount 1 ;
+            sh:order 15 ;
+            sh:path synbio:subcategory_size ],
+        [ sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path synbio:modifications_genes ],
+        [ sh:in ( "amber stop codon" "CDSpartial" "chrXIII-chrII" "compound deletion" "compound insertion" "deletion" "fluorescent/epitope" "frameshift" "in-frame deletion" "insertion" "insertion site" "inversion" "ochre stop codon" "plasmid" "plasmid element" "reassortment" "substitution" "substitution transition" "substitution transversion" "subtitutions" "transition" "transition plasmid element" ) ;
+            sh:maxCount 1 ;
+            sh:order 8 ;
+            sh:path synbio:modification_type ],
+        [ sh:maxCount 1 ;
+            sh:order 11 ;
+            sh:path synbio:position ],
+        [ sh:in ( "antibiotic resistance" "biosynthetic" "compound" "control element" "fluorescent/epitope" "GOI" "origin/structural" "promoter" "terminator" "toxin/virulence" ) ;
+            sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path synbio:category ],
         [ sh:maxCount 1 ;
             sh:order 6 ;
-            sh:path synbio:el_name_short ] ;
+            sh:path synbio:el_name_short ],
+        [ sh:in ( "Level 1" "Level 2" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path synbio:bio_safety_level ] ;
     sh:targetClass synbio:Modification .
 
 synbio:Organism a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path synbio:comment ],
+            sh:order 0 ;
+            sh:path synbio:abbreviation ],
         [ sh:maxCount 1 ;
             sh:order 1 ;
             sh:path synbio:strain ],
         [ sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path synbio:abbreviation ],
+            sh:order 4 ;
+            sh:path synbio:taxid ],
+        [ sh:maxCount 1 ;
+            sh:order 2 ;
+            sh:path synbio:comment ],
         [ sh:maxCount 1 ;
             sh:order 3 ;
             sh:path synbio:species_name ] ;

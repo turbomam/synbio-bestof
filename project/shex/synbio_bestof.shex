@@ -65,7 +65,7 @@ linkml:Nodeidentifier NONLITERAL
           <descriptor> @<DescriptorEnum> ? ;
           <el_name_long> @linkml:String ;
           <el_name_short> @linkml:String ? ;
-          <element_organism> @linkml:String ;
+          <element_organism> @linkml:String ? ;
           <modification_type> @<ModificationTypeEnum> ? ;
           <modifications_genes> @linkml:String ? ;
           <notes> @linkml:String ? ;
@@ -73,7 +73,8 @@ linkml:Nodeidentifier NONLITERAL
           <principal_investigator> @<Person> ;
           <size_bp> @linkml:Integer ? ;
           <status> @<StatusEnum> ;
-          <subcategory_size> @linkml:String ?
+          <subcategory_size> @linkml:String ? ;
+          <parent_parts> @linkml:String *
        ) ;
        rdf:type [ <Modification> ]
     )
@@ -90,6 +91,7 @@ linkml:Nodeidentifier NONLITERAL
           <strain> @linkml:String ? ;
           <comment> @linkml:String ? ;
           <species_name> @linkml:String ? ;
+          <taxid> @linkml:String ? ;
           <special_name> @linkml:String ? ;
           <species_ncbi_taxon_number> @linkml:String ?
        ) ;

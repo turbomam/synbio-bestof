@@ -568,6 +568,18 @@
   ],
   "slots": [
     {
+      "name": "taxid",
+      "definition_uri": "https://w3id.org/None/taxid",
+      "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
+      "slot_uri": "https://w3id.org/None/taxid",
+      "owner": "Organism",
+      "domain_of": [
+        "Organism"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "associated_part",
       "definition_uri": "https://w3id.org/None/associated_part",
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
@@ -646,9 +658,10 @@
       "from_schema": "http://www.semanticweb.org/mam/ontologies/2022/7/synbio",
       "slot_uri": "https://w3id.org/None/parent_parts",
       "multivalued": true,
-      "owner": "Strain",
+      "owner": "Modification",
       "domain_of": [
-        "Strain"
+        "Strain",
+        "Modification"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -1699,7 +1712,6 @@
       "is_usage_slot": true,
       "usage_slot_name": "element_organism",
       "range": "string",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1907,7 +1919,7 @@
       "usage_slot_name": "id",
       "range": "string",
       "required": true,
-      "pattern": "^organism:-?\\d+$",
+      "pattern": "^organism:-?\\d+$|^NCBITaxon:\\d+$",
       "@type": "SlotDefinition"
     },
     {
@@ -2340,6 +2352,7 @@
         "Modification_size_bp",
         "Modification_status",
         "Modification_subcategory_size",
+        "parent_parts",
         "Modification_id"
       ],
       "slot_usage": {},
@@ -2375,6 +2388,7 @@
         "Organism_strain_value",
         "Organism_comment",
         "Organism_species_name",
+        "taxid",
         "Organism_id",
         "Organism_special_name",
         "Organism_species_ncbi_taxon_number"
@@ -2413,9 +2427,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "synbio_bestof.yaml",
-  "source_file_date": "2022-08-29T10:11:14",
-  "source_file_size": 17307,
-  "generation_date": "2022-08-29T10:12:53",
+  "source_file_date": "2022-08-29T11:23:14",
+  "source_file_size": 17370,
+  "generation_date": "2022-08-29T11:49:51",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/synbio_bestof.context.jsonld",

@@ -19,6 +19,7 @@ CREATE TABLE "Organism" (
 	strain_value TEXT, 
 	comment TEXT, 
 	species_name TEXT, 
+	taxid TEXT, 
 	id TEXT NOT NULL, 
 	special_name TEXT, 
 	species_ncbi_taxon_number TEXT, 
@@ -45,7 +46,7 @@ CREATE TABLE "Modification" (
 	descriptor VARCHAR(22), 
 	el_name_long TEXT NOT NULL, 
 	el_name_short TEXT, 
-	element_organism TEXT NOT NULL, 
+	element_organism TEXT, 
 	modification_type VARCHAR(26), 
 	modifications_genes TEXT, 
 	notes TEXT, 
@@ -90,6 +91,13 @@ CREATE TABLE "PartsSequence" (
 	nt_sequence TEXT, 
 	PRIMARY KEY (id), 
 	FOREIGN KEY(associated_part) REFERENCES "Modification" (id)
+);
+
+CREATE TABLE "Modification_parent_parts" (
+	backref_id TEXT, 
+	parent_parts TEXT, 
+	PRIMARY KEY (backref_id, parent_parts), 
+	FOREIGN KEY(backref_id) REFERENCES "Modification" (id)
 );
 
 CREATE TABLE "Strain_sub_parts" (

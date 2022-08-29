@@ -283,17 +283,33 @@ schema_path=src/schema/synbio_bestof.yaml
 
 
 # todo:
-#   propose read from postgres only; emphasize fields that aren't just Felix/Celnicker specific
+#   any desire for the schemafied database to be a primary resource? many tables aren't modified (yet?) NO
+#   no round trip OK, read from postgres only
+#   NOT reading from availabilities
+#   no more schema bootstrapping from postgres or XLSX/google sheets
+
+#   CLARIFY use of GO terms instead of other categories
+#   GFP has roels in addition to fluorescing
+
+#   no more schemasheets? (unless Celniker lab want to participate?)
+#   propose read DATA from postgres only; emphasize fields that aren't just administrative/Felix/Celniker specific
+
 #   can I insert repair tables?
 #   no read permission on modifications_genes
 #   class centric modeling, esp organisms and persons
+#   de-prioritize modeling in *parts*
+#   still need to work on plasmids
+#   not planning on modeling proteins table, but will capture protein knowledge as attributes, mostly discovered
 #   wheres and joins filter out problematic data
 #   strain parent parts include self
 #   modifications parent parts don't indicate rank or emphasize nearest parent
 #   combine explicit organism, strain tables (?) and esp. taxon info embedded in modifications (element_species and taxon_id)
 #   need to check match between taxid and name
+#   work on documentation templates
+#   still need to add some part attributes like external links
 
 #   ERROR:root:Expected: associated_part_json
+#   hacky workaround for group concatenating in sql, converting to yam and then splitting on pipe characters
 
 # ---
 
@@ -482,11 +498,14 @@ target/combo_data.json: target/combo_data.yaml
 	$(RUN) linkml-convert \
 		--output $@ --target-class Database --schema $(schema_path) $<
 
-#target/combo.db: target/combo.json $(schema_path)
-#	$(RUN) linkml-sqldb dump \
-#		-s $(word 2,$^) \
-#		-D $@ \
-#		--target-class Database $<
+target/combo.db: target/modification_data.yaml $(schema_path)
+	$(RUN) linkml-sqldb dump \
+		-s $(word 2,$^) \
+		-D $@ \
+		--target-class Database $<
+
+# todo:
+#   sqlalchemy.exc.AmbiguousForeignKeysError: Could not determine join condition between parent/child tables on relationship Strain.creator - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.
 
 # ---
 

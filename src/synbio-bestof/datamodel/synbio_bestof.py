@@ -1,5 +1,5 @@
 # Auto generated from synbio_bestof.yaml by pythongen.py version: 0.9.0
-# Generation date: 2022-08-29T10:13:01
+# Generation date: 2022-08-29T11:49:56
 # Schema: synbio
 #
 # id: http://www.semanticweb.org/mam/ontologies/2022/7/synbio
@@ -271,19 +271,20 @@ class Modification(YAMLRoot):
     bio_safety_level: Union[str, "BioSafetyLevelEnum"] = None
     creator: Union[str, PersonId] = None
     el_name_long: str = None
-    element_organism: str = None
     principal_investigator: Union[str, PersonId] = None
     status: Union[str, "StatusEnum"] = None
     aa_change: Optional[str] = None
     category: Optional[Union[str, "CategoryEnum"]] = None
     descriptor: Optional[Union[str, "DescriptorEnum"]] = None
     el_name_short: Optional[str] = None
+    element_organism: Optional[str] = None
     modification_type: Optional[Union[str, "ModificationTypeEnum"]] = None
     modifications_genes: Optional[str] = None
     notes: Optional[str] = None
     position: Optional[str] = None
     size_bp: Optional[int] = None
     subcategory_size: Optional[str] = None
+    parent_parts: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.id):
@@ -305,11 +306,6 @@ class Modification(YAMLRoot):
             self.MissingRequiredField("el_name_long")
         if not isinstance(self.el_name_long, str):
             self.el_name_long = str(self.el_name_long)
-
-        if self._is_empty(self.element_organism):
-            self.MissingRequiredField("element_organism")
-        if not isinstance(self.element_organism, str):
-            self.element_organism = str(self.element_organism)
 
         if self._is_empty(self.principal_investigator):
             self.MissingRequiredField("principal_investigator")
@@ -333,6 +329,9 @@ class Modification(YAMLRoot):
         if self.el_name_short is not None and not isinstance(self.el_name_short, str):
             self.el_name_short = str(self.el_name_short)
 
+        if self.element_organism is not None and not isinstance(self.element_organism, str):
+            self.element_organism = str(self.element_organism)
+
         if self.modification_type is not None and not isinstance(self.modification_type, ModificationTypeEnum):
             self.modification_type = ModificationTypeEnum(self.modification_type)
 
@@ -350,6 +349,10 @@ class Modification(YAMLRoot):
 
         if self.subcategory_size is not None and not isinstance(self.subcategory_size, str):
             self.subcategory_size = str(self.subcategory_size)
+
+        if not isinstance(self.parent_parts, list):
+            self.parent_parts = [self.parent_parts] if self.parent_parts is not None else []
+        self.parent_parts = [v if isinstance(v, str) else str(v) for v in self.parent_parts]
 
         super().__post_init__(**kwargs)
 
@@ -388,6 +391,7 @@ class Organism(YAMLRoot):
     strain_value: Optional[str] = None
     comment: Optional[str] = None
     species_name: Optional[str] = None
+    taxid: Optional[str] = None
     special_name: Optional[str] = None
     species_ncbi_taxon_number: Optional[str] = None
 
@@ -408,6 +412,9 @@ class Organism(YAMLRoot):
 
         if self.species_name is not None and not isinstance(self.species_name, str):
             self.species_name = str(self.species_name)
+
+        if self.taxid is not None and not isinstance(self.taxid, str):
+            self.taxid = str(self.taxid)
 
         if self.special_name is not None and not isinstance(self.special_name, str):
             self.special_name = str(self.special_name)
@@ -660,6 +667,9 @@ class DescriptorEnum(EnumDefinitionImpl):
 class slots:
     pass
 
+slots.taxid = Slot(uri=SYNBIO.taxid, name="taxid", curie=SYNBIO.curie('taxid'),
+                   model_uri=SYNBIO.taxid, domain=None, range=Optional[str])
+
 slots.associated_part = Slot(uri=SYNBIO.associated_part, name="associated_part", curie=SYNBIO.curie('associated_part'),
                    model_uri=SYNBIO.associated_part, domain=None, range=Optional[Union[str, ModificationId]])
 
@@ -884,7 +894,7 @@ slots.Modification_el_name_short = Slot(uri=SYNBIO.el_name_short, name="Modifica
                    model_uri=SYNBIO.Modification_el_name_short, domain=Modification, range=Optional[str])
 
 slots.Modification_element_organism = Slot(uri=SYNBIO.element_organism, name="Modification_element_organism", curie=SYNBIO.curie('element_organism'),
-                   model_uri=SYNBIO.Modification_element_organism, domain=Modification, range=str)
+                   model_uri=SYNBIO.Modification_element_organism, domain=Modification, range=Optional[str])
 
 slots.Modification_notes = Slot(uri=SYNBIO.notes, name="Modification_notes", curie=SYNBIO.curie('notes'),
                    model_uri=SYNBIO.Modification_notes, domain=Modification, range=Optional[str])
@@ -915,7 +925,7 @@ slots.NamedThing_id = Slot(uri=SYNBIO.id, name="NamedThing_id", curie=SYNBIO.cur
 
 slots.Organism_id = Slot(uri=SYNBIO.id, name="Organism_id", curie=SYNBIO.curie('id'),
                    model_uri=SYNBIO.Organism_id, domain=Organism, range=Union[str, OrganismId],
-                   pattern=re.compile(r'^organism:-?\d+$'))
+                   pattern=re.compile(r'^organism:-?\d+$|^NCBITaxon:\d+$'))
 
 slots.Organism_abbreviation = Slot(uri=SYNBIO.abbreviation, name="Organism_abbreviation", curie=SYNBIO.curie('abbreviation'),
                    model_uri=SYNBIO.Organism_abbreviation, domain=Organism, range=Optional[str])
